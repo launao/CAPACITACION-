@@ -1,96 +1,130 @@
-# Curso: Levantamiento y optimización de procesos + fundamentos de IA
+# Centro de formación · Proyecto Arthemis
 
-Curso interno para los analistas que levantan procesos en campo. Un solo archivo HTML, sin dependencias, sin compilación y sin servidor.
+Dos cursos internos en un solo sitio estático. Sin dependencias, sin compilación y sin servidor: son tres archivos HTML.
 
-## Contenido
+| Archivo | Qué es |
+|---|---|
+| `index.html` | Portada con los dos cursos |
+| `normativa-salud.html` | Curso 1: normas para ser prestador de servicios de salud en Colombia |
+| `procesos-ia.html` | Curso 2: levantamiento y optimización de procesos + fundamentos de IA |
+| `.nojekyll` | Evita que GitHub procese el sitio con Jekyll |
 
-**Parte I — Procesos**
+---
 
-| # | Módulo | Tema |
-|---|--------|------|
-| 0 | Cómo usar este curso | Método de estudio y advertencias |
-| 1 | Qué es un proceso | SIPOC, niveles, indicadores, ley de Little, los ocho desperdicios |
-| 2 | Cómo se levanta | Cinco fases, cinco fuentes, captura en campo, siete errores |
-| 3 | La entrevista | Preparación, estructura de la hora, tipos de pregunta, situaciones difíciles |
-| 4 | Documentar | Ficha de proceso, diagramas de carriles, símbolos, RACI, validación |
-| 5 | Optimizar | Valor agregado, ESCA, cuello de botella, poka-yoke, priorización, PDCA |
+## Curso 1 · Normas para ser prestador de salud
 
-**Parte II — Inteligencia artificial**
+Escrito en lenguaje sencillo, con letra grande y ajustable desde la propia página. Actualizado a septiembre de 2026.
 
-| # | Módulo | Tema |
-|---|--------|------|
-| 6 | Fundamentos | IA vs. software tradicional, tipos de aprendizaje, entrenamiento, sobreajuste, sesgo |
-| 7 | Generativa y agentes | Modelos de lenguaje, prompts, alucinaciones, RAG, qué es un agente |
-| 8 | IA en procesos | Usos reales, minería de procesos, riesgos, datos sensibles, cómo evaluar proveedores |
-| 9 | Herramientas | Listas de chequeo de campo |
-| ★ | Examen final | 20 preguntas de caso |
+| # | Módulo |
+|---|---|
+| 0 | Cómo estudiar con este cuadernillo |
+| 1 | El mapa del sistema de salud colombiano |
+| 2 | Qué es un prestador y qué debe cumplir |
+| 3 | Secretaría de Salud: habilitación paso a paso |
+| 4 | Calidad y obligaciones del día a día |
+| 5 | EPS: contratos, facturas, glosas y pagos |
+| 6 | ARL: riesgos laborales |
+| 7 | SOAT: accidentes de tránsito |
+| 8 | El rincón del contador |
+| 9 | Ruta práctica para arrancar (lista de chequeo) |
+| 10 | Seguridad del paciente, CIE-10, CIE-11, CUPS y registros |
+| ★ | Examen final de 24 preguntas |
 
-## Herramientas interactivas
+Incluye glosario y normograma con el estado de cada norma.
 
-1. Calculadora de eficiencia de ciclo
-2. Armador de ficha SIPOC
-3. Generador de guion de entrevista
-4. Detector de cuello de botella
-5. Priorizador de oportunidades
-6. Constructor y evaluador de instrucciones para IA
-7. Listas de chequeo de campo
+## Curso 2 · Levantamiento de procesos e IA
 
-Todas exportan texto listo para pegar en la aplicación de levantamiento.
+| # | Módulo |
+|---|---|
+| 0 | Cómo usar este curso |
+| 1 | Qué es un proceso y cómo se mide |
+| 2 | Cómo se levanta un proceso |
+| 3 | La entrevista de levantamiento |
+| 4 | Documentar y diagramar |
+| 5 | Optimizar el proceso |
+| 6 | Fundamentos de inteligencia artificial |
+| 7 | IA generativa y agentes |
+| 8 | IA aplicada al levantamiento y a los procesos |
+| 9 | Las herramientas del analista |
+| ★ | Examen final de 20 preguntas |
+
+Trae siete herramientas interactivas: calculadora de eficiencia de ciclo, armador de ficha SIPOC, generador de guion de entrevista, detector de cuello de botella, priorizador de oportunidades, constructor de instrucciones para IA y listas de chequeo de campo. Todas exportan texto listo para pegar en la aplicación de levantamiento.
+
+---
 
 ## Publicar en GitHub Pages
 
-1. Cree un repositorio nuevo (puede ser privado si su plan lo permite).
-2. Suba `index.html`, `README.md` y `.nojekyll` a la rama `main`.
-3. Vaya a **Settings → Pages**.
-4. En *Source* elija **Deploy from a branch**, rama `main`, carpeta `/ (root)`.
-5. Guarde. En uno o dos minutos el curso queda en `https://USUARIO.github.io/REPOSITORIO/`.
-
-El archivo `.nojekyll` evita que GitHub procese el sitio con Jekyll. Sin él, todo funciona igual en este caso, pero es buena práctica dejarlo.
-
-### Desde la terminal
+1. Suba los cuatro archivos a la raíz del repositorio, en la rama `main`.
+2. **Settings → Pages**.
+3. *Source*: **Deploy from a branch**. Rama `main`, carpeta `/ (root)`. Guarde.
+4. En uno o dos minutos queda publicado en `https://USUARIO.github.io/REPOSITORIO/`.
 
 ```bash
-git clone https://github.com/USUARIO/REPOSITORIO.git
-cd REPOSITORIO
-# copie aquí index.html, README.md y .nojekyll
 git add .
-git commit -m "Curso de levantamiento de procesos e IA"
+git commit -m "Centro de formación: cursos de normativa y de procesos"
 git push origin main
 ```
 
+**Si sale error 404:** revise que `index.html` esté en la raíz (no dentro de una carpeta), que el nombre sea exactamente `index.html`, y mire la pestaña **Actions** para confirmar que el despliegue terminó.
+
+**Si el repositorio es privado:** GitHub Pages en repositorios privados requiere plan de pago. Con plan gratuito el repositorio debe ser público.
+
+---
+
+## Sobre el progreso
+
+Cada curso guarda en el navegador de quien lo estudia:
+
+- El mejor puntaje de cada test.
+- Las listas de chequeo marcadas.
+- Lo que se escriba en las herramientas.
+- La preferencia de tema claro u oscuro.
+
+Se usa `localStorage`, con estas consecuencias:
+
+- Funciona sin cuentas ni servidor.
+- **Es por navegador y por dispositivo.** Quien empiece en el computador y siga en el celular, arranca de cero en el celular.
+- **No hay panel de seguimiento.** Nadie puede verificar centralmente quién completó el curso.
+- Se pierde si la persona borra los datos de navegación o usa modo incógnito.
+
+Si necesita certificar que el equipo hizo el curso, la opción más coherente es servirlo desde la aplicación de levantamiento (Flask + PostgreSQL), que ya tiene usuarios, roles y auditoría: bastaría una tabla de resultados y una vista de seguimiento.
+
+---
+
 ## Cómo se mantiene
 
-Todo está en `index.html`, en este orden:
+Cada curso es un archivo autocontenido con esta estructura:
 
 1. `<style>` con las variables de color al inicio (`:root`).
-2. Secciones `<section class="mod" id="mN">`, una por módulo.
-3. Un `<script>` al final con el objeto `Q`, que contiene todos los tests.
+2. Secciones `<section>`, una por módulo.
+3. Un `<script>` al final con el objeto que contiene todos los tests.
 
-**Para editar un texto:** busque el título del módulo y edite el HTML directamente.
+**Editar un texto:** busque el título del módulo y edite el HTML.
 
-**Para agregar una pregunta a un test:** busque `const Q=` y agregue un objeto al arreglo del módulo:
+**Agregar una pregunta:** busque `const Q=` (curso 2) o `const QUIZZES=` (curso 1) y agregue un objeto al arreglo del módulo:
 
 ```js
 {q:"Texto de la pregunta",
  o:["Opción a","Opción b","Opción c","Opción d"],
- a:1,                       // índice de la respuesta correcta, empezando en 0
+ a:1,                      // índice de la respuesta correcta, empezando en 0
  e:"Explicación que se muestra al calificar."}
 ```
 
-Las opciones se barajan solas con una mezcla fija, para que la respuesta correcta no caiga siempre en la misma letra.
+Las opciones se barajan con una mezcla fija para que la respuesta correcta no caiga siempre en la misma letra.
 
-**Para agregar un módulo:** copie una `<section class="mod">` completa, cámbiele el `id`, agregue el enlace en `<nav class="side">` y, si lleva test, una entrada nueva en `Q`.
+**Agregar un módulo:** copie una sección completa, cámbiele el `id`, agregue el enlace en el índice y, si lleva test, una entrada nueva en el objeto de preguntas.
+
+---
 
 ## Notas técnicas
 
-- Sin dependencias. Solo carga las tipografías Bitter y Public Sans desde Google Fonts; si no hay internet, usa las fuentes del sistema.
-- Modo claro y oscuro, con botón para cambiarlo.
-- Responsive hasta 390 px de ancho.
-- El avance en los tests y en las listas de chequeo se guarda en `localStorage`: es por navegador y por dispositivo, no se comparte ni se envía a ningún servidor.
-- Imprimible: cada módulo empieza en página nueva y las respuestas de los tests salen visibles.
+- Solo carga tipografías desde Google Fonts; sin internet usa las del sistema.
+- Modo claro y oscuro con botón, y respeta la preferencia del sistema.
+- Responsive hasta 390 px.
+- Imprimible: cada módulo empieza en página nueva y las respuestas salen visibles.
 - Accesibilidad: navegación por teclado, foco visible, contraste alto y `prefers-reduced-motion` respetado.
 
 ## Advertencias de contenido
 
-- Los ejemplos usan una clínica que opera con Arthemis. Adapte los ejemplos si el curso se usa en otro contexto.
-- El módulo 8 recuerda que los datos de salud son datos sensibles bajo la Ley 1581 de 2012. Este curso es formativo y no reemplaza la política de tratamiento de datos de la institución.
+- **Normativa:** las normas de salud cambian con frecuencia. Antes de un trámite real confirme la norma vigente en minsalud.gov.co, supersalud.gov.co o con su Secretaría de Salud. Es material de estudio, no asesoría jurídica ni tributaria.
+- **Datos sensibles:** los datos de salud son datos sensibles bajo la Ley 1581 de 2012. El curso 2 lo advierte en el módulo 8, pero la política de tratamiento de datos de la institución es la que manda.

@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="es" data-size="m">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cuadernillo de estudio: normas para ser prestador de salud en Colombia (2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF; --ground:#E7EDEA; --ink:#1C292E; --muted:#4A5A60; --line:#C5D0CC;
+  --green:#0E6B5A; --green-ink:#FFFFFF; --hl:#FFE45C;
+  --ok:#1B7A3E; --okbg:#E5F4E9; --bad:#B42318; --badbg:#FDECEA;
+  --explain:#EAF1FA; --explain-line:#2E5E9E; --warn:#FFF4E5; --warn-line:#B45309;
+  --t1:#2E5E9E; --t2:#0E6B5A; --t3:#1F7A8A; --t4:#5E6B26; --t5:#6A4C93; --t6:#B85400; --t7:#A3172A; --t8:#3B4A52; --t9:#7A5200; --t10:#23543F; --t11:#8A3B63;
+  --serif:"Fraunces", Georgia, "Times New Roman", serif;
+  --sans:"Atkinson Hyperlegible", Verdana, Tahoma, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1A2326; --ground:#11181A; --ink:#E9EFED; --muted:#A8B7B3; --line:#384644;
+    --green:#3FB39B; --green-ink:#08201B; --hl:rgba(255,220,70,.38);
+    --ok:#6FD08F; --okbg:#16301F; --bad:#FF8A80; --badbg:#3A1D1B;
+    --explain:#1C2A3A; --explain-line:#7FA8E0; --warn:#33260F; --warn-line:#F0A34A;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1A2326; --ground:#11181A; --ink:#E9EFED; --muted:#A8B7B3; --line:#384644;
+  --green:#3FB39B; --green-ink:#08201B; --hl:rgba(255,220,70,.38);
+  --ok:#6FD08F; --okbg:#16301F; --bad:#FF8A80; --badbg:#3A1D1B;
+  --explain:#1C2A3A; --explain-line:#7FA8E0; --warn:#33260F; --warn-line:#F0A34A;
+}
+html{font-size:20px}
+html[data-size="s"]{font-size:18px}
+html[data-size="l"]{font-size:23px}
+html[data-size="xl"]{font-size:26px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-text-size-adjust:100%}
+img,svg{max-width:100%}
+a{color:var(--explain-line)}
+:focus-visible{outline:3px solid var(--warn-line);outline-offset:3px;border-radius:4px}
+
+/* barra superior */
+.topbar{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:2px solid var(--line)}
+.topbar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.45rem 1rem;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--ink);text-decoration:none}
+.tools{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
+.tools span{font-size:.85rem;color:var(--muted)}
+.tbtn{font:inherit;font-size:.9rem;font-weight:700;min-height:44px;min-width:44px;padding:.3rem .7rem;border-radius:8px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.tbtn:hover{border-color:var(--green)}
+@media (max-width:1080px){.xswitch{display:none}}
+
+/* portada con pestañas de carpeta */
+.cover{max-width:1080px;margin:0 auto;padding:2rem 1rem 1rem}
+.cover h1{font-family:var(--serif);font-size:2.1rem;line-height:1.15;margin:.2rem 0 .6rem;max-width:22ch}
+.cover .lead{font-size:1.1rem;max-width:60ch;margin:0 0 .6rem}
+.updated{display:inline-block;background:var(--paper);border:2px solid var(--line);border-radius:8px;padding:.2rem .6rem;font-size:.9rem}
+.folder{margin-top:1.6rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.7rem}
+.tab{display:grid;grid-template-columns:auto 1fr;gap:.1rem .7rem;align-items:center;text-decoration:none;color:var(--ink);background:var(--paper);border-radius:14px 14px 6px 6px;border-top:10px solid var(--c);padding:.7rem .9rem;box-shadow:0 2px 0 var(--line)}
+.tab:hover{outline:2px solid var(--c)}
+.tab-num{grid-row:span 2;font-family:var(--serif);font-weight:700;font-size:1.6rem;color:var(--c);min-width:1.6ch;text-align:center}
+.tab-name{font-weight:700;line-height:1.25}
+.tab-score{font-size:.85rem;color:var(--muted)}
+.tab-score.done{color:var(--ok);font-weight:700}
+
+/* hoja */
+main{max-width:1080px;margin:0 auto;padding:0 1rem 3rem}
+.sheet{background:var(--paper);border-radius:10px;margin:1.6rem 0;padding:1.6rem clamp(1rem,4vw,3rem) 2rem;border-left:14px solid var(--c,var(--green))}
+.sheet > *{max-width:72ch}
+.sheet > .tablewrap,.sheet > .quiz,.sheet > .steps,.sheet > .flow{max-width:none}
+.mod-head{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.4rem}
+.mod-n{font-family:var(--serif);font-size:1rem;color:var(--c);font-weight:700}
+h2{font-family:var(--serif);font-size:1.75rem;line-height:1.2;margin:.1rem 0 .8rem}
+h3{font-family:var(--serif);font-size:1.3rem;line-height:1.25;margin:1.8rem 0 .5rem;color:var(--ink)}
+h4{font-size:1.05rem;margin:1.2rem 0 .3rem}
+p,li{font-size:1rem}
+ul,ol{padding-left:1.3rem}
+li{margin:.3rem 0}
+mark{background:linear-gradient(transparent 38%,var(--hl) 38%,var(--hl) 92%,transparent 92%);color:inherit;padding:0 .1em}
+.goal{font-size:1.05rem;color:var(--muted);margin-top:0}
+
+.box{border-radius:10px;padding:.9rem 1.1rem;margin:1.2rem 0}
+.box > :first-child{margin-top:0}.box > :last-child{margin-bottom:0}
+.box-title{font-weight:700;display:block;margin-bottom:.3rem}
+.easy{background:var(--explain);border-left:6px solid var(--explain-line)}
+.remember{background:var(--paper);border:3px dashed var(--hl)}
+:root[data-theme="dark"] .remember{border-color:#C9A800}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .remember{border-color:#C9A800}}
+.new{background:var(--warn);border-left:6px solid var(--warn-line)}
+
+.tablewrap{overflow-x:auto;margin:1rem 0;border:2px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.95rem}
+th,td{text-align:left;vertical-align:top;padding:.6rem .75rem;border-bottom:1px solid var(--line)}
+th{background:var(--ground);font-weight:700}
+tr:last-child td{border-bottom:0}
+
+.steps{counter-reset:st;list-style:none;padding:0;margin:1rem 0;display:grid;gap:.6rem}
+.steps > li{counter-increment:st;position:relative;padding:.7rem .9rem .7rem 3.4rem;border:2px solid var(--line);border-radius:10px;margin:0}
+.steps > li::before{content:counter(st);position:absolute;left:.7rem;top:.6rem;width:2rem;height:2rem;border-radius:50%;background:var(--c,var(--green));color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
+
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem;margin:1rem 0}
+.flow div{border:2px solid var(--line);border-radius:10px;padding:.7rem .9rem}
+.flow b{display:block;color:var(--c,var(--green))}
+
+/* preguntas para pensar */
+.think{border:2px solid var(--line);border-radius:10px;padding:.8rem 1rem;margin:.7rem 0}
+.think p{margin:.2rem 0 .5rem;font-weight:700}
+.btn{font:inherit;font-weight:700;font-size:1rem;min-height:52px;padding:.55rem 1.1rem;border-radius:10px;border:0;background:var(--green);color:var(--green-ink);cursor:pointer}
+.btn.alt{background:var(--paper);color:var(--ink);border:2px solid var(--line)}
+.btn:hover{filter:brightness(1.08)}
+.answer{margin-top:.6rem;padding:.7rem .9rem;background:var(--okbg);border-radius:8px}
+.answer[hidden]{display:none}
+
+/* tests */
+.quiz{margin:1.2rem 0;border:3px solid var(--c,var(--green));border-radius:12px;padding:1rem clamp(.8rem,3vw,1.6rem)}
+.quiz h3{margin-top:.2rem}
+.quiz fieldset{border:0;margin:0 0 1.3rem;padding:0}
+.quiz legend{font-weight:700;font-size:1.05rem;margin-bottom:.5rem;padding:0}
+.qn{color:var(--c,var(--green));margin-right:.3rem}
+.opt{display:flex;gap:.7rem;align-items:flex-start;padding:.7rem .9rem;margin:.45rem 0;border:2px solid var(--line);border-radius:10px;cursor:pointer;min-height:52px}
+.opt:hover{border-color:var(--c,var(--green))}
+.opt input{width:1.3rem;height:1.3rem;margin-top:.15rem;flex:none;accent-color:var(--green)}
+.opt.correct{border-color:var(--ok);background:var(--okbg)}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.exp{margin:.4rem 0 0;padding:.6rem .9rem;border-radius:8px;background:var(--ground)}
+.exp[hidden]{display:none}
+.verdict-ok{color:var(--ok);font-weight:700}
+.verdict-bad{color:var(--bad);font-weight:700}
+.qactions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.5rem}
+.result{margin-top:1rem;padding:1rem;border-radius:10px;background:var(--ground);font-size:1.05rem}
+.result[hidden]{display:none}
+.result strong{font-size:1.4rem;display:block;font-family:var(--serif)}
+
+/* lista de chequeo */
+.check{list-style:none;padding:0}
+.check li{margin:.4rem 0}
+.check label{display:flex;gap:.7rem;align-items:flex-start;padding:.55rem .8rem;border:2px solid var(--line);border-radius:10px;cursor:pointer}
+.check input{width:1.4rem;height:1.4rem;flex:none;margin-top:.15rem;accent-color:var(--green)}
+.check input:checked + span{text-decoration:line-through;color:var(--muted)}
+
+dl.gloss{display:grid;grid-template-columns:minmax(8rem,14rem) 1fr;gap:.5rem 1rem;max-width:none}
+dl.gloss dt{font-weight:700}
+dl.gloss dd{margin:0}
+section[id],.quiz{scroll-margin-top:130px}
+@media (max-width:640px){.sheet{border-left-width:8px}dl.gloss{grid-template-columns:1fr}dl.gloss dd{margin-bottom:.6rem}.cover h1{font-size:1.7rem}h2{font-size:1.45rem}}
+
+.keylist{columns:2 320px;font-size:.95rem}
+.keylist li{break-inside:avoid}
+footer{max-width:1080px;margin:0 auto;padding:1rem 1rem 3rem;color:var(--muted);font-size:.9rem}
+
+@media (prefers-reduced-motion:no-preference){.answer,.exp,.result{animation:show .25s ease-out}@keyframes show{from{opacity:0}to{opacity:1}}}
+@media print{
+  html{font-size:12pt}
+  body{background:#fff;color:#000}
+  .topbar,.btn,.qactions,.tools,.no-print{display:none!important}
+  .sheet{border-left-width:6px;page-break-before:always;margin:0;padding:0 0 0 1rem}
+  .answer[hidden],#clave[hidden]{display:block!important}
+  .answer::before{content:"Respuesta: ";font-weight:700}
+  .folder{display:none}
+  .quiz{page-break-inside:auto}
+  .opt{min-height:0;padding:.2rem .5rem}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="tbtn" href="index.html" style="text-decoration:none;display:inline-flex;align-items:center">← Inicio</a>
+    <a class="brand" href="#inicio">Cuadernillo del prestador de salud</a>
+    <div class="tools">
+      <span>Tamaño de letra</span>
+      <button class="tbtn" type="button" data-size-step="-1" aria-label="Letra más pequeña">A−</button>
+      <button class="tbtn" type="button" data-size-step="1" aria-label="Letra más grande">A+</button>
+      <a class="tbtn" href="#indice" style="text-decoration:none;display:inline-flex;align-items:center">Índice</a>
+      <a class="tbtn xswitch" href="procesos-ia.html" style="text-decoration:none;display:inline-flex;align-items:center">Curso de procesos e IA</a>
+    </div>
+  </div>
+</header>
+
+<section class="cover" id="inicio">
+  <span class="updated">Actualizado a septiembre de 2026</span>
+  <h1>Normas para ser prestador de servicios de salud en Colombia</h1>
+  <p class="lead">Cuadernillo de estudio con explicaciones sencillas, preguntas para pensar y tests con resultados. Cubre Ministerio de Salud, Secretaría de Salud, EPS, ARL y SOAT, seguridad del paciente, códigos CIE y CUPS, y un capítulo especial para el contador.</p>
+  <nav class="folder" id="indice" aria-label="Índice de módulos">
+    <a class="tab" href="#m0" style="--c:var(--t10)"><span class="tab-num">0</span><span class="tab-name">Cómo estudiar con este cuadernillo</span><span class="tab-score">Empiece aquí</span></a>
+    <a class="tab" href="#m1" style="--c:var(--t1)"><span class="tab-num">1</span><span class="tab-name">El mapa del sistema de salud</span><span class="tab-score" data-score-for="m1">Test sin hacer</span></a>
+    <a class="tab" href="#m2" style="--c:var(--t2)"><span class="tab-num">2</span><span class="tab-name">Qué es un prestador y qué debe cumplir</span><span class="tab-score" data-score-for="m2">Test sin hacer</span></a>
+    <a class="tab" href="#m3" style="--c:var(--t3)"><span class="tab-num">3</span><span class="tab-name">Secretaría de Salud: habilitación paso a paso</span><span class="tab-score" data-score-for="m3">Test sin hacer</span></a>
+    <a class="tab" href="#m4" style="--c:var(--t4)"><span class="tab-num">4</span><span class="tab-name">Calidad y obligaciones del día a día</span><span class="tab-score" data-score-for="m4">Test sin hacer</span></a>
+    <a class="tab" href="#m5" style="--c:var(--t5)"><span class="tab-num">5</span><span class="tab-name">EPS: contratos, facturas, glosas y pagos</span><span class="tab-score" data-score-for="m5">Test sin hacer</span></a>
+    <a class="tab" href="#m6" style="--c:var(--t6)"><span class="tab-num">6</span><span class="tab-name">ARL: riesgos laborales</span><span class="tab-score" data-score-for="m6">Test sin hacer</span></a>
+    <a class="tab" href="#m7" style="--c:var(--t7)"><span class="tab-num">7</span><span class="tab-name">SOAT: accidentes de tránsito</span><span class="tab-score" data-score-for="m7">Test sin hacer</span></a>
+    <a class="tab" href="#m8" style="--c:var(--t8)"><span class="tab-num">8</span><span class="tab-name">El rincón del contador</span><span class="tab-score" data-score-for="m8">Test sin hacer</span></a>
+    <a class="tab" href="#m9" style="--c:var(--t9)"><span class="tab-num">9</span><span class="tab-name">Ruta práctica para arrancar</span><span class="tab-score" data-check-progress>Lista de chequeo</span></a>
+    <a class="tab" href="#m10" style="--c:var(--t11)"><span class="tab-num">10</span><span class="tab-name">Seguridad del paciente, CIE, CUPS y registros</span><span class="tab-score" data-score-for="m10">Test sin hacer</span></a>
+    <a class="tab" href="#final" style="--c:var(--green)"><span class="tab-num">★</span><span class="tab-name">Examen final</span><span class="tab-score" data-score-for="final">Sin presentar</span></a>
+    <a class="tab" href="#extras" style="--c:var(--muted)"><span class="tab-num">+</span><span class="tab-name">Glosario, normograma y hoja de respuestas</span><span class="tab-score">Para consultar</span></a>
+  </nav>
+</section>
+
+<main>
+<!-- MÓDULO 0 -->
+<section class="sheet" id="m0" style="--c:var(--t10)">
+  <div class="mod-head"><span class="mod-n">Módulo 0</span></div>
+  <h2>Cómo estudiar con este cuadernillo</h2>
+  <p>Este material está pensado para aprender sin afán. No necesita saber de leyes. Cada módulo explica un tema con palabras de todos los días, luego trae preguntas para pensar y al final un test que se califica solo.</p>
+  <ol class="steps" style="--c:var(--t10)">
+    <li><strong>Lea un módulo por día.</strong> Despacio, con una libreta al lado. Si una palabra no la entiende, búsquela en el glosario al final.</li>
+    <li><strong>Fíjese en lo resaltado en amarillo.</strong> <mark>Lo que aparece así es lo más importante</mark> y casi siempre sale en los tests.</li>
+    <li><strong>Responda las "preguntas para pensar"</strong> en voz alta o en papel. Después oprima "Mostrar respuesta" y compare.</li>
+    <li><strong>Haga el test del módulo.</strong> Marque una opción por pregunta y oprima "Calificar mi test". Verá cuáles acertó y por qué.</li>
+    <li><strong>Si saca menos de 70 %, repita el módulo</strong> al día siguiente. Su mejor puntaje queda guardado en el índice de arriba.</li>
+    <li><strong>Al terminar los 10 módulos, presente el examen final.</strong></li>
+  </ol>
+  <div class="box easy"><span class="box-title">Explicado fácil: el sistema de salud es como un edificio</span>
+    <p>El <strong>Ministerio de Salud</strong> escribe el reglamento del edificio. La <strong>Superintendencia de Salud</strong> es la vigilancia que revisa que todos cumplan. La <strong>ADRES</strong> es la caja fuerte con la plata pública. La <strong>Secretaría de Salud</strong> es la portería: revisa quién puede entrar a prestar servicios. Las <strong>EPS</strong> administran la atención de sus afiliados y pagan. La <strong>ARL</strong> es el seguro de los trabajadores. El <strong>SOAT</strong> es el seguro de los accidentes de tránsito. Y usted, <strong>el prestador</strong>, es quien atiende a los pacientes.</p>
+  </div>
+  <div class="box new"><span class="box-title">Importante antes de empezar</span>
+    <p>Las normas de salud cambian con frecuencia. En 2026 salieron normas nuevas muy importantes (habilitación, RIPS, giro directo y tarifas SOAT). Este cuadernillo ya las incluye. Aun así, antes de un trámite real confirme en la página del Ministerio de Salud, de la Supersalud o con su Secretaría de Salud. Este material es de estudio y no reemplaza la asesoría jurídica de su caso.</p>
+  </div>
+  <p class="no-print">Puede imprimirlo con las teclas <strong>Ctrl + P</strong> (en Mac, <strong>Cmd + P</strong>). Al imprimir, las respuestas salen escritas.</p>
+</section>
+
+<!-- MÓDULO 1 -->
+<section class="sheet" id="m1" style="--c:var(--t1)">
+  <div class="mod-head"><span class="mod-n">Módulo 1</span></div>
+  <h2>El mapa del sistema de salud colombiano</h2>
+  <p class="goal">Al terminar sabrá quién es quién, qué hace cada entidad y cuáles son las leyes de base.</p>
+
+  <h3>El sistema en una frase</h3>
+  <p>En Colombia funciona el <mark>Sistema General de Seguridad Social en Salud (SGSSS)</mark>, creado por la <strong>Ley 100 de 1993</strong>. Las personas se afilian a una EPS; la EPS recibe del sistema un valor por cada afiliado (la <strong>UPC</strong>) y con esa plata contrata a los prestadores (hospitales, clínicas, consultorios) para que atiendan a sus afiliados.</p>
+
+  <h3>Quién es quién</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Entidad</th><th>Qué hace</th><th>Por qué le importa a usted como prestador</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Ministerio de Salud y Protección Social</strong></td><td>Dicta las reglas técnicas (resoluciones), define qué cubre el plan de beneficios, el valor de la UPC y las tarifas SOAT.</td><td>Casi todas las normas de este cuadernillo salen de allí.</td></tr>
+      <tr><td><strong>Superintendencia Nacional de Salud (Supersalud)</strong></td><td>Inspecciona, vigila y controla a EPS, IPS y secretarías. Recibe quejas y puede sancionar.</td><td>Lo vigila a usted, y también es donde usted se queja si una EPS no le paga. Puede conciliar y decidir conflictos por glosas.</td></tr>
+      <tr><td><strong>ADRES</strong></td><td>Administra la plata pública del sistema. Hace el "giro directo" a prestadores y paga accidentes de tránsito sin SOAT o con vehículo no identificado.</td><td>Puede recibir pagos directos de la ADRES y le podrá cobrar ciertos casos SOAT.</td></tr>
+      <tr><td><strong>Secretaría de Salud departamental o distrital</strong></td><td>Inscribe a los prestadores en el REPS, habilita servicios y hace visitas de verificación.</td><td>Es la que le "da el permiso" para funcionar.</td></tr>
+      <tr><td><strong>Secretaría de Salud municipal</strong></td><td>Salud pública, vigilancia sanitaria y epidemiológica según las competencias de cada municipio.</td><td>Reportes de salud pública (SIVIGILA) y visitas sanitarias.</td></tr>
+      <tr><td><strong>EPS (también llamadas EAPB)</strong></td><td>Afilian a las personas, organizan su red de prestadores y pagan los servicios.</td><td>Son sus principales clientes: firma contratos y les factura.</td></tr>
+      <tr><td><strong>ARL</strong></td><td>Aseguradoras de riesgos laborales: cubren accidentes de trabajo y enfermedades laborales.</td><td>Afilia a sus trabajadores y factura a la ARL cuando atiende a un trabajador accidentado.</td></tr>
+      <tr><td><strong>Aseguradoras SOAT</strong></td><td>Compañías de seguros que venden el SOAT de los vehículos.</td><td>Les cobra la atención de víctimas de accidentes de tránsito.</td></tr>
+      <tr><td><strong>Superintendencia Financiera</strong></td><td>Vigila a las aseguradoras, incluidas las de SOAT y las ARL.</td><td>A ella se acude si una aseguradora incumple.</td></tr>
+      <tr><td><strong>INVIMA</strong></td><td>Registro sanitario y vigilancia de medicamentos y dispositivos médicos.</td><td>Todo lo que usted use debe tener registro INVIMA; debe reportar eventos adversos.</td></tr>
+      <tr><td><strong>DIAN</strong></td><td>Impuestos y factura electrónica.</td><td>Toda factura en salud es electrónica y pasa por la DIAN.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Las leyes de base, en palabras sencillas</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Norma</th><th>Qué dice, en corto</th></tr></thead>
+    <tbody>
+      <tr><td>Constitución, artículos 48 y 49</td><td>La seguridad social y la atención en salud son servicios públicos a cargo del Estado.</td></tr>
+      <tr><td><strong>Ley 100 de 1993</strong></td><td>Crea el sistema de seguridad social: salud, pensiones y riesgos laborales.</td></tr>
+      <tr><td>Ley 715 de 2001</td><td>Reparte las tareas entre la Nación, los departamentos y los municipios.</td></tr>
+      <tr><td>Ley 1122 de 2007</td><td>Ajusta el sistema y fija reglas de pago de las EPS a los prestadores.</td></tr>
+      <tr><td><strong>Ley 1438 de 2011</strong></td><td>Atención primaria, redes de servicios y el trámite de glosas (artículo 57).</td></tr>
+      <tr><td><strong>Ley Estatutaria 1751 de 2015</strong></td><td><mark>La salud es un derecho fundamental.</mark> Prohíbe exigir autorización previa para atender urgencias (artículo 14).</td></tr>
+      <tr><td>Ley 1797 de 2016</td><td>Medidas financieras del sistema y giro directo.</td></tr>
+      <tr><td>Ley 1949 de 2019</td><td>Fortalece sanciones de la Supersalud y sus funciones para resolver conflictos, incluidos los de glosas.</td></tr>
+      <tr><td><strong>Decreto 780 de 2016</strong></td><td><mark>El "Decreto Único" del sector salud</mark>: reunió en un solo libro casi todos los decretos que existían.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Los regímenes de afiliación</h3>
+  <ul>
+    <li><strong>Contributivo:</strong> personas con ingresos (empleados, independientes, pensionados) que aportan de su salario.</li>
+    <li><strong>Subsidiado:</strong> personas sin capacidad de pago; el Estado paga su afiliación.</li>
+    <li><strong>Especiales y de excepción:</strong> Fuerzas Militares y Policía, Magisterio, Ecopetrol y universidades públicas que tienen su propio sistema.</li>
+  </ul>
+  <p>Para 2026, el valor de la UPC se fijó en la <strong>Resolución 2764 de 2025</strong> y el plan de beneficios en la <strong>Resolución 2765 de 2025</strong>.</p>
+
+  <div class="box remember"><span class="box-title">Recuerde</span>
+    <p>La reforma a la salud que se discutía en el Congreso fue <mark>archivada en el Senado</mark> en la legislatura 2025–2026. Por eso, a septiembre de 2026, el sistema sigue funcionando con EPS, IPS y la ADRES tal como se explica aquí. Esté atento a noticias por si el tema vuelve al Congreso.</p>
+  </div>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. ¿Quién le da el permiso para abrir un servicio de salud?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>La Secretaría de Salud departamental o distrital, mediante la inscripción en el REPS y la habilitación de sus servicios.</div></div>
+  <div class="think"><p>2. Si una EPS no le paga, ¿ante qué entidad puede quejarse?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Ante la Superintendencia Nacional de Salud (Supersalud), que vigila a las EPS y puede conciliar o resolver conflictos de pago y glosas.</div></div>
+  <div class="think"><p>3. ¿Qué es el Decreto 780 de 2016 y por qué se menciona tanto?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Es el Decreto Único Reglamentario del Sector Salud. Juntó en un solo documento la mayoría de decretos del sector, por eso muchas normas "modifican el Decreto 780".</div></div>
+
+  <div class="quiz" data-quiz="m1"></div>
+</section>
+
+<!-- MÓDULO 2 -->
+<section class="sheet" id="m2" style="--c:var(--t2)">
+  <div class="mod-head"><span class="mod-n">Módulo 2</span></div>
+  <h2>Qué es un prestador y qué debe cumplir</h2>
+  <p class="goal">Al terminar sabrá qué tipo de prestador va a ser y cuáles son las tres condiciones para funcionar.</p>
+
+  <h3>Los cuatro tipos de prestador</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tipo</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IPS</strong> (Institución Prestadora de Servicios de Salud)</td><td>Clínica, hospital, centro médico, laboratorio, centro de imágenes, IPS de terapias. Puede ser privada o pública (las públicas se llaman ESE, Empresa Social del Estado).</td></tr>
+      <tr><td><strong>Profesional independiente</strong></td><td>Médico, odontólogo, psicólogo o fisioterapeuta que atiende por su cuenta, como persona natural.</td></tr>
+      <tr><td><strong>Transporte especial de pacientes</strong></td><td>Empresa de ambulancias.</td></tr>
+      <tr><td><strong>Entidad con objeto social diferente</strong></td><td>Una empresa o colegio cuyo negocio no es la salud, pero tiene un consultorio o enfermería para su gente.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Ojo: <mark>una EPS no es un prestador</mark>. La EPS asegura y paga; el prestador atiende.</p>
+
+  <h3>Las tres condiciones de habilitación</h3>
+  <div class="box easy"><span class="box-title">Explicado fácil: es como sacar el pase de conducción</span>
+    <p>Primero, tener los papeles en regla (<strong>capacidad técnico-administrativa</strong>). Segundo, demostrar que su empresa tiene con qué responder y no está quebrada (<strong>suficiencia patrimonial y financiera</strong>). Tercero, saber manejar y tener el carro en buen estado: personal idóneo, instalaciones, equipos y procesos seguros (<strong>capacidad tecnológica y científica</strong>).</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Condición</th><th>A quién se le exige</th><th>Qué se revisa, en general</th></tr></thead>
+    <tbody>
+      <tr><td>Capacidad técnico-administrativa</td><td>IPS, entidades con objeto social diferente y transporte especial</td><td>Existencia legal (Cámara de Comercio o acto de creación), representante legal, y manejo contable y administrativo en orden.</td></tr>
+      <tr><td>Suficiencia patrimonial y financiera</td><td>IPS y transporte especial</td><td>Que el patrimonio y las deudas estén en niveles sanos (ver módulo 8).</td></tr>
+      <tr><td><strong>Capacidad tecnológica y científica</strong></td><td><mark>Todos los prestadores</mark>, incluido el profesional independiente</td><td>Los estándares de habilitación del servicio.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Los siete estándares de capacidad tecnológica y científica</h3>
+  <p>Vienen de la Resolución 3100 de 2019 y la nueva Resolución 1732 de 2026 mantiene la misma lógica. Los detalles para cada servicio están en el Tomo II del nuevo Manual de Habilitación.</p>
+  <ol class="steps" style="--c:var(--t2)">
+    <li><strong>Talento humano:</strong> las personas que atienden tienen el título y la formación exigida, y están inscritas en el <mark>ReTHUS</mark> (Registro Único Nacional del Talento Humano en Salud, Ley 1164 de 2007).</li>
+    <li><strong>Infraestructura:</strong> el local cumple condiciones de áreas, ventilación, iluminación, lavamanos, accesibilidad y seguridad.</li>
+    <li><strong>Dotación:</strong> los equipos biomédicos y muebles necesarios, con su hoja de vida y plan de mantenimiento.</li>
+    <li><strong>Medicamentos, dispositivos médicos e insumos:</strong> con registro INVIMA, bien almacenados, con control de fechas de vencimiento y vigilancia de eventos adversos.</li>
+    <li><strong>Procesos prioritarios:</strong> guías y protocolos de atención, seguridad del paciente, limpieza y desinfección, manejo de residuos.</li>
+    <li><strong>Historia clínica y registros:</strong> cada paciente tiene su historia clínica completa, reservada y bien guardada.</li>
+    <li><strong>Interdependencia:</strong> los servicios de apoyo que su servicio necesita (propios o contratados). Por ejemplo, un servicio de urgencias necesita laboratorio e imágenes disponibles.</li>
+  </ol>
+
+  <h3>Complejidad y modalidades</h3>
+  <p>Cada servicio se inscribe con su <strong>complejidad</strong> (baja, mediana o alta) y su <strong>modalidad</strong>: intramural (dentro de la sede), extramural (unidad móvil, domiciliaria o jornada de salud) y telemedicina. La telesalud está regulada por la Ley 1419 de 2010 y la Resolución 2654 de 2019. <mark>Cada modalidad se habilita por separado.</mark></p>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. Una fisioterapeuta atiende sola en su consultorio. ¿Qué tipo de prestador es y qué condición debe cumplir?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Es profesional independiente. Solo debe cumplir la condición de capacidad tecnológica y científica.</div></div>
+  <div class="think"><p>2. ¿Por qué el contador es clave en la habilitación de una IPS?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Porque la suficiencia patrimonial y financiera se demuestra con los estados financieros, y la capacidad técnico-administrativa exige manejo contable en orden.</div></div>
+  <div class="think"><p>3. Explique con sus palabras qué es "interdependencia de servicios".</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Son los otros servicios que el suyo necesita para funcionar de forma segura, propios o contratados. Ejemplo: una sala de cirugía necesita esterilización.</div></div>
+
+  <div class="quiz" data-quiz="m2"></div>
+</section>
+
+<!-- MÓDULO 3 -->
+<section class="sheet" id="m3" style="--c:var(--t3)">
+  <div class="mod-head"><span class="mod-n">Módulo 3</span></div>
+  <h2>Secretaría de Salud: la habilitación paso a paso</h2>
+  <p class="goal">Al terminar sabrá cómo se inscribe un prestador, qué es el REPS, cuándo hay visita y qué plazos existen.</p>
+
+  <div class="box new"><span class="box-title">Norma nueva: Resolución 1732 de 2026</span>
+    <p>El 5 de agosto de 2026 el Ministerio expidió la <strong>Resolución 1732 de 2026</strong>, que <mark>reemplaza a la Resolución 3100 de 2019</mark> y adopta un nuevo Manual de Inscripción de Prestadores y Habilitación (Tomos I y II).</p>
+    <ul>
+      <li>Hay <mark>12 meses de transición</mark>, contados desde su publicación en el Diario Oficial.</li>
+      <li>Durante ese año, los prestadores ya habilitados pueden seguir con la 3100 o acogerse completa a la 1732 (avisando a la Secretaría).</li>
+      <li>Quien se inscriba por primera vez durante la transición puede escoger cualquiera de las dos. Lo prudente es prepararse con la nueva, porque es la que va a quedar.</li>
+      <li>Vencidos los 12 meses, la 3100 y sus modificaciones quedan derogadas.</li>
+    </ul>
+  </div>
+
+  <h3>¿Qué es el REPS?</h3>
+  <p>El <mark>REPS es el Registro Especial de Prestadores de Servicios de Salud</mark>. Es la lista oficial de quiénes pueden prestar servicios de salud y qué servicios tienen habilitados. Si un servicio no está en el REPS, no se puede ofrecer ni prestar, y las EPS no lo pueden contratar.</p>
+
+  <h3>La ruta de inscripción con la Resolución 1732</h3>
+  <ol class="steps" style="--c:var(--t3)">
+    <li><strong>Autoevaluación.</strong> Usted revisa, servicio por servicio, que cumple todos los estándares. <mark>Si encuentra que no cumple algo, no puede registrar, ofertar ni prestar ese servicio.</mark></li>
+    <li><strong>Formulario en el aplicativo REPS</strong> de la página de su Secretaría: sedes, servicios, complejidad, modalidad y capacidad instalada. Diligencia la declaración de autoevaluación por cada servicio.</li>
+    <li><strong>Radicación</strong> física o electrónica del formulario, la declaración y los soportes que pide el Tomo I.</li>
+    <li><strong>La Secretaría revisa los soportes</strong>, los devuelve si hay errores y asigna el código de inscripción.</li>
+    <li><strong>Visita previa</strong>, cuando aplica (ver cuadro siguiente). Se hace dentro de los 6 meses siguientes a la asignación del código.</li>
+    <li><strong>Inscripción en el REPS</strong>, constancia de habilitación y autorización del distintivo. Solo desde ese momento puede prestar el servicio. <mark>Si no se requiere visita, la Secretaría tiene máximo 15 días calendario</mark> desde que usted radicó todo completo.</li>
+  </ol>
+  <p>Aclaración: la norma no dice que, si la Secretaría no responde en 15 días, el servicio quede habilitado solo. En ese caso se hace un requerimiento a la entidad.</p>
+
+  <h3>¿Cuándo hay visita previa?</h3>
+  <ul>
+    <li><mark>Cuando se inscribe una IPS nueva</mark> (cualquier IPS, sin importar sus servicios). Esto es nuevo en la Resolución 1732.</li>
+    <li>Para habilitar servicios oncológicos, de urgencias, cirugía plástica y estética, atención del parto, transporte asistencial y todos los de alta complejidad.</li>
+    <li>Para pasar un servicio de baja o mediana a alta complejidad.</li>
+  </ul>
+  <p>En la visita previa, lo que aún no ha funcionado (por ejemplo, historias clínicas o procesos) se revisa con base en la planeación del prestador.</p>
+
+  <h3>Mantener la habilitación</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tema</th><th>Qué dice la Resolución 1732</th></tr></thead>
+    <tbody>
+      <tr><td>Vigencia de la inscripción</td><td><mark>4 años la inicial</mark>; después se renueva <mark>cada año</mark>, siempre que haga la autoevaluación antes del vencimiento.</td></tr>
+      <tr><td>Si no hace la autoevaluación</td><td>Se inactiva la inscripción (si no autoevaluó ningún servicio) o los servicios no autoevaluados. Para reactivar debe repetir el trámite y, en ciertos casos, pedir visita de reactivación (la Secretaría tiene 30 días calendario).</td></tr>
+      <tr><td>Novedades</td><td>Cambios como abrir o cerrar servicios, cambiar de dirección o de representante legal se reportan en el aplicativo REPS.</td></tr>
+      <tr><td>Cierre temporal</td><td>Máximo <strong>6 meses</strong>. Para urgencias, parto, hospitalización pediátrica y cuidado intensivo se avisa a la Secretaría y a las EPS con contrato al menos 2 meses antes.</td></tr>
+      <tr><td>Visitas de certificación</td><td>Después de habilitado, según el plan anual de visitas. Si todo está bien, se genera el certificado en máximo 20 días calendario desde el cierre de la visita.</td></tr>
+      <tr><td>Si no está de acuerdo con la visita</td><td>Pide revisión a la Secretaría dentro de <strong>5 días calendario</strong>, con sustento técnico. La Secretaría responde en 10 días. Si no responde o le niega, se puede llevar al Ministerio, que da concepto en 15 días.</td></tr>
+      <tr><td>Costo</td><td><mark>Gratuito.</mark> Ninguna Secretaría puede cobrar por inscripción, visitas ni certificados.</td></tr>
+      <tr><td>IPS acreditadas</td><td>Exentas de visitas de verificación mientras dure la acreditación, salvo que abran servicios de alto riesgo.</td></tr>
+      <tr><td>Municipios con condiciones especiales</td><td>Zonas rurales dispersas, PDET o con comunidades étnicas pueden pedir un régimen diferencial con un Plan de Adecuación Progresiva de hasta 4 años.</td></tr>
+      <tr><td>Qué puede exigir la Secretaría</td><td>Solo lo que está en el Manual. No puede exigir en la habilitación requisitos de otras normas que le toca revisar a otra autoridad.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Otros permisos que siguen existiendo por fuera de la habilitación</h3>
+  <p>Aunque la Secretaría ya no los pida dentro del trámite de habilitación, usted igual debe cumplirlos ante la autoridad que corresponda:</p>
+  <ul>
+    <li><strong>Uso del suelo</strong> y normas de construcción (alcaldía o curaduría).</li>
+    <li><strong>Condiciones sanitarias</strong> (Ley 9 de 1979) ante la autoridad sanitaria.</li>
+    <li><strong>Licencia para equipos de rayos X</strong> y otros generadores de radiación ionizante (Resolución 482 de 2018).</li>
+    <li><strong>Plan de gestión de residuos</strong> (módulo 4) y seguridad y salud en el trabajo.</li>
+    <li>Revisión de <strong>Bomberos</strong> según el municipio.</li>
+  </ul>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. Va a abrir una IPS nueva de consulta externa y se acoge a la Resolución 1732. ¿Necesita visita previa?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Sí. Con la Resolución 1732 toda IPS nueva requiere visita previa de verificación, sin importar qué servicios habilite.</div></div>
+  <div class="think"><p>2. Un funcionario le dice que la visita cuesta dinero. ¿Es correcto?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>No. El trámite de habilitación es gratuito: inscripción, visitas, certificados y novedades no tienen costo.</div></div>
+  <div class="think"><p>3. Se le olvidó hacer la autoevaluación antes del vencimiento. ¿Qué pasa?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Se inactivan los servicios no autoevaluados, o toda la inscripción si no autoevaluó ninguno. Tendría que reactivar, y en ciertos servicios o si toda la inscripción quedó inactiva, pedir visita de reactivación.</div></div>
+  <div class="think"><p>4. No está de acuerdo con un hallazgo de la visita. ¿Cuánto tiempo tiene para reclamar?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>5 días calendario desde que recibe el informe de la visita, con una explicación técnica de por qué no está de acuerdo.</div></div>
+
+  <div class="quiz" data-quiz="m3"></div>
+</section>
+
+<!-- MÓDULO 4 -->
+<section class="sheet" id="m4" style="--c:var(--t4)">
+  <div class="mod-head"><span class="mod-n">Módulo 4</span></div>
+  <h2>Calidad y obligaciones del día a día</h2>
+  <p class="goal">Al terminar sabrá qué es el sistema de calidad y qué obligaciones tiene mientras funciona: historias clínicas, residuos, datos, reportes y seguridad de los trabajadores.</p>
+
+  <h3>El Sistema Obligatorio de Garantía de Calidad (SOGCS)</h3>
+  <p>Nació con el Decreto 1011 de 2006, hoy recogido en el Decreto 780 de 2016. Tiene <mark>cuatro componentes</mark>:</p>
+  <div class="flow" style="--c:var(--t4)">
+    <div><b>SUH</b>Sistema Único de Habilitación. Lo mínimo obligatorio para funcionar (módulo 3).</div>
+    <div><b>PAMEC</b>Programa de Auditoría para el Mejoramiento de la Calidad. Usted mismo mide y mejora sus procesos.</div>
+    <div><b>SUA</b>Sistema Único de Acreditación. <mark>Voluntario</mark>: un nivel superior de calidad.</div>
+    <div><b>SIC</b>Sistema de Información para la Calidad. Indicadores que se reportan (Resolución 256 de 2016).</div>
+  </div>
+  <p>En 2026 también se adoptó la Política Nacional de Calidad en Salud 2026–2035 (Resolución 1058 de 2026), que orienta cómo se medirá y mejorará la calidad en los próximos años.</p>
+  <div class="box easy"><span class="box-title">Explicado fácil</span>
+    <p>La habilitación es como aprobar el año con 3,0: lo mínimo. El PAMEC es estudiar para subir la nota. La acreditación es graduarse con honores, y es opcional.</p>
+  </div>
+
+  <h3>Obligaciones principales y sus normas</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tema</th><th>Norma</th><th>Lo que debe hacer</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Historia clínica</strong></td><td>Resolución 1995 de 1999; Resolución 839 de 2017 (conservación)</td><td>Diligenciarla completa y con letra clara o digital, guardarla bajo reserva y <mark>conservarla mínimo 15 años desde la última atención</mark>.</td></tr>
+      <tr><td>Historia clínica electrónica interoperable</td><td>Ley 2015 de 2020; Resolución 866 de 2021</td><td>Compartir la información clínica entre prestadores con datos estandarizados; con la Resolución 1888 de 2025 se envía el Resumen Digital de Atención (RDA). Ver módulo 10.</td></tr>
+      <tr><td><strong>Protección de datos</strong></td><td>Ley 1581 de 2012</td><td>Los datos de salud son <mark>datos sensibles</mark>: autorización del paciente, política de tratamiento y seguridad de la información.</td></tr>
+      <tr><td>Seguridad del paciente</td><td>Política de seguridad del paciente del Ministerio; estándar de procesos prioritarios</td><td>Programa de seguridad del paciente, reporte y análisis de eventos adversos. Se explica a fondo en el módulo 10.</td></tr>
+      <tr><td><strong>Residuos</strong></td><td>Decreto 351 de 2014 (en el Decreto 780); <mark>Resolución 591 de 2024</mark> (derogó la 1164 de 2002)</td><td>Tener el PGIRASA (Plan de Gestión Integral de Residuos de Atención en Salud), separar residuos peligrosos (biológicos, químicos, cortopunzantes) y contratar un gestor autorizado.</td></tr>
+      <tr><td>Medicamentos y dispositivos</td><td>Decreto 2200 de 2005 y Resolución 1403 de 2007 (servicio farmacéutico); Resolución 4816 de 2008 (tecnovigilancia)</td><td>Compras con registro INVIMA, buen almacenamiento, farmacovigilancia y tecnovigilancia.</td></tr>
+      <tr><td>Rayos X y radiación</td><td>Resolución 482 de 2018</td><td>Licencia, protección radiológica y dosimetría del personal.</td></tr>
+      <tr><td>Salud pública</td><td>SIVIGILA (Decreto 3518 de 2006, en el Decreto 780)</td><td>Notificar los eventos de interés en salud pública (por ejemplo dengue, sarampión, intoxicaciones).</td></tr>
+      <tr><td>Promoción y mantenimiento de la salud</td><td>Resolución 3280 de 2018 (rutas integrales); Resolución 202 de 2021</td><td>Seguir las rutas de atención y reportar las actividades de protección específica y detección temprana.</td></tr>
+      <tr><td>Derechos y deberes del paciente</td><td>Resolución 229 de 2020</td><td>Publicar la carta de derechos y deberes y atender peticiones, quejas y reclamos.</td></tr>
+      <tr><td><strong>Seguridad y salud en el trabajo</strong></td><td>Decreto 1072 de 2015; <mark>Resolución 0312 de 2019</mark></td><td>Implementar el SG-SST según los estándares mínimos para su tamaño y riesgo.</td></tr>
+      <tr><td>Talento humano</td><td>Ley 1164 de 2007</td><td>Verificar títulos y ReTHUS de todo el personal de salud.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. ¿Cuál es la diferencia entre habilitación y acreditación?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>La habilitación es obligatoria y exige lo mínimo para funcionar. La acreditación es voluntaria y reconoce un nivel superior de calidad.</div></div>
+  <div class="think"><p>2. ¿Por qué no se puede botar una aguja usada en la caneca común?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Porque es un residuo peligroso (biológico y cortopunzante). Debe ir en guardián y entregarse a un gestor autorizado, según el PGIRASA y la Resolución 591 de 2024.</div></div>
+  <div class="think"><p>3. Un paciente atendido hace 10 años pide su historia clínica. ¿Usted debería tenerla?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Sí. La historia clínica se conserva mínimo 15 años contados desde la última atención.</div></div>
+
+  <div class="quiz" data-quiz="m4"></div>
+</section>
+<!-- MÓDULO 5 -->
+<section class="sheet" id="m5" style="--c:var(--t5)">
+  <div class="mod-head"><span class="mod-n">Módulo 5</span></div>
+  <h2>EPS: contratos, facturas, glosas y pagos</h2>
+  <p class="goal">Al terminar sabrá cómo se contrata con una EPS, cómo se factura con RIPS, qué son las devoluciones y glosas, y en qué plazos le deben pagar.</p>
+
+  <div class="box easy"><span class="box-title">Explicado fácil: el camino de la plata</span>
+    <p>Primero se firma el acuerdo con la EPS. Luego usted atiende al paciente. Después hace la factura electrónica con su RIPS. La EPS revisa: si le falta algo grave la <strong>devuelve</strong> entera; si no está de acuerdo con algunos valores, los <strong>glosa</strong>. Usted responde. Al final, le pagan lo que quedó aceptado.</p>
+  </div>
+
+  <h3>1. El contrato: "acuerdo de voluntades"</h3>
+  <p>Las reglas están en el <mark>Decreto 441 de 2022</mark>, que modificó el Decreto 780. El acuerdo debe decir con claridad la población, los servicios, la modalidad de pago, las tarifas, los indicadores de calidad, los soportes que se exigirán y cómo se hará el seguimiento.</p>
+  <p>Desde 2026 los contratos se registran en el <strong>SIIFA</strong> (Sistema Integral de Información Financiera y Asistencial), que genera el <mark>CUCON, el Código Único de Contrato</mark> (Resolución 1962 de 2025). Ese código viaja en el RIPS de cada factura.</p>
+
+  <h3>Modalidades de pago más comunes</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Modalidad</th><th>Cómo funciona</th><th>Riesgo para usted</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Pago por evento</strong></td><td>Le pagan cada servicio que presta, según la tarifa pactada.</td><td>Bajo en costo, pero más glosas y trámites.</td></tr>
+      <tr><td><strong>Capitación</strong></td><td>La EPS le paga una suma fija mensual por cada afiliado asignado, lo atienda o no.</td><td>Si los pacientes usan mucho, usted pierde. Debe conocer bien sus costos.</td></tr>
+      <tr><td><strong>Pago global prospectivo (PGP)</strong></td><td>Se pacta por anticipado un valor global para un conjunto de servicios y un periodo.</td><td>Intermedio. Hay que medir bien la frecuencia de uso.</td></tr>
+      <tr><td><strong>Paquete o conjunto integral</strong></td><td>Un valor fijo por un caso completo (por ejemplo, un parto o una cirugía).</td><td>Si el caso se complica, el costo extra puede correr por su cuenta.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>2. Las urgencias no esperan contrato</h3>
+  <p><mark>Ninguna urgencia se puede negar ni condicionar a autorización</mark> (Ley Estatutaria 1751 de 2015, artículo 14). Si atiende una urgencia de un afiliado a una EPS con la que no tiene contrato, igual la EPS debe pagar. Si no hay tarifa pactada, se usa el manual tarifario SOAT.</p>
+
+  <h3>3. La factura: FEV más RIPS</h3>
+  <div class="box new"><span class="box-title">Norma nueva: Resolución 948 de 2026</span>
+    <p>Desde el 14 de mayo de 2026 la <strong>Resolución 948 de 2026</strong> regula el RIPS como soporte de la factura electrónica. <mark>Derogó las Resoluciones 2275 de 2023, 558 de 2024 y 1884 de 2024.</mark> El esquema de fondo sigue igual, pero cambian campos y reglas de validación.</p>
+  </div>
+  <ol class="steps" style="--c:var(--t5)">
+    <li>Expide la <strong>Factura Electrónica de Venta (FEV)</strong> validada por la DIAN.</li>
+    <li>Genera el <strong>RIPS</strong> (Registro Individual de Prestación de Servicios) en formato JSON con el detalle de cada atención.</li>
+    <li>Lo envía al <strong>Mecanismo Único de Validación (MUV)</strong> del Ministerio, que revisa y entrega el <strong>CUV</strong> (Código Único de Validación).</li>
+    <li>Radica ante la EPS la factura, el RIPS validado y los soportes.</li>
+  </ol>
+  <p>Cambios de la Resolución 948 que su software debe tener:</p>
+  <ul>
+    <li>El código de cobertura "plan financiado por UPC" se partió en dos: <strong>16 para régimen contributivo y 17 para subsidiado</strong>.</li>
+    <li>Campo <strong>CUCON</strong> del contrato. Si no hay contrato (urgencias, SOAT, tutelas, etc.) se llena el campo de factura sin contrato con la causal.</li>
+    <li>Para víctimas de accidentes de tránsito, el número de <strong>registro SIRAS</strong>.</li>
+    <li>Campos para diagnósticos en <strong>CIE-11</strong>, en convivencia con la CIE-10 durante la transición (ver módulo 10).</li>
+    <li>Varias reglas pasaron de "aviso" a "rechazo" desde el 1 de junio y el 1 de julio de 2026.</li>
+  </ul>
+
+  <h3>4. Soportes, devoluciones y glosas</h3>
+  <p>La norma es la <mark>Resolución 2284 de 2023</mark> (modificada por la Resolución 1885 de 2024), que trae el <strong>Manual Único de Devoluciones, Glosas y Respuestas</strong> y la lista máxima de soportes que la EPS puede pedir.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th></th><th>Devolución</th><th>Glosa</th></tr></thead>
+    <tbody>
+      <tr><td>Qué es</td><td>Rechazo de la factura completa por un problema de forma o de competencia que impide recibirla.</td><td>Objeción a uno o varios valores de la factura, encontrada al revisarla a fondo.</td></tr>
+      <tr><td>Ejemplos</td><td>Otro responsable de pago; factura ya pagada; soportes radicados fuera de tiempo.</td><td>Tarifa distinta a la pactada; falta un soporte de un medicamento; servicio no pertinente.</td></tr>
+      <tr><td>Plazo de la EPS</td><td><mark>5 días hábiles</mark> desde la radicación, una sola vez.</td><td><mark>20 días hábiles</mark> desde la radicación con todos los soportes.</td></tr>
+      <tr><td>Plazo para responder</td><td>5 días hábiles. <strong>Si no responde, se entiende que acepta.</strong></td><td><mark>15 días hábiles.</mark></td></tr>
+      <tr><td>Decisión final de la EPS</td><td>5 días hábiles para aceptar su respuesta o reiterar la devolución.</td><td>10 días hábiles para levantar la glosa (total o parcial) o dejarla definitiva (Ley 1438 de 2011, artículo 57).</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li>Los soportes se deben radicar dentro de los <strong>22 días hábiles</strong> siguientes a la expedición de la factura; si no, la EPS puede devolver.</li>
+    <li>Las causales del Manual son <strong>taxativas</strong>: la EPS no puede inventar motivos distintos.</li>
+    <li><mark>No se permiten glosas por porcentajes globales</mark> (por ejemplo, "glosamos el 10 % de todas las facturas"). Cada glosa debe tener su causal y su valor.</li>
+    <li>Si acepta una glosa, emite <strong>nota crédito</strong> y actualiza el RIPS.</li>
+    <li>Si la glosa queda definitiva y usted no está de acuerdo, puede acudir a la conciliación y a la <strong>Supersalud</strong>.</li>
+  </ul>
+
+  <h3>5. ¿Cuándo le deben pagar?</h3>
+  <p>La regla general de la <strong>Ley 1122 de 2007 (artículo 13)</strong> es:</p>
+  <ul>
+    <li><strong>Capitación:</strong> pago anticipado del 100 % en los primeros días del mes.</li>
+    <li><strong>Evento y otras modalidades:</strong> un anticipo de al menos el <mark>50 % dentro de los 5 días</mark> siguientes a la presentación de la factura, y el <mark>saldo dentro de los 30 días</mark> siguientes si no hay glosas.</li>
+    <li>Las glosas injustificadas y los pagos tardíos generan intereses moratorios.</li>
+  </ul>
+
+  <h3>6. El giro directo de la ADRES</h3>
+  <div class="box new"><span class="box-title">Norma nueva: Resolución 1809 de 2026</span>
+    <p>Redefine el giro directo, es decir, cuando la ADRES le paga directamente a usted en nombre de la EPS. <mark>Tiene efectos desde el 1 de noviembre de 2026.</mark></p>
+    <ul>
+      <li>Registre su información bancaria para que la ADRES lo publique como beneficiario.</li>
+      <li>Si recibe <strong>anticipo por capitación</strong>, debe facturar dentro de los <strong>5 días hábiles</strong> siguientes a recibir el pago.</li>
+      <li>Si recibe <strong>anticipo en PGP</strong>, factura dentro de los <strong>5 primeros días hábiles del mes siguiente</strong>.</li>
+      <li>Si no factura a tiempo, <mark>no recibe nuevos giros</mark> hasta corregir.</li>
+      <li>Los recursos recibidos se registran en contabilidad y se abonan a la cartera de esa EPS.</li>
+    </ul>
+  </div>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. Explique con sus palabras la diferencia entre devolución y glosa.</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>La devolución regresa toda la factura sin revisarla a fondo, por un problema de forma o porque no le corresponde a esa EPS. La glosa objeta valores puntuales después de revisar la cuenta, y se responde ítem por ítem.</div></div>
+  <div class="think"><p>2. La EPS le formula una glosa 30 días hábiles después de radicada la factura con todos los soportes. ¿Qué puede alegar?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Que la glosa es extemporánea: el plazo de la EPS es de 20 días hábiles. Respóndala dentro de su plazo dejando constancia de que se formuló fuera de término.</div></div>
+  <div class="think"><p>3. ¿Qué debe hacer si la EPS no responde sus respuestas a glosas y tampoco paga?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Pedir conciliación de cartera y, si no hay acuerdo, acudir a la Supersalud (queja o proceso para resolver el conflicto). Guarde todos los radicados y fechas como prueba, y calcule los intereses moratorios.</div></div>
+
+  <div class="quiz" data-quiz="m5"></div>
+</section>
+
+<!-- MÓDULO 6 -->
+<section class="sheet" id="m6" style="--c:var(--t6)">
+  <div class="mod-head"><span class="mod-n">Módulo 6</span></div>
+  <h2>ARL: riesgos laborales</h2>
+  <p class="goal">Al terminar sabrá cuándo paga la ARL y no la EPS, y cuáles son sus obligaciones como empleador en el sector salud.</p>
+
+  <div class="box easy"><span class="box-title">Explicado fácil</span>
+    <p>La ARL es el seguro de los trabajadores. <mark>Si la persona se lesionó trabajando o se enfermó por su trabajo, la atención la paga la ARL, no la EPS.</mark> Usted tiene dos papeles: como <strong>empleador</strong> (debe afiliar a su gente) y como <strong>prestador</strong> (atiende a trabajadores accidentados y le factura a la ARL).</p>
+  </div>
+
+  <h3>Normas principales</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Norma</th><th>Qué dice, en corto</th></tr></thead>
+    <tbody>
+      <tr><td>Decreto Ley 1295 de 1994</td><td>Organiza el sistema de riesgos laborales y sus prestaciones.</td></tr>
+      <tr><td>Ley 776 de 2002</td><td>Prestaciones económicas (incapacidades, indemnizaciones, pensiones).</td></tr>
+      <tr><td><strong>Ley 1562 de 2012</strong></td><td>Define hoy qué es <mark>accidente de trabajo</mark> y <mark>enfermedad laboral</mark>.</td></tr>
+      <tr><td>Decreto 723 de 2013</td><td>Afiliación de contratistas independientes.</td></tr>
+      <tr><td>Decreto 1477 de 2014</td><td>Tabla de enfermedades laborales.</td></tr>
+      <tr><td><strong>Decreto 1072 de 2015</strong></td><td>Decreto Único del sector Trabajo, incluye el SG-SST.</td></tr>
+      <tr><td>Resolución 0312 de 2019</td><td>Estándares mínimos del SG-SST.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Papel 1: usted como empleador</h3>
+  <ul>
+    <li>Afiliar a todos sus trabajadores a una ARL <strong>desde antes de que empiecen a trabajar</strong>.</li>
+    <li>Trabajador con contrato laboral: <mark>el empleador paga el 100 % del aporte a la ARL</mark>.</li>
+    <li>Contratista independiente con contrato de más de un mes: debe estar afiliado. En riesgos I, II y III paga el contratista; <strong>en riesgos IV y V paga el contratante</strong>.</li>
+    <li>En salud hay riesgo biológico (pinchazos, fluidos), químico, ergonómico y psicosocial. Implemente el SG-SST, entregue elementos de protección y lleve el esquema de vacunación del personal.</li>
+    <li>Si un trabajador se accidenta, <mark>reporte a la ARL y a la EPS dentro de los 2 días hábiles siguientes</mark> (formato FURAT) e investigue el accidente.</li>
+  </ul>
+
+  <h3>Papel 2: usted como prestador que atiende trabajadores</h3>
+  <ul>
+    <li>La ARL cubre las <strong>prestaciones asistenciales</strong>: consulta, urgencias, cirugía, hospitalización, medicamentos, terapias, rehabilitación, prótesis y traslados.</li>
+    <li>En urgencias, cualquier IPS debe atender. Identifique al empleador y la ARL del paciente para facturar correctamente.</li>
+    <li>Las ARL tienen su red de prestadores: para servicios programados necesitará contrato y autorización de la ARL.</li>
+    <li>Se factura igual que en EPS: <strong>factura electrónica más RIPS validado</strong>.</li>
+    <li><mark>Si hay duda sobre si el origen es laboral o común, el paciente se atiende primero.</mark> La EPS lo atiende y, si luego se define que era laboral, la EPS le cobra a la ARL.</li>
+    <li>El origen lo califica en primera oportunidad la EPS, la ARL o Colpensiones; si hay desacuerdo, deciden las Juntas Regional y Nacional de Calificación de Invalidez.</li>
+  </ul>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. Llega un paciente que se cayó de un andamio en una obra donde trabaja. ¿A quién factura?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>A la ARL a la que está afiliado por su empleador, porque es un accidente de trabajo. Pregunte el nombre de la empresa y de la ARL desde el ingreso.</div></div>
+  <div class="think"><p>2. Una auxiliar de enfermería de su IPS se pincha con una aguja usada. ¿Qué debe hacer usted como empleador?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Activar el protocolo de riesgo biológico, garantizar su atención inmediata, reportar el accidente a la ARL y a la EPS dentro de 2 días hábiles e investigar el accidente dentro del SG-SST.</div></div>
+
+  <div class="quiz" data-quiz="m6"></div>
+</section>
+
+<!-- MÓDULO 7 -->
+<section class="sheet" id="m7" style="--c:var(--t7)">
+  <div class="mod-head"><span class="mod-n">Módulo 7</span></div>
+  <h2>SOAT: atención de víctimas de accidentes de tránsito</h2>
+  <p class="goal">Al terminar sabrá quién paga en cada caso, cómo se calculan las tarifas SOAT en 2026 y cómo se cobra.</p>
+
+  <div class="box easy"><span class="box-title">Explicado fácil</span>
+    <p>El SOAT es el seguro obligatorio de todo vehículo. <mark>Cubre a cualquier persona herida en un accidente de tránsito</mark>: conductor, pasajero o peatón, sin importar quién tuvo la culpa ni a qué EPS esté afiliada.</p>
+  </div>
+
+  <h3>La obligación de atender</h3>
+  <p>Toda IPS que tenga urgencias debe atender a las víctimas de accidentes de tránsito. <mark>No puede negar la atención ni exigir pagos o depósitos previos.</mark> Las reglas del SOAT para prestadores están en el <strong>Decreto 780 de 2016</strong> (que recogió el Decreto 056 de 2015).</p>
+
+  <h3>¿Quién paga?</h3>
+  <ol class="steps" style="--c:var(--t7)">
+    <li><strong>El vehículo tiene SOAT:</strong> paga la <mark>aseguradora del SOAT</mark>, hasta el tope de cobertura para gastos médicos (antes 800 salarios mínimos diarios; hoy expresado en unidades de valor).</li>
+    <li><strong>SOAT con tarifa diferencial</strong> (algunos vehículos pagan un SOAT más barato): la aseguradora paga hasta un tope menor y el excedente se cobra a la ADRES, con el certificado de agotamiento de cobertura de la aseguradora.</li>
+    <li><strong>Vehículo sin SOAT o que huyó (no identificado):</strong> paga la <mark>ADRES</mark>.</li>
+    <li><strong>Se agotó el tope del SOAT:</strong> sigue pagando la <mark>EPS</mark> del paciente, o la <strong>ARL</strong> si el accidente de tránsito ocurrió trabajando.</li>
+  </ol>
+  <p>Los eventos catastróficos naturales y los atentados terroristas también los cubre la ADRES.</p>
+
+  <h3>Las tarifas SOAT en 2026: la UVB</h3>
+  <p>El Manual Tarifario (Anexo Técnico 1 del Decreto 780) ya no se expresa en salarios mínimos. Según la <strong>Circular Externa 047 de 2025</strong> del Ministerio, <mark>desde 2026 las tarifas se expresan en UVB</mark> (Unidad de Valor Básico).</p>
+  <ul>
+    <li><strong>Valor de la UVB en 2026: $12.110.</strong></li>
+    <li>Fórmula: <strong>tarifa en UVB × valor de la UVB del año = valor en pesos</strong>, y luego se redondea a la centena más próxima.</li>
+    <li>Es obligatoria para accidentes de tránsito, eventos catastróficos y terroristas, y para la <mark>atención inicial de urgencias cuando no hay tarifa pactada</mark>.</li>
+    <li>Muchos contratos con EPS la usan como referencia ("SOAT menos un porcentaje").</li>
+  </ul>
+  <div class="box remember"><span class="box-title">Ejemplo de cálculo</span>
+    <p>Un servicio vale <strong>5,93 UVB</strong>. 5,93 × $12.110 = $71.812,30. Redondeado a la centena más próxima: <mark>$71.800</mark>.</p>
+    <p>Un examen vale <strong>0,567 UVB</strong>. 0,567 × $12.110 = $6.866,37. Redondeado: <mark>$6.900</mark>.</p>
+  </div>
+
+  <h3>Cómo se cobra</h3>
+  <ul>
+    <li>Identifique desde el ingreso la placa del vehículo y consulte si tiene SOAT vigente.</li>
+    <li>Diligencie el <strong>FURIPS</strong> (Formulario Único de Reclamación de las IPS) y, si hubo traslado en ambulancia, el formulario de transporte.</li>
+    <li>Registre la atención en <strong>SIRAS</strong> (Sistema de Información de Reporte de Atenciones en Salud a víctimas de accidentes de tránsito). Con la Resolución 948 de 2026, el número de registro SIRAS va en el RIPS.</li>
+    <li>Radique factura electrónica, RIPS validado y soportes ante la aseguradora o la ADRES, según el caso.</li>
+    <li>Lleve un control del tope consumido por cada víctima para saber cuándo pasar el cobro a la ADRES o a la EPS.</li>
+  </ul>
+  <div class="box new"><span class="box-title">Esté atento</span>
+    <p>En marzo de 2026 el Ministerio publicó un <strong>proyecto de decreto</strong> para crear una auditoría única entre aseguradoras y ADRES en pólizas con tarifa diferencial. Era un proyecto: verifique si ya fue expedido antes de cambiar sus procesos.</p>
+  </div>
+  <p>Cobrar servicios que no se prestaron o inflar cuentas del SOAT es un delito. Todo cobro debe tener soporte en la historia clínica.</p>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. Calcule en pesos un servicio de 25 UVB en 2026.</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>25 × $12.110 = $302.750. Redondeado a la centena más próxima: $302.800.</div></div>
+  <div class="think"><p>2. Un peatón es atropellado por una moto que huye. ¿A quién le cobra?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>A la ADRES, porque el vehículo no fue identificado.</div></div>
+  <div class="think"><p>3. Un mensajero se accidenta en su moto haciendo entregas para su empresa y la cuenta supera el tope del SOAT. ¿Quién paga el excedente?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Primero paga el SOAT hasta su tope. Como es accidente de trabajo, el excedente lo paga la ARL (no la EPS).</div></div>
+
+  <div class="quiz" data-quiz="m7"></div>
+</section>
+
+<!-- MÓDULO 8 -->
+<section class="sheet" id="m8" style="--c:var(--t8)">
+  <div class="mod-head"><span class="mod-n">Módulo 8</span></div>
+  <h2>El rincón del contador</h2>
+  <p class="goal">Lo que un contador debe dominar en un prestador de salud: marco contable, cartera y glosas, impuestos, suficiencia patrimonial y costos.</p>
+
+  <h3>1. ¿Qué marco contable aplica?</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tipo de prestador</th><th>Marco</th></tr></thead>
+    <tbody>
+      <tr><td>IPS privada (sociedad, fundación) y profesional independiente obligado a llevar contabilidad</td><td><strong>NIIF</strong> según su grupo (Ley 1314 de 2009 y Decreto 2420 de 2015): Grupo 1 plenas, Grupo 2 NIIF para pymes, Grupo 3 microempresas.</td></tr>
+      <tr><td><strong>ESE</strong> (hospitales públicos)</td><td><strong>Régimen de Contabilidad Pública</strong> de la Contaduría General de la Nación.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Las IPS son vigiladas por la Supersalud y pueden estar obligadas a enviarle información financiera según las circulares vigentes para su tipo y tamaño. Revise el calendario de reportes de cada año.</p>
+
+  <h3>2. Ingresos, cartera y glosas</h3>
+  <ul>
+    <li>El ingreso se reconoce cuando <strong>se presta el servicio</strong>, no cuando se paga.</li>
+    <li>Lleve la <mark>cartera por pagador y por edades</mark> (0–30, 31–60, 61–90, 91–180, 181–360 y más de 360 días). Separe EPS contributivo, EPS subsidiado, ARL, aseguradoras SOAT, ADRES y particulares.</li>
+    <li>Separe también: facturas sin radicar, radicadas, devueltas, glosadas en trámite y glosas definitivas.</li>
+    <li><mark>Una glosa no es una pérdida inmediata.</mark> Si se acepta, se hace nota crédito y se ajusta el RIPS. Si está en discusión, se evalúa la probabilidad de recuperarla para calcular el deterioro de cartera.</li>
+    <li>Calcule el <strong>deterioro de cartera</strong> según su marco (pérdida esperada en NIIF plenas; evidencia objetiva en NIIF para pymes).</li>
+    <li>Haga <strong>conciliaciones de cartera</strong> periódicas con cada EPS y deje actas firmadas.</li>
+    <li>Los pagos recibidos por <strong>giro directo</strong> de la ADRES se registran y se abonan a la cartera de la EPS correspondiente (Resolución 1809 de 2026).</li>
+    <li>Los anticipos de capitación o PGP se controlan hasta su legalización con la factura.</li>
+  </ul>
+
+  <h3>3. Impuestos principales</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Impuesto</th><th>Lo esencial en salud</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IVA</strong></td><td>Los servicios médicos, odontológicos, hospitalarios, clínicos y de laboratorio para la salud humana están <mark>excluidos de IVA</mark> (Estatuto Tributario, artículo 476, numeral 1). Excepción: <strong>las cirugías estéticas que no son reparadoras o funcionales sí están gravadas</strong>. Al ser excluido, el IVA pagado en compras suele ser mayor valor del costo o gasto.</td></tr>
+      <tr><td>Retención en la fuente</td><td>Las EPS y otros pagadores le practican retención. Existen tarifas especiales para ciertos servicios integrales de salud prestados por IPS (más bajas que la general de servicios). Confirme cada año la tabla vigente.</td></tr>
+      <tr><td>Renta</td><td>Sociedades en régimen ordinario; las entidades sin ánimo de lucro pueden estar en régimen tributario especial si cumplen requisitos; las ESE tienen reglas propias.</td></tr>
+      <tr><td>ICA</td><td>Es municipal. La jurisprudencia ha considerado que los recursos del sistema de salud (como la UPC) tienen destinación específica y no deben gravarse, mientras que los servicios particulares pueden estarlo. Revise el estatuto de su municipio.</td></tr>
+      <tr><td>Factura electrónica</td><td>Obligatoria ante la DIAN con los campos del sector salud, y siempre acompañada del RIPS validado.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4. Suficiencia patrimonial y financiera</h3>
+  <p>Con la Resolución 3100 de 2019, para habilitar una IPS se revisaba, entre otros:</p>
+  <ul>
+    <li>Que el <strong>patrimonio total</strong> fuera igual o superior al 50 % del capital social, fondo social o su equivalente.</li>
+    <li>Que las <strong>obligaciones mercantiles</strong> de más de 360 días no superaran el 50 % del pasivo corriente.</li>
+    <li>Que las <strong>obligaciones laborales</strong> de más de 360 días no superaran el 50 % del pasivo corriente.</li>
+  </ul>
+  <p>Verifique los criterios exactos en el Tomo I del nuevo Manual de la Resolución 1732 de 2026 antes de preparar los estados financieros para la habilitación.</p>
+
+  <h3>5. Costos y tarifas: la pregunta que salva a una IPS</h3>
+  <div class="box remember"><span class="box-title">Recuerde</span>
+    <p><mark>Nunca firme un contrato sin conocer cuánto le cuesta cada servicio.</mark> Arme su costeo (talento humano, insumos, depreciación de equipos, arriendo, servicios, administración) y compárelo con la tarifa ofrecida. Las referencias más usadas en contratos son el manual SOAT en UVB y el manual de tarifas ISS 2001 con un porcentaje de ajuste.</p>
+  </div>
+
+  <h3>6. Otros controles que suelen pedir</h3>
+  <ul>
+    <li>Sistemas de administración de riesgos de lavado de activos, corrupción y fraude, cuando la Supersalud lo exige según el tipo y tamaño del vigilado.</li>
+    <li>Soportes de pago de seguridad social de todo el personal y contratistas.</li>
+    <li>Pólizas de responsabilidad civil profesional.</li>
+  </ul>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. ¿Por qué no se debe llevar una glosa directamente al gasto el día que llega?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Porque la glosa puede levantarse total o parcialmente con la respuesta. Solo cuando se acepta se hace nota crédito; mientras está en discusión se evalúa como riesgo de cartera para el deterioro.</div></div>
+  <div class="think"><p>2. Una IPS hace consultas médicas y cirugías estéticas no reparadoras. ¿Cómo se trata el IVA?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Las consultas están excluidas de IVA. Las cirugías estéticas que no son reparadoras o funcionales están gravadas, así que debe facturar IVA en ellas y separar los ingresos.</div></div>
+
+  <div class="quiz" data-quiz="m8"></div>
+</section>
+
+<!-- MÓDULO 9 -->
+<section class="sheet" id="m9" style="--c:var(--t9)">
+  <div class="mod-head"><span class="mod-n">Módulo 9</span></div>
+  <h2>Ruta práctica para arrancar como prestador</h2>
+  <p class="goal">Una lista de chequeo para ir marcando. Lo que marque queda guardado en este navegador.</p>
+
+  <h3>Etapa 1. Constituir</h3>
+  <ul class="check">
+    <li><label><input type="checkbox" data-check="c1"><span>Definir qué tipo de prestador será (IPS, profesional independiente, transporte o entidad con objeto social diferente) y qué servicios va a ofrecer.</span></label></li>
+    <li><label><input type="checkbox" data-check="c2"><span>Constituir la empresa en la Cámara de Comercio con objeto social de salud (si es IPS).</span></label></li>
+    <li><label><input type="checkbox" data-check="c3"><span>Sacar el RUT con la actividad CIIU correcta: 8610 (hospitales y clínicas con internación), 8621 (práctica médica sin internación), 8622 (odontología), 8691 (apoyo diagnóstico), 8692 (apoyo terapéutico) u 8699 (otras).</span></label></li>
+    <li><label><input type="checkbox" data-check="c4"><span>Abrir cuenta bancaria a nombre del prestador.</span></label></li>
+  </ul>
+
+  <h3>Etapa 2. Preparar el lugar y el equipo</h3>
+  <ul class="check">
+    <li><label><input type="checkbox" data-check="c5"><span>Verificar el uso del suelo del local antes de firmar el arriendo.</span></label></li>
+    <li><label><input type="checkbox" data-check="c6"><span>Adecuar la infraestructura según el Tomo II del Manual de Habilitación.</span></label></li>
+    <li><label><input type="checkbox" data-check="c7"><span>Comprar equipos con registro INVIMA y armar hojas de vida y plan de mantenimiento.</span></label></li>
+    <li><label><input type="checkbox" data-check="c8"><span>Contratar personal con títulos verificados y ReTHUS.</span></label></li>
+    <li><label><input type="checkbox" data-check="c9"><span>Afiliar a todo el personal a EPS, pensión, caja de compensación y ARL.</span></label></li>
+    <li><label><input type="checkbox" data-check="c10"><span>Implementar el SG-SST (Resolución 0312 de 2019).</span></label></li>
+    <li><label><input type="checkbox" data-check="c11"><span>Elaborar el PGIRASA y contratar gestor de residuos autorizado.</span></label></li>
+    <li><label><input type="checkbox" data-check="c12"><span>Si tiene rayos X, tramitar la licencia (Resolución 482 de 2018).</span></label></li>
+    <li><label><input type="checkbox" data-check="c13"><span>Montar software de historia clínica y política de protección de datos.</span></label></li>
+    <li><label><input type="checkbox" data-check="c31"><span>Montar el programa de seguridad del paciente con sistema de reporte no punitivo.</span></label></li>
+    <li><label><input type="checkbox" data-check="c32"><span>Configurar el software con CUPS 2026 (Resolución 2706 de 2025), CIE-10 y, si ya avanza, CIE-11 con codificación dual.</span></label></li>
+    <li><label><input type="checkbox" data-check="c33"><span>Conectarse a la historia clínica interoperable para generar y enviar el RDA (Resolución 1888 de 2025).</span></label></li>
+    <li><label><input type="checkbox" data-check="c14"><span>Escribir guías, protocolos, programa de seguridad del paciente y PAMEC.</span></label></li>
+  </ul>
+
+  <h3>Etapa 3. Habilitar</h3>
+  <ul class="check">
+    <li><label><input type="checkbox" data-check="c15"><span>Hacer la autoevaluación de cada servicio.</span></label></li>
+    <li><label><input type="checkbox" data-check="c16"><span>Diligenciar el formulario en el aplicativo REPS y radicar con soportes.</span></label></li>
+    <li><label><input type="checkbox" data-check="c17"><span>Recibir la visita previa (obligatoria para IPS nueva con la Resolución 1732).</span></label></li>
+    <li><label><input type="checkbox" data-check="c18"><span>Obtener la inscripción en el REPS y publicar el distintivo de habilitación.</span></label></li>
+  </ul>
+
+  <h3>Etapa 4. Facturar y contratar</h3>
+  <ul class="check">
+    <li><label><input type="checkbox" data-check="c19"><span>Habilitarse como facturador electrónico ante la DIAN.</span></label></li>
+    <li><label><input type="checkbox" data-check="c20"><span>Crear usuario en SISPRO para validar RIPS en el Mecanismo Único de Validación.</span></label></li>
+    <li><label><input type="checkbox" data-check="c21"><span>Configurar el software con los campos de la Resolución 948 de 2026.</span></label></li>
+    <li><label><input type="checkbox" data-check="c22"><span>Hacer el costeo de servicios antes de negociar tarifas.</span></label></li>
+    <li><label><input type="checkbox" data-check="c23"><span>Firmar acuerdos de voluntades con EPS y ARL y verificar el CUCON en el SIIFA.</span></label></li>
+    <li><label><input type="checkbox" data-check="c24"><span>Registrar la información bancaria para giro directo de la ADRES.</span></label></li>
+    <li><label><input type="checkbox" data-check="c25"><span>Definir el procedimiento de atención y cobro SOAT (FURIPS, SIRAS, control de topes).</span></label></li>
+  </ul>
+
+  <h3>Etapa 5. Mantener</h3>
+  <ul class="check">
+    <li><label><input type="checkbox" data-check="c26"><span>Agendar la autoevaluación anual antes del vencimiento de la inscripción.</span></label></li>
+    <li><label><input type="checkbox" data-check="c27"><span>Reportar novedades en el REPS cada vez que cambie algo.</span></label></li>
+    <li><label><input type="checkbox" data-check="c28"><span>Calendario de reportes: SIVIGILA, indicadores de calidad, Supersalud, DIAN.</span></label></li>
+    <li><label><input type="checkbox" data-check="c29"><span>Revisar cartera, glosas y conciliaciones cada mes.</span></label></li>
+    <li><label><input type="checkbox" data-check="c34"><span>Actualizar el maestro de CUPS, tarifas y anexos de contratos cada vez que cambie la CUPS.</span></label></li>
+    <li><label><input type="checkbox" data-check="c30"><span>Revisar cada trimestre si salieron normas nuevas.</span></label></li>
+  </ul>
+  <p class="no-print"><button class="btn alt" type="button" id="check-reset">Desmarcar toda la lista</button></p>
+</section>
+
+<!-- MÓDULO 10 -->
+<section class="sheet" id="m10" style="--c:var(--t11)">
+  <div class="mod-head"><span class="mod-n">Módulo 10</span></div>
+  <h2>Atención segura: seguridad del paciente, códigos CIE y CUPS, y registros clínicos</h2>
+  <p class="goal">Al terminar sabrá cómo se organiza la seguridad del paciente, qué son la CIE-10, la CIE-11, los CUPS y los CUM, y qué normas rigen el triage, el consentimiento, la referencia de pacientes, la historia clínica interoperable y el MIPRES.</p>
+
+  <h3>Parte A. Seguridad del paciente</h3>
+  <div class="box easy"><span class="box-title">Explicado fácil: como en los aviones</span>
+    <p>La seguridad del paciente es poner barreras para que la misma atención no le haga daño a quien vino a curarse. En la aviación, cuando alguien casi comete un error lo cuenta, se analiza y se corrige, sin buscar culpables. <mark>En salud es igual: los errores se reportan para aprender, no para castigar.</mark></p>
+  </div>
+  <p>El marco lo dan la <strong>Política de Seguridad del Paciente</strong> del Ministerio de Salud (lineamientos de 2008) y la guía técnica <strong>"Buenas prácticas para la seguridad del paciente en la atención en salud"</strong> (2010), con sus paquetes instruccionales. Además, la seguridad del paciente es un criterio del estándar de <strong>procesos prioritarios</strong> en la habilitación, se mide con indicadores de la Resolución 256 de 2016 y es un eje de la Política Nacional de Calidad 2026–2035.</p>
+
+  <h4>Las palabras que debe distinguir</h4>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Término</th><th>Qué significa</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Incidente</strong></td><td>Algo salió mal en la atención, pero <mark>no alcanzó a causar daño</mark>.</td><td>La enfermera iba a aplicar un medicamento equivocado y se dio cuenta a tiempo.</td></tr>
+      <tr><td><strong>Evento adverso</strong></td><td><mark>Daño no intencional causado por la atención</mark>, no por la enfermedad del paciente.</td><td>Un paciente se cae de la camilla y se fractura.</td></tr>
+      <tr><td>Evento adverso prevenible</td><td>Se habría evitado cumpliendo los estándares.</td><td>Infección por no lavarse las manos.</td></tr>
+      <tr><td>Evento adverso no prevenible</td><td>Ocurre aun haciendo todo bien.</td><td>Reacción alérgica a un medicamento nunca antes usado por el paciente.</td></tr>
+      <tr><td>Falla de la atención</td><td>Un proceso mal hecho o que no se hizo.</td><td>No verificar la identidad del paciente.</td></tr>
+      <tr><td>Complicación</td><td>Daño que se debe a la enfermedad o condición del paciente, no a la atención.</td><td>Un diabético con mala cicatrización propia de su enfermedad.</td></tr>
+      <tr><td>Barrera de seguridad</td><td>Acción o elemento que evita que el error llegue al paciente.</td><td>Manilla de identificación, lista de chequeo de cirugía.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>Buenas prácticas más importantes</h4>
+  <ul>
+    <li><strong>Identificar correctamente al paciente</strong> con al menos dos datos (nombre completo y documento), y manilla en hospitalización.</li>
+    <li><strong>Higiene de manos</strong> en los cinco momentos que recomienda la OMS: antes de tocar al paciente, antes de un procedimiento limpio, después de exposición a fluidos, después de tocar al paciente y después de tocar su entorno.</li>
+    <li><strong>Prevenir infecciones</strong> asociadas a la atención: limpieza, desinfección y esterilización.</li>
+    <li><strong>Uso seguro de medicamentos:</strong> paciente correcto, medicamento correcto, dosis, vía y hora correctas, y registro de lo aplicado. Cuidado especial con medicamentos de alto riesgo y de nombre parecido.</li>
+    <li><strong>Cirugía segura:</strong> lista de verificación antes de la anestesia, antes de cortar y antes de salir del quirófano.</li>
+    <li><strong>Prevenir caídas</strong> y <strong>lesiones por presión</strong> (escaras) en pacientes con riesgo.</li>
+    <li><strong>Comunicación clara</strong> en la entrega de turno y cuando se traslada un paciente.</li>
+    <li><strong>Atención segura de la gestante y del recién nacido</strong>, y seguridad en transfusiones.</li>
+    <li><strong>Farmacovigilancia y tecnovigilancia:</strong> reportar reacciones a medicamentos y fallas de dispositivos al INVIMA.</li>
+    <li><strong>Involucrar al paciente y a la familia:</strong> que pregunten y confirmen.</li>
+  </ul>
+
+  <h4>Lo que debe tener montado su programa</h4>
+  <ul>
+    <li>Política de seguridad del paciente escrita y conocida por todos.</li>
+    <li>Un responsable o comité de seguridad del paciente.</li>
+    <li>Un sistema de reporte de incidentes y eventos adversos <mark>voluntario, confidencial y no punitivo</mark>.</li>
+    <li>Análisis de los casos con una metodología reconocida, como el <mark>Protocolo de Londres</mark>.</li>
+    <li>Rondas de seguridad, capacitación periódica, planes de mejora e indicadores.</li>
+  </ul>
+
+  <h4>Qué hacer si ocurre un evento adverso</h4>
+  <ol class="steps" style="--c:var(--t11)">
+    <li><strong>Atender primero al paciente</strong> y reducir el daño.</li>
+    <li><strong>Informar con honestidad</strong> al paciente o a su familia lo que pasó.</li>
+    <li><strong>Reportar</strong> en el sistema interno de la institución (y al INVIMA si hubo un medicamento o dispositivo involucrado).</li>
+    <li><strong>Analizar</strong> el caso: qué pasó, por qué pasó y qué factores contribuyeron (Protocolo de Londres).</li>
+    <li><strong>Hacer un plan de mejora</strong> con responsables y fechas.</li>
+    <li><strong>Hacer seguimiento</strong> para verificar que no se repita.</li>
+  </ol>
+  <div class="box remember"><span class="box-title">Recuerde, desde lo contable</span>
+    <p>Los eventos adversos cuestan: estancias más largas, glosas por pertinencia, demandas y aumento de las pólizas de responsabilidad civil. Invertir en seguridad del paciente también protege las finanzas de la institución.</p>
+  </div>
+
+  <h3>Parte B. Los códigos: el idioma común del sistema</h3>
+  <div class="box easy"><span class="box-title">Explicado fácil</span>
+    <p>La <strong>CIE</strong> dice <em>qué tiene</em> el paciente. Los <strong>CUPS</strong> dicen <em>qué se le hizo</em>. El <strong>CUM</strong> dice <em>qué medicamento se le dio</em>. <mark>Diagnóstico, procedimiento y medicamento deben cuadrar entre sí y con la historia clínica.</mark> Si no cuadran, llega la glosa.</p>
+  </div>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Código</th><th>Para qué sirve</th><th>Norma a septiembre de 2026</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CIE-10</strong></td><td>Clasificación de diagnósticos (enfermedades y causas de muerte).</td><td>Resolución 1895 de 2001. <mark>Sigue vigente durante la transición.</mark></td></tr>
+      <tr><td><strong>CIE-11</strong></td><td>Nueva versión de la OMS, digital y más detallada.</td><td>Adoptada por la <strong>Resolución 1442 de 2024</strong>; transición ampliada a 36 meses por la <strong>Resolución 1657 de 2025</strong>.</td></tr>
+      <tr><td><strong>CUPS</strong></td><td>Clasificación Única de Procedimientos en Salud: consultas, exámenes, cirugías, terapias.</td><td><strong>Resolución 2706 de 2025</strong>, vigente desde el 1 de enero de 2026.</td></tr>
+      <tr><td><strong>CUM</strong></td><td>Código Único de Medicamentos, asignado según el registro sanitario del INVIMA.</td><td>Lo administra el INVIMA.</td></tr>
+      <tr><td>Códigos de servicios del REPS</td><td>Identifican cada servicio habilitado.</td><td>Manual de habilitación (Resolución 1732 de 2026 o 3100 de 2019 en transición).</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>La transición de CIE-10 a CIE-11</h4>
+  <ul>
+    <li>El plazo es de hasta <strong>36 meses</strong>. Según el micrositio del Ministerio en SISPRO, se cuentan desde el 14 de agosto de 2024, fecha de la Resolución 1442. Es decir, hasta mediados de 2027 aproximadamente.</li>
+    <li>Mientras tanto <mark>se sigue codificando con CIE-10</mark>.</li>
+    <li>Quien ya empiece a usar la CIE-11 debe hacer <mark>codificación dual</mark>: reportar el mismo diagnóstico con su código CIE-10 y su código CIE-11.</li>
+    <li>Cuando termine la transición, la Resolución 1895 de 2001 (CIE-10) quedará derogada.</li>
+    <li>El RIPS de la Resolución 948 de 2026 ya tiene campos para CIE-11. Algunas fuentes indican que se volvieron exigibles en julio de 2026 y otras que su obligatoriedad sigue diferida. <strong>Confírmelo con el Ministerio o con su proveedor de software.</strong></li>
+  </ul>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Diagnóstico</th><th>CIE-10</th><th>CIE-11</th></tr></thead>
+    <tbody>
+      <tr><td>Hipertensión esencial</td><td>I10</td><td>BA00</td></tr>
+      <tr><td>Diabetes tipo 2</td><td>E11</td><td>5A11</td></tr>
+      <tr><td>Asma</td><td>J45</td><td>CA23</td></tr>
+    </tbody>
+  </table></div>
+  <p>Estos ejemplos sirven para ver que los códigos cambian por completo. Para codificar de verdad, use el buscador oficial de la OMS o las tablas de correspondencia del Ministerio. La CIE-11 además permite <strong>combinar códigos</strong> ("postcoordinación") para dar más detalle, como el lado del cuerpo o la gravedad.</p>
+
+  <h4>Los CUPS en la práctica</h4>
+  <ul>
+    <li>Cada factura y cada RIPS debe llevar el código CUPS <mark>vigente en la fecha en que se prestó el servicio</mark>.</li>
+    <li>La Resolución 1905 de 2025 dispone que la CUPS se actualice cada dos años desde 2026, o antes si hace falta.</li>
+    <li>Cuando cambia la CUPS, hay que actualizar el software, el maestro de tarifas y los anexos tarifarios de los contratos. Un código viejo o mal homologado es causa frecuente de glosa.</li>
+  </ul>
+
+  <h3>Parte C. Registros clínicos y atención del paciente</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Tema</th><th>Norma</th><th>Lo que exige, en corto</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Historia clínica</strong></td><td>Resolución 1995 de 1999; Resolución 839 de 2017</td><td>Completa, legible, oportuna, reservada; conservación mínima de 15 años desde la última atención.</td></tr>
+      <tr><td><strong>Historia clínica interoperable y RDA</strong></td><td>Ley 2015 de 2020; Resolución 866 de 2021; <mark>Resolución 1888 de 2025</mark></td><td>Los prestadores generan y envían al Ministerio el <strong>Resumen Digital de Atención (RDA)</strong> con estándares de interoperabilidad. El plazo máximo de integración fue de 6 meses desde el 15 de octubre de 2025 (15 de abril de 2026), con implementación progresiva por fases.</td></tr>
+      <tr><td><strong>Consentimiento informado</strong></td><td>Ley 23 de 1981 (ética médica) y normas de cada profesión</td><td>Explicar al paciente en palabras claras el procedimiento, sus riesgos y alternativas, y dejar su aceptación en la historia clínica. En una urgencia vital en la que el paciente no puede decidir, se actúa para salvarlo y se deja constancia.</td></tr>
+      <tr><td><strong>Triage en urgencias</strong></td><td><mark>Resolución 5596 de 2015</mark></td><td>Cinco categorías. <strong>Triage I: atención inmediata. Triage II: máximo 30 minutos de espera.</strong> Para III, IV y V la institución define los tiempos. Lo hace un médico o un profesional de enfermería. <mark>El triage sirve para priorizar, nunca para negar la atención.</mark></td></tr>
+      <tr><td><strong>Aviso de urgencias a la EPS</strong></td><td>Decreto 780 de 2016 (antes Decreto 4747 de 2007)</td><td>Informar a la entidad responsable de pago el ingreso del paciente a urgencias dentro de las 24 horas siguientes al inicio de la atención.</td></tr>
+      <tr><td><strong>Referencia y contrarreferencia</strong></td><td>Decreto 780 de 2016</td><td>Cuando un paciente necesita otro nivel, la IPS lo estabiliza y envía su resumen; la EPS debe garantizar la red a dónde remitirlo. La contrarreferencia es la respuesta del prestador que lo recibió.</td></tr>
+      <tr><td><strong>MIPRES</strong></td><td><mark>Resolución 1816 de 2026</mark></td><td>Plataforma para prescribir tecnologías no financiadas con la UPC. Expedida el 6 de agosto de 2026, reemplaza a la Resolución 740 de 2024 y su modificatoria después de 3 meses de transición (hasta el 6 de noviembre de 2026). Permite, de forma excepcional, prescribir tecnologías excluidas también en el régimen contributivo. Las IPS habilitadas deben tener Junta de Profesionales de la Salud.</td></tr>
+      <tr><td>Medicamentos de control especial</td><td>Resolución 1478 de 2006 y listados actualizados (Resolución 116 de 2026)</td><td>Recetario oficial, custodia bajo llave, libro de control y reportes al Fondo Nacional de Estupefacientes o al Fondo Rotatorio de su departamento.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Preguntas para pensar</h3>
+  <div class="think"><p>1. Un auxiliar iba a entregar la medicación del paciente de la cama 3 al de la cama 4, pero revisó la manilla y se dio cuenta. ¿Es incidente o evento adverso?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Es un incidente, porque el error no llegó al paciente ni le causó daño. Igual se debe reportar y analizar: la manilla funcionó como barrera de seguridad.</div></div>
+  <div class="think"><p>2. ¿Por qué el sistema de reporte de eventos adversos debe ser no punitivo?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>Porque si las personas temen ser castigadas, esconden los errores y la institución no aprende. El objetivo es encontrar las fallas del proceso y corregirlas.</div></div>
+  <div class="think"><p>3. Su IPS empezó a registrar diagnósticos en CIE-11. ¿Puede dejar de usar la CIE-10?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>No durante la transición. Quien avance a CIE-11 debe hacer codificación dual: CIE-10 y CIE-11 al mismo tiempo.</div></div>
+  <div class="think"><p>4. Una EPS glosa una factura porque el procedimiento no corresponde con el diagnóstico registrado. ¿Qué revisa primero?</p><button class="btn alt reveal" type="button">Mostrar respuesta</button><div class="answer" hidden>La historia clínica y los códigos: que el CIE del diagnóstico, el CUPS del procedimiento y lo escrito por el médico coincidan, y que el CUPS sea el vigente en la fecha de la atención. Si todo está soportado, responde la glosa con esa evidencia.</div></div>
+
+  <div class="quiz" data-quiz="m10"></div>
+</section>
+
+<!-- EXAMEN FINAL -->
+<section class="sheet" id="final" style="--c:var(--green)">
+  <div class="mod-head"><span class="mod-n">Examen final</span></div>
+  <h2>Examen final: 24 preguntas de todos los módulos</h2>
+  <p>Hágalo cuando haya terminado los diez módulos. Son casos prácticos como los que vivirá en su día a día.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Resultado</th><th>Qué significa</th></tr></thead>
+    <tbody>
+      <tr><td>22 a 24 aciertos (90 % o más)</td><td>Excelente. Domina lo esencial para operar como prestador.</td></tr>
+      <tr><td>17 a 21 aciertos (70 % a 89 %)</td><td>Bien. Repase los temas de las preguntas que falló.</td></tr>
+      <tr><td>Menos de 17 aciertos</td><td>Vuelva a estudiar los módulos con menor puntaje y repita el examen en unos días.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="quiz" data-quiz="final"></div>
+</section>
+
+<!-- EXTRAS -->
+<section class="sheet" id="extras" style="--c:var(--muted)">
+  <div class="mod-head"><span class="mod-n">Para consultar</span></div>
+  <h2>Glosario, normograma y hoja de respuestas</h2>
+
+  <h3>Glosario en palabras sencillas</h3>
+  <dl class="gloss">
+    <dt>CIE-10 y CIE-11</dt><dd>Clasificaciones internacionales de enfermedades que dan un código a cada diagnóstico.</dd>
+    <dt>Codificación dual</dt><dd>Registrar el mismo diagnóstico en CIE-10 y en CIE-11 durante la transición.</dd>
+    <dt>CUM</dt><dd>Código Único de Medicamentos.</dd>
+    <dt>CUPS</dt><dd>Clasificación Única de Procedimientos en Salud.</dd>
+    <dt>Evento adverso</dt><dd>Daño no intencional causado por la atención en salud.</dd>
+    <dt>Incidente</dt><dd>Error o falla en la atención que no alcanzó a causar daño.</dd>
+    <dt>MIPRES</dt><dd>Plataforma para prescribir tecnologías no financiadas con la UPC.</dd>
+    <dt>Protocolo de Londres</dt><dd>Método para analizar por qué ocurrió un evento adverso.</dd>
+    <dt>RDA</dt><dd>Resumen Digital de Atención que se envía a la plataforma de historia clínica interoperable.</dd>
+    <dt>Triage</dt><dd>Clasificación de los pacientes de urgencias según su gravedad.</dd>
+    <dt>ADRES</dt><dd>Entidad que administra la plata pública del sistema de salud.</dd>
+    <dt>Acuerdo de voluntades</dt><dd>El contrato entre la EPS (u otro pagador) y el prestador.</dd>
+    <dt>Autoevaluación</dt><dd>Revisión que el mismo prestador hace para confirmar que cumple los estándares de habilitación.</dd>
+    <dt>Capitación</dt><dd>Pago fijo mensual por cada afiliado asignado, se atienda o no.</dd>
+    <dt>CUCON</dt><dd>Código Único de Contrato, generado en el SIIFA.</dd>
+    <dt>CUV</dt><dd>Código Único de Validación que entrega el Ministerio cuando el RIPS pasa la validación.</dd>
+    <dt>Devolución</dt><dd>Rechazo de una factura completa por problemas de forma o de competencia.</dd>
+    <dt>Distintivo de habilitación</dt><dd>Aviso oficial que se publica en el servicio para mostrar que está habilitado.</dd>
+    <dt>EPS o EAPB</dt><dd>Entidad que afilia a las personas y paga su atención.</dd>
+    <dt>ESE</dt><dd>Empresa Social del Estado: hospital o IPS pública.</dd>
+    <dt>FEV</dt><dd>Factura Electrónica de Venta.</dd>
+    <dt>FURIPS</dt><dd>Formulario para reclamar a la aseguradora SOAT o a la ADRES la atención de víctimas.</dd>
+    <dt>Glosa</dt><dd>Objeción de la EPS a valores puntuales de una factura.</dd>
+    <dt>Habilitación</dt><dd>Cumplimiento de las condiciones mínimas obligatorias para prestar un servicio.</dd>
+    <dt>IPS</dt><dd>Institución Prestadora de Servicios de Salud.</dd>
+    <dt>MUV</dt><dd>Mecanismo Único de Validación del RIPS del Ministerio.</dd>
+    <dt>PAMEC</dt><dd>Programa de Auditoría para el Mejoramiento de la Calidad.</dd>
+    <dt>PBS</dt><dd>Plan de Beneficios en Salud: lo que se paga con la UPC.</dd>
+    <dt>PGIRASA</dt><dd>Plan de Gestión Integral de Residuos generados en la Atención en Salud.</dd>
+    <dt>PGP</dt><dd>Pago Global Prospectivo.</dd>
+    <dt>ReTHUS</dt><dd>Registro Único Nacional del Talento Humano en Salud.</dd>
+    <dt>REPS</dt><dd>Registro Especial de Prestadores de Servicios de Salud.</dd>
+    <dt>RIPS</dt><dd>Registro Individual de Prestación de Servicios: el detalle de cada atención que acompaña la factura.</dd>
+    <dt>SG-SST</dt><dd>Sistema de Gestión de Seguridad y Salud en el Trabajo.</dd>
+    <dt>SIIFA</dt><dd>Sistema Integral de Información Financiera y Asistencial del Ministerio.</dd>
+    <dt>SIRAS</dt><dd>Sistema para reportar atenciones a víctimas de accidentes de tránsito.</dd>
+    <dt>SOGCS</dt><dd>Sistema Obligatorio de Garantía de Calidad en Salud.</dd>
+    <dt>Supersalud</dt><dd>Superintendencia Nacional de Salud: vigila y sanciona.</dd>
+    <dt>UPC</dt><dd>Unidad de Pago por Capitación: valor que recibe la EPS por cada afiliado al año.</dd>
+    <dt>UVB</dt><dd>Unidad de Valor Básico. En 2026 vale $12.110 y se usa para las tarifas SOAT.</dd>
+  </dl>
+
+  <h3>Normograma: las normas del cuadernillo en una tabla</h3>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Norma</th><th>Tema</th><th>Estado a septiembre de 2026</th></tr></thead>
+    <tbody>
+      <tr><td>Ley 100 de 1993</td><td>Crea el sistema de seguridad social</td><td>Vigente</td></tr>
+      <tr><td>Ley 1122 de 2007</td><td>Ajustes al sistema; plazos de pago</td><td>Vigente</td></tr>
+      <tr><td>Ley 1438 de 2011</td><td>Redes, APS, trámite de glosas</td><td>Vigente</td></tr>
+      <tr><td>Ley 1751 de 2015</td><td>Salud como derecho fundamental</td><td>Vigente</td></tr>
+      <tr><td>Decreto 780 de 2016</td><td>Decreto Único del sector salud</td><td>Vigente, con modificaciones</td></tr>
+      <tr><td>Decreto 441 de 2022</td><td>Acuerdos de voluntades</td><td>Vigente</td></tr>
+      <tr><td>Resolución 3100 de 2019</td><td>Habilitación (norma anterior)</td><td>Se deroga al terminar la transición de 12 meses</td></tr>
+      <tr><td><strong>Resolución 1732 de 2026</strong></td><td>Inscripción y habilitación (norma nueva)</td><td>Expedida el 5 de agosto de 2026, en transición</td></tr>
+      <tr><td>Resolución 1058 de 2026</td><td>Política Nacional de Calidad en Salud 2026–2035</td><td>Vigente</td></tr>
+      <tr><td><strong>Resolución 948 de 2026</strong></td><td>RIPS como soporte de la FEV</td><td>Vigente; derogó la 2275 de 2023</td></tr>
+      <tr><td>Resolución 2284 de 2023</td><td>Soportes y Manual Único de Devoluciones y Glosas</td><td>Vigente (modificada por la 1885 de 2024)</td></tr>
+      <tr><td>Resolución 1962 de 2025</td><td>Registro de contratos en SIIFA (CUCON)</td><td>Vigente</td></tr>
+      <tr><td><strong>Resolución 1809 de 2026</strong></td><td>Giro directo UPC y presupuestos máximos</td><td>Efectos desde el 1 de noviembre de 2026</td></tr>
+      <tr><td>Resoluciones 2764 y 2765 de 2025</td><td>UPC y Plan de Beneficios 2026</td><td>Vigentes para 2026</td></tr>
+      <tr><td>Circular Externa 047 de 2025</td><td>Tarifas SOAT en UVB</td><td>Vigente desde 2026</td></tr>
+      <tr><td>Resolución 1995 de 1999 y 839 de 2017</td><td>Historia clínica y su conservación</td><td>Vigentes</td></tr>
+      <tr><td>Ley 2015 de 2020</td><td>Historia clínica electrónica interoperable</td><td>Vigente</td></tr>
+      <tr><td>Ley 1581 de 2012</td><td>Protección de datos personales</td><td>Vigente</td></tr>
+      <tr><td>Resolución 591 de 2024</td><td>Manual de gestión de residuos en salud</td><td>Vigente; derogó la 1164 de 2002</td></tr>
+      <tr><td>Resolución 482 de 2018</td><td>Equipos de radiación ionizante</td><td>Vigente</td></tr>
+      <tr><td>Ley 1164 de 2007</td><td>Talento humano en salud</td><td>Vigente</td></tr>
+      <tr><td>Ley 1562 de 2012</td><td>Riesgos laborales</td><td>Vigente</td></tr>
+      <tr><td>Decreto 1072 de 2015 y Resolución 0312 de 2019</td><td>Trabajo y SG-SST</td><td>Vigentes</td></tr>
+      <tr><td>Estatuto Tributario, artículo 476</td><td>Exclusión de IVA en servicios de salud</td><td>Vigente</td></tr>
+      <tr><td>Resolución 1895 de 2001</td><td>CIE-10</td><td>Vigente hasta terminar la transición a CIE-11</td></tr>
+      <tr><td>Resolución 1442 de 2024 y 1657 de 2025</td><td>Adopción de la CIE-11 y transición de 36 meses</td><td>Vigentes, en transición</td></tr>
+      <tr><td><strong>Resolución 2706 de 2025</strong></td><td>CUPS 2026</td><td>Vigente desde el 1 de enero de 2026</td></tr>
+      <tr><td>Resolución 1888 de 2025</td><td>Resumen Digital de Atención (RDA) e interoperabilidad</td><td>Vigente, implementación por fases</td></tr>
+      <tr><td>Resolución 5596 de 2015</td><td>Triage en urgencias</td><td>Vigente</td></tr>
+      <tr><td><strong>Resolución 1816 de 2026</strong></td><td>MIPRES</td><td>Expedida el 6 de agosto de 2026; reemplaza la 740 de 2024 tras 3 meses</td></tr>
+      <tr><td>Lineamientos de 2008 y guía de buenas prácticas de 2010</td><td>Seguridad del paciente</td><td>Referentes técnicos vigentes del Ministerio</td></tr>
+      <tr><td>Ley 23 de 1981</td><td>Ética médica y consentimiento informado</td><td>Vigente</td></tr>
+      <tr><td>Proyecto de reforma a la salud</td><td>Cambio del modelo de aseguramiento</td><td>Archivado en el Senado</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Hoja de respuestas de todos los tests</h3>
+  <p class="no-print">Úsela solo después de presentar cada test. Al imprimir, sale completa.</p>
+  <p class="no-print"><button class="btn alt reveal" type="button" data-target="clave" data-label="hoja de respuestas">Mostrar hoja de respuestas</button></p>
+  <div id="clave" class="answer" hidden><div id="clave-list"></div></div>
+</section>
+</main>
+
+<footer>
+  <p><a href="index.html">Volver al inicio</a> · <a href="procesos-ia.html">Curso de levantamiento de procesos e IA</a></p>
+  <p>Material de estudio actualizado a septiembre de 2026. No reemplaza la asesoría jurídica, contable o tributaria de un caso concreto. Antes de un trámite, confirme la norma vigente en minsalud.gov.co, supersalud.gov.co o con su Secretaría de Salud.</p>
+</footer>
+<script>
+const QUIZZES = {
+m1:{title:"Test del módulo 1: el mapa del sistema",items:[
+ {q:"¿Qué entidad expide las normas técnicas, como las resoluciones de habilitación?",o:["La Superintendencia Nacional de Salud","El Ministerio de Salud y Protección Social","Las EPS","La DIAN"],a:1,e:"El Ministerio dicta las reglas. La Supersalud vigila que se cumplan."},
+ {q:"¿Qué entidad administra la plata pública del sistema y hace el giro directo a prestadores?",o:["INVIMA","La Secretaría de Salud municipal","La ADRES","La ARL"],a:2,e:"La ADRES es la caja del sistema de salud."},
+ {q:"Según la Ley Estatutaria 1751 de 2015, la salud es:",o:["Un servicio opcional","Un derecho fundamental","Un negocio privado sin reglas","Un beneficio solo para quienes cotizan"],a:1,e:"La Ley 1751 de 2015 reconoce la salud como derecho fundamental."},
+ {q:"¿Quién vigila y puede sancionar a EPS e IPS?",o:["La Superintendencia Nacional de Salud","La Cámara de Comercio","La Registraduría","El Banco de la República"],a:0,e:"La Supersalud inspecciona, vigila y controla."},
+ {q:"¿En qué régimen el Estado paga la afiliación de las personas sin capacidad de pago?",o:["Contributivo","Subsidiado","De excepción","Particular"],a:1,e:"El régimen subsidiado cubre a quienes no pueden pagar."},
+ {q:"A septiembre de 2026, ¿qué pasó con la reforma a la salud?",o:["Eliminó las EPS","Fue archivada en el Senado y el sistema sigue con EPS","Cerró la Supersalud","Acabó con el SOAT"],a:1,e:"La reforma fue archivada en el Senado; el sistema actual sigue funcionando."}
+]},
+m2:{title:"Test del módulo 2: qué es un prestador",items:[
+ {q:"¿Cuál de estos NO es un tipo de prestador de servicios de salud?",o:["IPS","Profesional independiente","EPS","Transporte especial de pacientes"],a:2,e:"La EPS asegura y paga; no es prestador."},
+ {q:"¿Qué condición de habilitación deben cumplir TODOS los prestadores?",o:["Suficiencia patrimonial y financiera","Capacidad técnico-administrativa","Capacidad tecnológica y científica","Acreditación"],a:2,e:"La capacidad tecnológica y científica aplica a todos, incluido el profesional independiente."},
+ {q:"Un médico que atiende por su cuenta como persona natural, ¿debe demostrar suficiencia patrimonial?",o:["Sí, siempre","No, solo capacidad tecnológica y científica","Solo si tiene más de 3 empleados","Solo en Bogotá"],a:1,e:"Al profesional independiente solo se le exige la capacidad tecnológica y científica."},
+ {q:"¿En qué registro deben estar inscritos los profesionales de la salud?",o:["ReTHUS","REPS","SIRAS","RUNT"],a:0,e:"ReTHUS es el registro del talento humano. El REPS es de prestadores."},
+ {q:"El estándar de 'dotación' se refiere a:",o:["El uniforme del personal","Los equipos biomédicos y muebles necesarios, con mantenimiento","El dinero en caja","La publicidad"],a:1,e:"Dotación son los equipos con su hoja de vida y mantenimiento."},
+ {q:"La telemedicina es:",o:["Algo que no necesita habilitarse","Una modalidad de prestación que debe habilitarse","Un tipo de EPS","Un impuesto"],a:1,e:"Cada modalidad (intramural, extramural, telemedicina) se habilita."}
+]},
+m3:{title:"Test del módulo 3: habilitación",items:[
+ {q:"¿Cuál es la nueva resolución de habilitación que reemplaza a la 3100 de 2019?",o:["Resolución 1995 de 1999","Resolución 1732 de 2026","Resolución 2284 de 2023","Ley 100 de 1993"],a:1,e:"La Resolución 1732 de 2026 fue expedida el 5 de agosto de 2026."},
+ {q:"¿Cuánto dura el periodo de transición de la Resolución 1732?",o:["1 mes","6 meses","12 meses","5 años"],a:2,e:"Son 12 meses desde su publicación en el Diario Oficial."},
+ {q:"¿Cómo se llama el registro oficial de prestadores?",o:["RUT","REPS","ReTHUS","SIIFA"],a:1,e:"REPS: Registro Especial de Prestadores de Servicios de Salud."},
+ {q:"Si no se requiere visita previa, ¿cuál es el plazo máximo de la Secretaría para inscribir?",o:["15 días calendario","3 meses","1 año","No hay plazo"],a:0,e:"El artículo 8 fija máximo 15 días calendario desde la radicación completa."},
+ {q:"¿Cuál es la vigencia de la inscripción con la Resolución 1732?",o:["Indefinida","4 años la inicial y luego renovaciones anuales","10 años","6 meses renovables"],a:1,e:"4 años iniciales; después se renueva cada año con autoevaluación."},
+ {q:"En la autoevaluación descubre que un servicio no cumple un estándar. ¿Qué debe hacer?",o:["Prestarlo igual y corregir después","Abstenerse de registrarlo, ofertarlo y prestarlo","Pedirle permiso a la EPS","Nada"],a:1,e:"La norma ordena abstenerse de registrar, ofertar y prestar el servicio."},
+ {q:"¿Cuánto tiempo puede estar un servicio en cierre temporal?",o:["15 días","Máximo 6 meses","3 años","Sin límite"],a:1,e:"Máximo 6 meses; después se inactiva."},
+ {q:"¿Cuánto cuesta la inscripción y la visita de habilitación?",o:["Un salario mínimo","Depende del municipio","Es gratuito","El 1 % de los ingresos"],a:2,e:"El artículo 24 prohíbe cobrar por el proceso de habilitación."}
+]},
+m4:{title:"Test del módulo 4: calidad y obligaciones",items:[
+ {q:"¿Cuáles son los cuatro componentes del SOGCS?",o:["REPS, RUT, RIPS y FEV","Habilitación, PAMEC, acreditación y sistema de información para la calidad","EPS, ARL, SOAT y ADRES","Ley 100, Ley 1122, Ley 1438 y Ley 1751"],a:1,e:"SUH, PAMEC, SUA y SIC."},
+ {q:"PAMEC significa:",o:["Plan de Atención Médica en Casa","Programa de Auditoría para el Mejoramiento de la Calidad","Pago Anticipado Mensual de Capitación","Protocolo de Manejo de Emergencias"],a:1,e:"Es el programa con el que el prestador mide y mejora su calidad."},
+ {q:"La acreditación en salud es:",o:["Obligatoria para abrir","Voluntaria y reconoce un nivel superior de calidad","Un impuesto","Lo mismo que la habilitación"],a:1,e:"La habilitación es obligatoria; la acreditación es voluntaria."},
+ {q:"¿Cuánto tiempo mínimo se conserva la historia clínica?",o:["2 años","5 años","15 años desde la última atención","Hasta que el paciente fallezca"],a:2,e:"Resolución 839 de 2017: mínimo 15 años desde la última atención."},
+ {q:"¿Qué resolución adoptó el manual vigente de gestión de residuos en salud?",o:["Resolución 1164 de 2002","Resolución 591 de 2024","Resolución 3100 de 2019","Resolución 256 de 2016"],a:1,e:"La Resolución 591 de 2024 derogó la 1164 de 2002."},
+ {q:"Para la Ley 1581 de 2012, los datos de salud de un paciente son:",o:["Datos públicos","Datos sensibles","Datos comerciales","Datos sin protección"],a:1,e:"Los datos de salud son sensibles y requieren especial protección."},
+ {q:"¿Qué norma fija los estándares mínimos del SG-SST?",o:["Resolución 0312 de 2019","Resolución 2275 de 2023","Decreto 441 de 2022","Ley 1751 de 2015"],a:0,e:"La Resolución 0312 de 2019 define los estándares mínimos."}
+]},
+m5:{title:"Test del módulo 5: EPS, facturación y glosas",items:[
+ {q:"¿Qué norma regula hoy el RIPS como soporte de la factura electrónica?",o:["Resolución 2275 de 2023","Resolución 3374 de 2000","Resolución 948 de 2026","Resolución 1995 de 1999"],a:2,e:"La Resolución 948 de 2026 derogó la 2275 de 2023."},
+ {q:"¿Qué es el CUCON?",o:["Un impuesto municipal","El Código Único de Contrato generado en el SIIFA","Un formulario del SOAT","Una clase de glosa"],a:1,e:"Identifica el contrato con la EPS y va en el RIPS."},
+ {q:"¿Cuántos días tiene la EPS para devolver una factura?",o:["5 días hábiles","20 días hábiles","30 días calendario","6 meses"],a:0,e:"Máximo 5 días hábiles desde la radicación, una sola vez."},
+ {q:"¿Cuántos días tiene la EPS para formular glosas?",o:["5 días hábiles","20 días hábiles","60 días hábiles","Un año"],a:1,e:"20 días hábiles desde la radicación con todos los soportes."},
+ {q:"¿Cuántos días tiene el prestador para responder una glosa?",o:["2 días hábiles","15 días hábiles","90 días","No tiene plazo"],a:1,e:"15 días hábiles (Ley 1438 de 2011, artículo 57)."},
+ {q:"Llega una urgencia de un afiliado a una EPS con la que no tiene contrato. ¿Qué hace?",o:["Lo remite sin atender","Pide autorización antes de atender","Lo atiende; las urgencias no requieren autorización previa","Le cobra al paciente por adelantado"],a:2,e:"Ley 1751 de 2015, artículo 14: no se exige autorización para urgencias."},
+ {q:"Una EPS anuncia que glosará el 10 % de todas las facturas. ¿Es válido?",o:["Sí, si lo avisa","No, las glosas por porcentajes globales no están permitidas","Sí, en diciembre","Solo para ESE"],a:1,e:"Cada glosa debe tener causal del Manual y valor específico."},
+ {q:"Si el prestador no responde una devolución a tiempo:",o:["La EPS debe pagar igual","Se entiende que la acepta","Se anula la EPS","Se duplica el valor"],a:1,e:"El silencio del prestador ante la devolución implica aceptación."}
+]},
+m6:{title:"Test del módulo 6: ARL",items:[
+ {q:"¿Qué cubre la ARL?",o:["Todas las enfermedades","Accidentes de trabajo y enfermedades laborales","Accidentes de tránsito de particulares","Cirugías estéticas"],a:1,e:"La ARL cubre los riesgos derivados del trabajo."},
+ {q:"¿En qué plazo debe el empleador reportar un accidente de trabajo?",o:["2 días hábiles","1 mes","6 meses","No es obligatorio"],a:0,e:"A la ARL y a la EPS dentro de los 2 días hábiles siguientes."},
+ {q:"¿Qué ley define hoy accidente de trabajo y enfermedad laboral?",o:["Ley 100 de 1993","Ley 1562 de 2012","Ley 1581 de 2012","Ley 2015 de 2020"],a:1,e:"La Ley 1562 de 2012 trae las definiciones vigentes."},
+ {q:"Para un trabajador con contrato laboral, ¿quién paga el aporte a la ARL?",o:["El trabajador","Mitad y mitad","El empleador, el 100 %","La EPS"],a:2,e:"El empleador paga la totalidad del aporte a riesgos laborales."},
+ {q:"¿Qué norma contiene la tabla de enfermedades laborales?",o:["Decreto 1477 de 2014","Decreto 780 de 2016","Resolución 948 de 2026","Decreto 441 de 2022"],a:0,e:"El Decreto 1477 de 2014 adopta la tabla."},
+ {q:"No está claro si la enfermedad del paciente es laboral o común. ¿Qué pasa con su atención?",o:["Se suspende hasta que se defina","Se atiende, y luego las entidades definen quién paga","Paga el paciente","Se remite a la Supersalud"],a:1,e:"La atención no se detiene; después se hacen los reembolsos entre EPS y ARL."}
+]},
+m7:{title:"Test del módulo 7: SOAT",items:[
+ {q:"¿A quién cubre el SOAT?",o:["Solo al dueño del vehículo","A cualquier víctima del accidente de tránsito","Solo a peatones","Solo a afiliados del contributivo"],a:1,e:"Cubre a conductores, pasajeros y peatones."},
+ {q:"El vehículo que causó el accidente huyó y no fue identificado. ¿A quién se cobra?",o:["A la EPS","A la ADRES","Al paciente","A la Policía"],a:1,e:"Vehículo no identificado o sin SOAT: paga la ADRES."},
+ {q:"Se agotó el tope del SOAT y el accidente no fue laboral. ¿Quién sigue pagando?",o:["La EPS del paciente","La ARL","Nadie","La aseguradora sin límite"],a:0,e:"Agotado el SOAT, continúa la EPS (o la ARL si fue laboral)."},
+ {q:"¿Cuál es el valor de la UVB en 2026?",o:["$10.000","$12.110","$49.799","$47.065"],a:1,e:"La UVB para 2026 es de $12.110."},
+ {q:"Un servicio vale 10 UVB. ¿Cuánto se factura en 2026?",o:["$12.110","$121.100","$1.211.000","$100.000"],a:1,e:"10 × $12.110 = $121.100 (ya está en centenas)."},
+ {q:"¿Qué formulario usa la IPS para reclamar la atención de víctimas?",o:["FURAT","FURIPS","RUT","PILA"],a:1,e:"FURIPS: Formulario Único de Reclamación de las IPS. El FURAT es para accidentes de trabajo."},
+ {q:"¿Qué norma indexó las tarifas SOAT de 2026 a la UVB?",o:["Circular Externa 047 de 2025","Resolución 1995 de 1999","Ley 1562 de 2012","Resolución 591 de 2024"],a:0,e:"La Circular Externa 047 de 2025 del Ministerio de Salud."}
+]},
+m8:{title:"Test del módulo 8: el rincón del contador",items:[
+ {q:"Una IPS privada, ¿qué marco contable aplica?",o:["NIIF según su grupo (Decreto 2420 de 2015)","Solo contabilidad de caja","Régimen de Contabilidad Pública","Ninguno"],a:0,e:"Las IPS privadas aplican NIIF según su grupo."},
+ {q:"Una ESE (hospital público), ¿qué marco contable aplica?",o:["NIIF plenas siempre","Régimen de Contabilidad Pública de la Contaduría General de la Nación","El que quiera el gerente","No lleva contabilidad"],a:1,e:"Las ESE siguen el régimen de contabilidad pública."},
+ {q:"Usted acepta una glosa. ¿Qué hace?",o:["La ignora","Emite nota crédito y ajusta el RIPS","Factura de nuevo por el doble","La lleva a otra EPS"],a:1,e:"La aceptación se refleja con nota crédito y RIPS actualizado."},
+ {q:"Las consultas médicas para la salud humana, frente al IVA, son:",o:["Gravadas al 19 %","Gravadas al 5 %","Excluidas","Exentas con devolución"],a:2,e:"Estatuto Tributario, artículo 476, numeral 1."},
+ {q:"La cartera por edades sirve para:",o:["Saber la edad de los pacientes","Ver cuánto tiempo llevan sin pagarse las facturas y calcular el deterioro","Calcular la UPC","Pagar la nómina"],a:1,e:"Permite gestionar el cobro y medir el riesgo de no pago."},
+ {q:"Antes de firmar un contrato con una EPS, lo más importante para el contador es:",o:["Conocer el costo de cada servicio y compararlo con la tarifa","Revisar el logo de la EPS","Pedir un anticipo del 100 %","Nada, el contrato es estándar"],a:0,e:"Sin costeo no se sabe si el contrato da pérdida."}
+]},
+m10:{title:"Test del módulo 10: atención segura y códigos",items:[
+ {q:"¿Qué es un evento adverso?",o:["Un daño no intencional causado por la atención en salud","Una queja del paciente","Una complicación propia de la enfermedad","Una glosa de la EPS"],a:0,e:"El daño viene de la atención, no de la enfermedad."},
+ {q:"La enfermera iba a aplicar un medicamento equivocado y se dio cuenta antes. Eso es:",o:["Un evento adverso","Un incidente","Una complicación","Nada que reportar"],a:1,e:"No causó daño: es un incidente, y también se reporta."},
+ {q:"¿Qué metodología se usa con frecuencia para analizar eventos adversos?",o:["Protocolo de Londres","Manual tarifario SOAT","Tabla CIIU","Método de caja"],a:0,e:"El Protocolo de Londres busca las causas y factores contributivos."},
+ {q:"¿Cómo debe ser el sistema de reporte de eventos adversos?",o:["Público y con sanción al culpable","Voluntario, confidencial y no punitivo","Solo para médicos","Anual"],a:1,e:"Sin miedo al castigo, la gente reporta y la institución aprende."},
+ {q:"¿Qué codifican los CUPS?",o:["Diagnósticos","Procedimientos en salud","Medicamentos","Actividades económicas"],a:1,e:"Los diagnósticos van en CIE; los medicamentos en CUM."},
+ {q:"¿Qué norma establece la CUPS vigente en 2026?",o:["Resolución 2706 de 2025","Resolución 1995 de 1999","Ley 100 de 1993","Resolución 5596 de 2015"],a:0,e:"Vigente desde el 1 de enero de 2026."},
+ {q:"Durante la transición a CIE-11, una IPS que ya usa CIE-11 debe:",o:["Dejar la CIE-10","Hacer codificación dual CIE-10 y CIE-11","No reportar diagnósticos","Esperar a 2030"],a:1,e:"Resoluciones 1442 de 2024 y 1657 de 2025."},
+ {q:"Un paciente clasificado como triage II debe ser atendido en máximo:",o:["30 minutos","6 horas","24 horas","Inmediatamente siempre"],a:0,e:"Resolución 5596 de 2015. El triage I es inmediato."},
+ {q:"¿Qué es el RDA?",o:["Un formato de glosas","El Resumen Digital de Atención de la historia clínica interoperable","Un registro de ambulancias","Un impuesto"],a:1,e:"Lo adoptó la Resolución 1888 de 2025."},
+ {q:"¿Qué resolución de 2026 reemplaza el marco de MIPRES?",o:["Resolución 1816 de 2026","Resolución 948 de 2026","Resolución 1732 de 2026","Resolución 1809 de 2026"],a:0,e:"La 948 es RIPS, la 1732 habilitación y la 1809 giro directo."}
+]},
+final:{title:"Examen final",items:[
+ {q:"Un paciente hospitalizado se cae de la camilla y se fractura. ¿Qué es y qué se hace?",o:["Una complicación; no se reporta","Un evento adverso; se atiende, se informa a la familia, se reporta y se analiza","Un incidente sin importancia","Una glosa"],a:1,e:"El daño lo causó la atención (módulo 10)."},
+ {q:"El diagnóstico se codifica con CIE. ¿Con qué se codifica el procedimiento realizado?",o:["CUM","CUPS","CIIU","RUT"],a:1,e:"Clasificación Única de Procedimientos en Salud (módulo 10)."},
+ {q:"Ingresa a urgencias un afiliado a una EPS. ¿En qué plazo se informa a la EPS el ingreso?",o:["24 horas siguientes al inicio de la atención","30 días","Al dar de alta","No se informa"],a:0,e:"Decreto 780 de 2016 (módulo 10)."},
+ {q:"¿Qué resolución adoptó la CIE-11 en Colombia?",o:["Resolución 1442 de 2024","Resolución 3100 de 2019","Resolución 2284 de 2023","Resolución 591 de 2024"],a:0,e:"Su transición la amplió la Resolución 1657 de 2025 (módulo 10)."},
+ {q:"Un peatón es atropellado por un carro que huye. ¿A quién le cobra la atención?",o:["A la EPS del peatón","A la ADRES","A la ARL","Al peatón"],a:1,e:"Vehículo no identificado: paga la ADRES (módulo 7)."},
+ {q:"Una enfermera de su IPS se pincha con una aguja usada. ¿Qué cubre su atención?",o:["La EPS","La ARL","El SOAT","La Supersalud"],a:1,e:"Es un accidente de trabajo (módulo 6)."},
+ {q:"¿Qué entidad inscribe al prestador en el REPS y autoriza el distintivo de habilitación?",o:["La EPS","La Secretaría de Salud departamental o distrital","La DIAN","El INVIMA"],a:1,e:"La habilitación es ante la Secretaría (módulo 3)."},
+ {q:"¿Qué debe acompañar siempre a la factura electrónica en salud?",o:["El RIPS validado","Una foto del paciente","El RUT del paciente","Nada"],a:0,e:"El RIPS validado con CUV es soporte obligatorio (módulo 5)."},
+ {q:"Una EPS formula glosas a los 30 días hábiles de radicada la cuenta completa. Esa glosa es:",o:["Válida","Extemporánea, porque el plazo es de 20 días hábiles","Obligatoria de aceptar","Un delito"],a:1,e:"El plazo de la EPS para glosar es 20 días hábiles (módulo 5)."},
+ {q:"¿Qué es la UPC?",o:["El valor que recibe la EPS por cada afiliado para cubrir el plan de beneficios","Un tipo de IPS","Un impuesto","Un formulario SOAT"],a:0,e:"Unidad de Pago por Capitación (módulo 1)."},
+ {q:"¿Qué norma prohíbe exigir autorización previa para atender urgencias?",o:["Ley 1751 de 2015","Resolución 591 de 2024","Ley 1581 de 2012","Decreto 1477 de 2014"],a:0,e:"Ley Estatutaria 1751 de 2015, artículo 14 (módulos 1 y 5)."},
+ {q:"Una cirugía estética que no es reparadora ni funcional, frente al IVA, está:",o:["Excluida","Gravada","Exenta","No se factura"],a:1,e:"Es la excepción a la exclusión de IVA en salud (módulo 8)."},
+ {q:"La EPS le paga una suma fija mensual por cada afiliado asignado. Esa modalidad es:",o:["Pago por evento","Capitación","Paquete","Particular"],a:1,e:"Capitación (módulo 5)."},
+ {q:"PGP significa:",o:["Plan General de Prevención","Pago Global Prospectivo","Programa de Gestión de Pacientes","Póliza General de Protección"],a:1,e:"Pago Global Prospectivo (módulo 5)."},
+ {q:"¿Cuánto tiempo mínimo se conserva una historia clínica?",o:["5 años","15 años desde la última atención","1 año","30 días"],a:1,e:"Resolución 839 de 2017 (módulo 4)."},
+ {q:"¿Qué componente del sistema de calidad es voluntario?",o:["Habilitación","Acreditación","Historia clínica","SIVIGILA"],a:1,e:"La acreditación es voluntaria (módulo 4)."},
+ {q:"¿Cómo se llama el plan de manejo de residuos que debe tener el prestador?",o:["PAMEC","PGIRASA","PBS","SG-SST"],a:1,e:"Plan de Gestión Integral de Residuos de Atención en Salud (módulo 4)."},
+ {q:"Contrata a un independiente para una actividad de riesgo V. ¿Quién paga su ARL?",o:["El contratista","Usted, como contratante","La EPS","Nadie"],a:1,e:"En riesgos IV y V paga el contratante (módulo 6)."},
+ {q:"Un mensajero se accidenta en su moto trabajando y la cuenta supera el tope del SOAT. ¿Quién paga el excedente?",o:["La EPS","La ARL","El mensajero","La aseguradora sin límite"],a:1,e:"Primero SOAT; como es laboral, el excedente va a la ARL (módulos 6 y 7)."},
+ {q:"No está de acuerdo con el informe de una visita de habilitación. ¿Cuánto tiempo tiene para pedir revisión?",o:["5 días calendario","1 año","2 meses","No se puede reclamar"],a:0,e:"Resolución 1732 de 2026, artículo 19 (módulo 3)."},
+ {q:"Recibió un anticipo por capitación vía giro directo y no facturó dentro de los 5 días hábiles. ¿Qué pasa?",o:["Nada","No recibe nuevos giros directos hasta corregir","Le cierran la IPS","Le devuelven el doble"],a:1,e:"Resolución 1809 de 2026 (módulo 5)."},
+ {q:"Además del SOAT, ¿en qué caso es obligatorio el manual tarifario SOAT?",o:["En todas las consultas particulares","En la atención inicial de urgencias cuando no hay tarifa pactada","En la nómina","En cirugías estéticas"],a:1,e:"Circular Externa 047 de 2025 (módulo 7)."},
+ {q:"¿Qué entidad vigila a las aseguradoras que venden el SOAT?",o:["La Superintendencia Financiera","El INVIMA","La Secretaría municipal","La Registraduría"],a:0,e:"Las aseguradoras son vigiladas por la Superfinanciera (módulo 1)."},
+ {q:"Con la Resolución 1732 de 2026, ¿qué inscripción requiere siempre visita previa?",o:["La de cualquier IPS nueva","Solo la de consultorios","Ninguna","Solo la de droguerías"],a:0,e:"Toda IPS nueva requiere visita previa (módulo 3)."}
+]}
+};
+
+const LETTERS = ["a","b","c","d","e"];
+const STORE = "cuadernillo-salud-2026:";
+function sget(k){try{return JSON.parse(localStorage.getItem(STORE+k));}catch(e){return null;}}
+function sset(k,v){try{localStorage.setItem(STORE+k,JSON.stringify(v));}catch(e){}}
+
+function renderQuiz(box){
+  const id = box.dataset.quiz, data = QUIZZES[id];
+  if(!data) return;
+  let html = '<h3>'+data.title+'</h3><p>Marque una opción en cada pregunta y oprima <strong>Calificar mi test</strong>.</p>';
+  data.items.forEach((it,i)=>{
+    html += '<fieldset data-i="'+i+'"><legend><span class="qn">'+(i+1)+'.</span>'+it.q+'</legend>';
+    it.o.forEach((op,j)=>{
+      html += '<label class="opt"><input type="radio" name="'+id+'-'+i+'" value="'+j+'"><span><strong>'+LETTERS[j]+')</strong> '+op+'</span></label>';
+    });
+    html += '<div class="exp" hidden></div></fieldset>';
+  });
+  html += '<div class="qactions"><button class="btn" type="button" data-grade>Calificar mi test</button><button class="btn alt" type="button" data-reset>Borrar respuestas y volver a intentar</button></div>';
+  html += '<div class="result" hidden aria-live="polite"></div>';
+  box.innerHTML = html;
+  box.querySelector('[data-grade]').addEventListener('click',()=>grade(box));
+  box.querySelector('[data-reset]').addEventListener('click',()=>resetQuiz(box));
+}
+
+function grade(box){
+  const id = box.dataset.quiz, data = QUIZZES[id];
+  let ok = 0, blank = 0;
+  data.items.forEach((it,i)=>{
+    const fs = box.querySelector('fieldset[data-i="'+i+'"]');
+    const chosen = fs.querySelector('input:checked');
+    const labels = fs.querySelectorAll('.opt');
+    labels.forEach(l=>l.classList.remove('correct','wrong'));
+    labels[it.a].classList.add('correct');
+    const exp = fs.querySelector('.exp');
+    const right = LETTERS[it.a]+') '+it.o[it.a];
+    if(!chosen){ blank++; exp.innerHTML = '<span class="verdict-bad">Sin responder.</span> Respuesta correcta: <strong>'+right+'</strong>. '+it.e; }
+    else if(+chosen.value === it.a){ ok++; exp.innerHTML = '<span class="verdict-ok">¡Correcto!</span> '+it.e; }
+    else { chosen.closest('.opt').classList.add('wrong'); exp.innerHTML = '<span class="verdict-bad">No es correcta.</span> La respuesta es <strong>'+right+'</strong>. '+it.e; }
+    exp.hidden = false;
+  });
+  const total = data.items.length, pct = Math.round(ok*100/total);
+  let msg;
+  if(pct>=90) msg = 'Excelente. Domina este tema.';
+  else if(pct>=70) msg = 'Bien. Repase las preguntas marcadas en rojo.';
+  else msg = 'Le recomendamos volver a leer el módulo con calma y repetir el test mañana.';
+  if(blank) msg += ' Dejó '+blank+(blank===1?' pregunta':' preguntas')+' sin responder.';
+  const res = box.querySelector('.result');
+  res.innerHTML = '<strong>Acertó '+ok+' de '+total+' ('+pct+' %)</strong>'+msg;
+  res.hidden = false;
+  const prev = sget('quiz-'+id);
+  if(!prev || ok > prev.ok) sset('quiz-'+id,{ok:ok,total:total});
+  updateProgress();
+  res.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto':'smooth', block:'center'});
+}
+
+function resetQuiz(box){
+  box.querySelectorAll('input').forEach(i=>i.checked=false);
+  box.querySelectorAll('.opt').forEach(l=>l.classList.remove('correct','wrong'));
+  box.querySelectorAll('.exp').forEach(e=>{e.hidden=true;e.innerHTML='';});
+  box.querySelector('.result').hidden = true;
+  box.querySelector('fieldset').scrollIntoView({block:'center'});
+}
+
+function updateProgress(){
+  document.querySelectorAll('[data-score-for]').forEach(el=>{
+    const s = sget('quiz-'+el.dataset.scoreFor);
+    if(s){ el.textContent = 'Mejor puntaje: '+s.ok+' de '+s.total; el.classList.add('done'); }
+  });
+  const boxes = document.querySelectorAll('[data-check]');
+  const done = [...boxes].filter(b=>b.checked).length;
+  const cp = document.querySelector('[data-check-progress]');
+  if(cp) cp.textContent = done ? done+' de '+boxes.length+' pasos marcados' : 'Lista de chequeo';
+}
+
+function buildKey(){
+  const names = {m1:"Módulo 1",m2:"Módulo 2",m3:"Módulo 3",m4:"Módulo 4",m5:"Módulo 5",m6:"Módulo 6",m7:"Módulo 7",m8:"Módulo 8",m10:"Módulo 10",final:"Examen final"};
+  let html = '';
+  Object.keys(QUIZZES).forEach(id=>{
+    html += '<h4>'+names[id]+'</h4><ol class="keylist">';
+    QUIZZES[id].items.forEach(it=>{ html += '<li><strong>'+LETTERS[it.a]+')</strong> '+it.o[it.a]+'</li>'; });
+    html += '</ol>';
+  });
+  document.getElementById('clave-list').innerHTML = html;
+}
+
+function shuffleAll(){
+  let seed = 7;
+  function rnd(){ seed = (seed*9301 + 49297) % 233280; return seed/233280; }
+  Object.keys(QUIZZES).forEach(id=>{
+    QUIZZES[id].items.forEach(it=>{
+      const idx = it.o.map((_,j)=>j);
+      for(let k=idx.length-1;k>0;k--){ const r=Math.floor(rnd()*(k+1)); [idx[k],idx[r]]=[idx[r],idx[k]]; }
+      const correctText = it.o[it.a];
+      it.o = idx.map(j=>it.o[j]);
+      it.a = it.o.indexOf(correctText);
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  shuffleAll();
+  document.querySelectorAll('[data-quiz]').forEach(renderQuiz);
+  buildKey();
+
+  document.querySelectorAll('.reveal').forEach(btn=>{
+    const target = btn.dataset.target ? document.getElementById(btn.dataset.target) : btn.nextElementSibling;
+    const label = btn.dataset.label || 'respuesta';
+    btn.setAttribute('aria-expanded','false');
+    btn.addEventListener('click',()=>{
+      const open = target.hidden;
+      target.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = (open ? 'Ocultar ' : 'Mostrar ') + label;
+    });
+  });
+
+  const sizes = ['s','m','l','xl'];
+  const saved = sget('size');
+  if(saved && sizes.includes(saved)) document.documentElement.dataset.size = saved;
+  document.querySelectorAll('[data-size-step]').forEach(b=>b.addEventListener('click',()=>{
+    let i = sizes.indexOf(document.documentElement.dataset.size) + (+b.dataset.sizeStep);
+    i = Math.max(0, Math.min(sizes.length-1, i));
+    document.documentElement.dataset.size = sizes[i];
+    sset('size', sizes[i]);
+  }));
+
+  const checks = sget('checks') || {};
+  document.querySelectorAll('[data-check]').forEach(c=>{
+    c.checked = !!checks[c.dataset.check];
+    c.addEventListener('change',()=>{ checks[c.dataset.check] = c.checked; sset('checks',checks); updateProgress(); });
+  });
+  const rst = document.getElementById('check-reset');
+  if(rst) rst.addEventListener('click',()=>{
+    document.querySelectorAll('[data-check]').forEach(c=>{c.checked=false; checks[c.dataset.check]=false;});
+    sset('checks',checks); updateProgress();
+  });
+
+  updateProgress();
+});
+</script>
+</body>
+</html>
