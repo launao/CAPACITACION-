@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Levantamiento y optimización de procesos · Curso para analistas</title>
+<meta name="description" content="Curso práctico para analistas: cómo levantar procesos en campo, cómo entrevistar, cómo optimizar y fundamentos de inteligencia artificial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1F0; --card:#FFFFFF; --ink:#17242B; --dim:#55666F; --rule:#CDD6D8;
+  --steel:#1F4E6B; --steel-soft:#E3ECF2; --gold:#B8860B; --gold-soft:#FBF1DA;
+  --ok:#1A7A46; --ok-soft:#E4F3EA; --no:#B03528; --no-soft:#FBEAE7;
+  --disp:"Bitter", Georgia, serif; --body:"Public Sans", "Segoe UI", system-ui, sans-serif;
+  --wrap:1180px; --side:264px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101A1F; --card:#18252B; --ink:#E6EDEF; --dim:#9BAeB5; --rule:#31434A;
+  --steel:#6FB3D9; --steel-soft:#15303F; --gold:#E0AE3F; --gold-soft:#2E2512;
+  --ok:#68CE93; --ok-soft:#14301F; --no:#FF9084; --no-soft:#32191A;
+}}
+:root[data-theme="dark"]{
+  --bg:#101A1F; --card:#18252B; --ink:#E6EDEF; --dim:#9BAeB5; --rule:#31434A;
+  --steel:#6FB3D9; --steel-soft:#15303F; --gold:#E0AE3F; --gold-soft:#2E2512;
+  --ok:#68CE93; --ok-soft:#14301F; --no:#FF9084; --no-soft:#32191A;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.62}
+img{max-width:100%}
+a{color:var(--steel)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--disp);line-height:1.2;font-weight:700}
+
+/* cabecera */
+header.top{position:sticky;top:0;z-index:40;background:var(--card);border-bottom:1px solid var(--rule)}
+.top-in{max-width:var(--wrap);margin:0 auto;padding:.5rem 1rem;display:flex;align-items:center;gap:1rem}
+.logo{font-family:var(--disp);font-size:1rem;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:.5rem}
+.logo b{display:block;font-weight:700}
+.logo i{font-style:normal;font-size:.78rem;color:var(--dim);font-family:var(--body)}
+.mark{width:30px;height:30px;flex:none}
+.top-sp{flex:1}
+.ibtn{font:inherit;font-size:.86rem;font-weight:600;background:transparent;border:1px solid var(--rule);color:var(--ink);border-radius:7px;padding:.4rem .7rem;cursor:pointer;min-height:40px}
+.ibtn:hover{border-color:var(--steel);color:var(--steel)}
+#navtoggle{display:none}
+.logo .lg-short{display:none}
+@media (max-width:900px){#navtoggle{display:inline-block}.logo i{display:none}.logo .lg-full{display:none}.logo .lg-short{display:block;font-size:.95rem}.top-in{gap:.5rem;padding:.4rem .7rem}.ibtn{padding:.35rem .55rem;font-size:.82rem}}
+
+/* barra de progreso */
+.pbar{height:3px;background:var(--rule)}
+.pbar i{display:block;height:100%;width:0;background:var(--gold);transition:width .3s}
+
+/* layout */
+.shell{max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:var(--side) 1fr;gap:2rem;padding:0 1rem}
+nav.side{position:sticky;top:56px;align-self:start;max-height:calc(100vh - 62px);overflow-y:auto;padding:1.2rem 0 2rem}
+nav.side h2{font-size:.72rem;letter-spacing:.06em;color:var(--dim);font-family:var(--body);font-weight:700;margin:1.2rem 0 .4rem}
+nav.side a{display:flex;gap:.6rem;align-items:baseline;text-decoration:none;color:var(--ink);font-size:.92rem;padding:.38rem .55rem;border-radius:7px;border-left:3px solid transparent}
+nav.side a:hover{background:var(--steel-soft)}
+nav.side a.on{border-left-color:var(--gold);background:var(--steel-soft);font-weight:600}
+nav.side a em{font-style:normal;color:var(--dim);font-size:.8rem;min-width:1.6ch}
+nav.side a.on em{color:var(--gold)}
+main{min-width:0;padding-bottom:5rem}
+@media (max-width:900px){
+  .shell{grid-template-columns:1fr}
+  nav.side{position:fixed;inset:53px 0 auto 0;background:var(--card);border-bottom:1px solid var(--rule);padding:.8rem 1rem 1.2rem;max-height:70vh;z-index:35;display:none;box-shadow:0 12px 24px rgba(0,0,0,.12)}
+  nav.side.open{display:block}
+}
+
+/* portada */
+.hero{padding:3rem 0 1rem;border-bottom:1px solid var(--rule);margin-bottom:2rem}
+.hero h1{font-size:clamp(2rem,4.4vw,3rem);margin:.4rem 0 .8rem;max-width:19ch}
+.hero p.lede{font-size:1.16rem;max-width:58ch;color:var(--dim);margin:0 0 1.4rem}
+.kicker{font-family:var(--body);font-size:.82rem;font-weight:700;color:var(--gold)}
+.hero-facts{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem}
+.hero-facts span{background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:.3rem .8rem;font-size:.86rem}
+.start{display:inline-block;background:var(--steel);color:#fff;text-decoration:none;font-weight:700;padding:.75rem 1.5rem;border-radius:8px}
+:root[data-theme="dark"] .start,:root:not([data-theme="light"]) .start{color:#0B1519}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .start{color:#fff}}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.9rem;margin:2rem 0}
+.mcard{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:1rem 1.1rem;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:.25rem}
+.mcard:hover{border-color:var(--steel)}
+.mcard b{font-family:var(--disp);font-size:1.05rem}
+.mcard small{color:var(--dim);font-size:.86rem;line-height:1.45}
+.mcard .st{margin-top:.5rem;font-size:.8rem;color:var(--dim)}
+.mcard .st.done{color:var(--ok);font-weight:700}
+
+/* secciones */
+section.mod{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:2rem clamp(1.1rem,3.4vw,2.6rem);margin-bottom:1.6rem;scroll-margin-top:72px}
+section.mod > *{max-width:74ch}
+section.mod > .tw,section.mod > .grid2,section.mod > .tool,section.mod > .quiz,section.mod > .cards{max-width:none}
+.mhead{display:flex;gap:.8rem;align-items:baseline;flex-wrap:wrap;border-bottom:2px solid var(--gold);padding-bottom:.5rem;margin-bottom:1.1rem;max-width:none}
+.mhead .num{font-family:var(--disp);font-size:2.2rem;color:var(--gold);line-height:1}
+.mhead h2{font-size:clamp(1.5rem,3vw,2rem);margin:0}
+.mhead .min{margin-left:auto;font-size:.84rem;color:var(--dim)}
+h3{font-size:1.3rem;margin:2.2rem 0 .6rem;padding-top:.2rem}
+h4{font-size:1.05rem;margin:1.4rem 0 .35rem}
+p,li{font-size:1rem}
+ul,ol{padding-left:1.25rem}
+li{margin:.32rem 0}
+.lede2{color:var(--dim);font-size:1.06rem}
+mark{background:var(--gold-soft);color:inherit;padding:.05em .2em;border-radius:3px;box-shadow:inset 0 -2px 0 var(--gold)}
+
+/* cajas */
+.box{border-radius:10px;padding:.9rem 1.1rem;margin:1.2rem 0;border:1px solid var(--rule)}
+.box>:first-child{margin-top:0}.box>:last-child{margin-bottom:0}
+.box b.bt{display:block;font-family:var(--disp);margin-bottom:.3rem}
+.tip{background:var(--steel-soft);border-color:var(--steel)}
+.warn{background:var(--gold-soft);border-color:var(--gold)}
+.field{background:var(--ok-soft);border-color:var(--ok)}
+.bad{background:var(--no-soft);border-color:var(--no)}
+
+/* tablas */
+.tw{overflow-x:auto;border:1px solid var(--rule);border-radius:10px;margin:1.1rem 0}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:.94rem}
+th,td{text-align:left;vertical-align:top;padding:.6rem .8rem;border-bottom:1px solid var(--rule)}
+th{background:var(--steel-soft);font-weight:700;font-size:.88rem}
+tr:last-child td{border-bottom:0}
+
+/* pasos y rejillas */
+ol.steps{list-style:none;counter-reset:s;padding:0;display:grid;gap:.55rem;margin:1.1rem 0}
+ol.steps>li{counter-increment:s;border:1px solid var(--rule);border-radius:10px;padding:.7rem .9rem .7rem 3.2rem;position:relative;margin:0}
+ol.steps>li::before{content:counter(s);position:absolute;left:.65rem;top:.62rem;width:1.9rem;height:1.9rem;border-radius:50%;background:var(--steel);color:var(--card);display:grid;place-items:center;font-weight:700;font-size:.9rem}
+.cbrow{display:grid;grid-template-columns:2fr 1fr 1fr;gap:.6rem;margin-top:.4rem}
+@media (max-width:560px){.cbrow{grid-template-columns:1fr 1fr}.cbrow>div:first-child{grid-column:1/-1}}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.8rem;margin:1.1rem 0}
+.gi{border:1px solid var(--rule);border-radius:10px;padding:.8rem 1rem}
+.gi b{display:block;font-family:var(--disp);color:var(--steel);margin-bottom:.2rem}
+.gi.no b{color:var(--no)}
+.gi.si b{color:var(--ok)}
+
+/* diálogo de ejemplo */
+.dlg{border-left:3px solid var(--steel);padding:.2rem 0 .2rem 1rem;margin:1rem 0;max-width:70ch}
+.dlg p{margin:.45rem 0}
+.dlg .q{font-weight:600}
+.dlg .a{color:var(--dim)}
+.dlg .note{background:var(--gold-soft);border-radius:6px;padding:.35rem .6rem;font-size:.9rem;display:inline-block}
+
+/* herramientas */
+.tool{border:2px solid var(--steel);border-radius:12px;padding:1.1rem clamp(.85rem,2.5vw,1.5rem);margin:1.6rem 0;background:var(--card)}
+.tool h3{margin-top:0}
+.tool label{display:block;font-weight:600;font-size:.9rem;margin:.7rem 0 .2rem}
+.tool input[type=text],.tool input[type=number],.tool select,.tool textarea{width:100%;font:inherit;font-size:.95rem;padding:.5rem .65rem;border:1px solid var(--rule);border-radius:8px;background:var(--bg);color:var(--ink);min-height:44px}
+.tool textarea{min-height:88px;resize:vertical}
+.btn{font:inherit;font-weight:700;background:var(--steel);color:var(--card);border:0;border-radius:8px;padding:.6rem 1.1rem;min-height:46px;cursor:pointer}
+.btn.gh{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn:hover{filter:brightness(1.1)}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}
+.out{margin-top:1rem;background:var(--bg);border:1px dashed var(--rule);border-radius:10px;padding:.9rem 1rem;white-space:pre-wrap;font-size:.92rem}
+.out[hidden]{display:none}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.3rem}
+.chip{border:1px solid var(--rule);border-radius:999px;padding:.35rem .8rem;font-size:.88rem;cursor:pointer;background:var(--bg);color:var(--ink);min-height:40px}
+.chip[aria-pressed="true"]{background:var(--steel);color:var(--card);border-color:var(--steel)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;margin-top:1rem}
+.kpi div{border:1px solid var(--rule);border-radius:10px;padding:.7rem .9rem}
+.kpi span{display:block;font-size:.8rem;color:var(--dim)}
+.kpi strong{font-family:var(--disp);font-size:1.5rem;display:block}
+
+/* matriz impacto esfuerzo */
+.matrix{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-top:1rem}
+.qd{border:1px solid var(--rule);border-radius:10px;padding:.7rem .8rem;min-height:110px}
+.qd h5{margin:0 0 .35rem;font-family:var(--disp);font-size:.95rem}
+.qd ul{margin:0;padding-left:1rem;font-size:.88rem}
+.qd.q1{background:var(--ok-soft);border-color:var(--ok)}
+.qd.q4{background:var(--no-soft);border-color:var(--no)}
+
+/* quiz */
+.quiz{border:1px solid var(--rule);border-left:5px solid var(--gold);border-radius:12px;padding:1.1rem clamp(.85rem,2.5vw,1.5rem);margin:1.8rem 0}
+.quiz fieldset{border:0;margin:0 0 1.2rem;padding:0}
+.quiz legend{font-weight:700;padding:0;margin-bottom:.45rem}
+.quiz legend i{font-style:normal;color:var(--gold);margin-right:.35rem}
+.opt{display:flex;gap:.65rem;align-items:flex-start;border:1px solid var(--rule);border-radius:9px;padding:.6rem .8rem;margin:.35rem 0;cursor:pointer;min-height:46px}
+.opt:hover{border-color:var(--steel)}
+.opt input{width:1.15rem;height:1.15rem;margin-top:.2rem;flex:none;accent-color:var(--steel)}
+.opt.ok{background:var(--ok-soft);border-color:var(--ok)}
+.opt.no{background:var(--no-soft);border-color:var(--no)}
+.exp{margin-top:.35rem;background:var(--bg);border-radius:8px;padding:.55rem .8rem;font-size:.93rem}
+.exp[hidden]{display:none}
+.vok{color:var(--ok);font-weight:700}
+.vno{color:var(--no);font-weight:700}
+.score{margin-top:1rem;border:1px solid var(--rule);border-radius:10px;padding:.9rem 1.1rem;background:var(--bg)}
+.score[hidden]{display:none}
+.score b{font-family:var(--disp);font-size:1.4rem;display:block}
+
+/* glosario */
+.gsearch{width:100%;max-width:420px;font:inherit;padding:.55rem .8rem;border:1px solid var(--rule);border-radius:8px;background:var(--card);color:var(--ink);min-height:46px}
+dl.gl{display:grid;grid-template-columns:minmax(9rem,15rem) 1fr;gap:.45rem 1.2rem;margin-top:1rem}
+dl.gl dt{font-weight:700}
+dl.gl dd{margin:0;color:var(--dim)}
+dl.gl div{display:contents}
+dl.gl div[hidden] dt,dl.gl div[hidden] dd{display:none}
+@media (max-width:640px){dl.gl{grid-template-columns:1fr}dl.gl dd{margin-bottom:.7rem}}
+
+footer{border-top:1px solid var(--rule);margin-top:2rem;padding:1.4rem 0 3rem;color:var(--dim);font-size:.9rem}
+footer a{color:var(--steel)}
+
+@media print{
+  header.top,nav.side,.btn,.chip,.ibtn,.start,.gsearch{display:none!important}
+  .shell{grid-template-columns:1fr;padding:0}
+  section.mod{break-before:page;border:0;padding:0;background:#fff}
+  body{background:#fff;font-size:11pt}
+  .exp,.out{display:block!important}
+  .opt{min-height:0;padding:.15rem .4rem}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <button class="ibtn" id="navtoggle" aria-expanded="false" aria-controls="sidenav">☰ Módulos</button>
+    <a class="logo" href="#inicio">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="7" cy="8" r="4" fill="currentColor"/><circle cx="25" cy="16" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="7" cy="24" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M11 8h6a4 4 0 0 1 4 4v0M11 24h6a4 4 0 0 0 4-4v0" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+      <span><b class="lg-full">Levantamiento y optimización de procesos</b><b class="lg-short">Procesos e IA</b><i>Curso para analistas de campo</i></span>
+    </a>
+    <span class="top-sp"></span>
+    <button class="ibtn" id="themebtn" aria-label="Cambiar entre modo claro y oscuro">Tema</button>
+  </div>
+  <div class="pbar"><i id="pbar"></i></div>
+</header>
+
+<div class="shell">
+<nav class="side" id="sidenav" aria-label="Índice del curso">
+  <h2>Empezar</h2>
+  <a href="#inicio"><em>·</em><span>Portada</span></a>
+  <a href="#m0"><em>0</em><span>Cómo usar este curso</span></a>
+  <h2>Parte I · Procesos</h2>
+  <a href="#m1"><em>1</em><span>Qué es un proceso</span></a>
+  <a href="#m2"><em>2</em><span>Cómo se levanta un proceso</span></a>
+  <a href="#m3"><em>3</em><span>La entrevista</span></a>
+  <a href="#m4"><em>4</em><span>Documentar y diagramar</span></a>
+  <a href="#m5"><em>5</em><span>Optimizar</span></a>
+  <h2>Parte II · Inteligencia artificial</h2>
+  <a href="#m6"><em>6</em><span>Fundamentos de IA</span></a>
+  <a href="#m7"><em>7</em><span>IA generativa y agentes</span></a>
+  <a href="#m8"><em>8</em><span>IA aplicada a procesos</span></a>
+  <h2>Cierre</h2>
+  <a href="#m9"><em>9</em><span>Herramientas del analista</span></a>
+  <a href="#final"><em>★</em><span>Examen final</span></a>
+  <a href="#glosario"><em>+</em><span>Glosario</span></a>
+</nav>
+
+<main>
+<section class="hero" id="inicio">
+  <span class="kicker">Curso interno · Proyecto Arthemis</span>
+  <h1>Levantar procesos, mejorarlos y entender la IA</h1>
+  <p class="lede">Un curso práctico para quien sale a campo con una libreta, un celular y la aplicación de levantamiento. Enseña a mirar un proceso, a entrevistar a quien lo ejecuta, a documentarlo sin distorsionarlo, a proponer mejoras que se sostienen y a entender qué es y qué no es la inteligencia artificial.</p>
+  <div class="hero-facts">
+    <span>10 módulos</span><span>7 herramientas interactivas</span><span>Tests con resultado</span><span>Ejemplos de una clínica real</span>
+  </div>
+  <a class="start" href="#m0">Comenzar por el módulo 0</a>
+</section>
+
+<div class="cards">
+  <a class="mcard" href="#m1"><b>1 · Qué es un proceso</b><small>Entradas, salidas, actividades, indicadores y los ocho desperdicios.</small><span class="st" data-st="m1">Test pendiente</span></a>
+  <a class="mcard" href="#m2"><b>2 · Cómo se levanta</b><small>Las cinco fases, las fuentes de información y los errores que arruinan un levantamiento.</small><span class="st" data-st="m2">Test pendiente</span></a>
+  <a class="mcard" href="#m3"><b>3 · La entrevista</b><small>Antes, durante y después. Guion, tipos de pregunta y manejo de personas difíciles.</small><span class="st" data-st="m3">Test pendiente</span></a>
+  <a class="mcard" href="#m4"><b>4 · Documentar</b><small>Ficha de proceso, SIPOC, diagramas de carriles, BPMN básico y matriz RACI.</small><span class="st" data-st="m4">Test pendiente</span></a>
+  <a class="mcard" href="#m5"><b>5 · Optimizar</b><small>Cuellos de botella, análisis de valor, ESCA, a prueba de errores y priorización.</small><span class="st" data-st="m5">Test pendiente</span></a>
+  <a class="mcard" href="#m6"><b>6 · Fundamentos de IA</b><small>Qué es la IA, qué es el aprendizaje automático y cómo aprende una máquina.</small><span class="st" data-st="m6">Test pendiente</span></a>
+  <a class="mcard" href="#m7"><b>7 · Generativa y agentes</b><small>Modelos de lenguaje, prompts, alucinaciones, RAG y qué es realmente un agente.</small><span class="st" data-st="m7">Test pendiente</span></a>
+  <a class="mcard" href="#m8"><b>8 · IA en procesos</b><small>Dónde ayuda de verdad, minería de procesos, riesgos y datos sensibles.</small><span class="st" data-st="m8">Test pendiente</span></a>
+</div>
+<section class="mod" id="m0">
+  <div class="mhead"><span class="num">0</span><h2>Cómo usar este curso</h2><span class="min">10 min</span></div>
+  <p class="lede2">Este curso está hecho para el analista que sale a campo. No es teoría de escritorio: cada módulo termina en algo que usted va a hacer el lunes en la mañana.</p>
+
+  <h3>Cómo está organizado</h3>
+  <ol class="steps">
+    <li><strong>Parte I (módulos 1 a 5).</strong> El oficio: entender un proceso, levantarlo, entrevistar, documentarlo y proponer mejoras.</li>
+    <li><strong>Parte II (módulos 6 a 8).</strong> Inteligencia artificial desde cero, con los conceptos bien explicados antes de hablar de aplicaciones.</li>
+    <li><strong>Cierre (módulo 9 y examen).</strong> Las herramientas y plantillas que se lleva al terreno.</li>
+  </ol>
+
+  <h3>Las herramientas interactivas</h3>
+  <p>A lo largo del curso hay siete herramientas que puede usar en un levantamiento real: generador de guion de entrevista, calculadora de eficiencia de proceso, detector de cuellos de botella, armador de ficha SIPOC, matriz de priorización, evaluador de prompts y lista de chequeo. Lo que escriba en ellas se guarda en su navegador y puede copiarlo a la aplicación de levantamiento.</p>
+
+  <div class="box tip"><b class="bt">El contexto de este curso</b>
+    <p>Los ejemplos vienen de una clínica que opera con <strong>Arthemis</strong>, un sistema de información en salud que cubre urgencias, consulta externa, cirugía, terapias, apoyo diagnóstico, farmacia, facturación y administración. Para el levantamiento se usa una aplicación web propia que captura texto, notas de voz y fotos pegadas a cada pregunta, y genera un informe compartible por enlace.</p>
+    <p>Si usted trabaja en otro sector, los métodos son los mismos: cambie los ejemplos.</p>
+  </div>
+
+  <h3>Una advertencia que vale por todo el curso</h3>
+  <div class="box warn"><b class="bt">Su trabajo no es documentar el proceso bonito</b>
+    <p>Es documentar <mark>el proceso real</mark>. El proceso que está en el manual suele ser el que alguien quisiera que ocurriera. El proceso real tiene atajos, llamadas por WhatsApp, un cuaderno paralelo y un paso que se hace "cuando doña Marta está". Ese es el que hay que levantar, porque es el que produce los resultados que se quieren mejorar.</p>
+  </div>
+</section>
+
+<section class="mod" id="m1">
+  <div class="mhead"><span class="num">1</span><h2>Qué es un proceso y cómo se mide</h2><span class="min">35 min</span></div>
+  <p class="lede2">Antes de levantar nada hay que saber qué se está mirando y con qué números se va a describir.</p>
+
+  <h3>1.1 La definición que sirve</h3>
+  <p>Un proceso es <mark>una secuencia de actividades que transforma unas entradas en una salida que alguien valora</mark>. Tres palabras importan:</p>
+  <div class="grid2">
+    <div class="gi"><b>Secuencia</b>Hay un orden. Si el orden da igual, no es un proceso: es una lista de tareas.</div>
+    <div class="gi"><b>Transforma</b>Algo cambia de estado. Un paciente pasa de "no atendido" a "atendido y con egreso firmado".</div>
+    <div class="gi"><b>Alguien valora</b>Hay un cliente, interno o externo. Si nadie valora la salida, el proceso entero es candidato a desaparecer.</div>
+  </div>
+
+  <h4>El marco SIPOC</h4>
+  <p>Es la forma más rápida de encuadrar cualquier proceso. Cinco columnas, cinco preguntas:</p>
+  <div class="tw"><table>
+    <thead><tr><th>Letra</th><th>Significa</th><th>La pregunta</th><th>Ejemplo: admisión de urgencias</th></tr></thead>
+    <tbody>
+      <tr><td><strong>S</strong></td><td>Suppliers (proveedores)</td><td>¿Quién entrega lo que el proceso necesita?</td><td>El paciente, el kiosco de autorregistro, la EPS con su base de afiliados.</td></tr>
+      <tr><td><strong>I</strong></td><td>Inputs (entradas)</td><td>¿Qué llega?</td><td>Documento de identidad, turno asignado, motivo de consulta, estado de afiliación.</td></tr>
+      <tr><td><strong>P</strong></td><td>Process (proceso)</td><td>¿Qué se hace, en cinco a siete pasos?</td><td>Llamar el turno, identificar, verificar derechos, calcular copago, abrir el ingreso.</td></tr>
+      <tr><td><strong>O</strong></td><td>Outputs (salidas)</td><td>¿Qué sale?</td><td>Paciente admitido, ingreso creado en el sistema, copago liquidado.</td></tr>
+      <tr><td><strong>C</strong></td><td>Customers (clientes)</td><td>¿Quién recibe la salida?</td><td>El médico que va a atender, facturación, el propio paciente.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Haga el SIPOC <em>antes</em> de la primera entrevista, aunque sea con suposiciones. Le da vocabulario y le muestra qué no sabe.</p>
+
+  <h3>1.2 Los niveles: no confunda un proceso con una tarea</h3>
+  <p>Uno de los errores más caros en un levantamiento es mezclar niveles: un documento que tiene "Atención de urgencias" al lado de "Imprimir el brazalete" es un documento que nadie puede usar.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Nivel</th><th>Qué es</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td>Macroproceso</td><td>Una gran función de la organización</td><td>Prestación de servicios asistenciales</td></tr>
+      <tr><td><strong>Proceso</strong></td><td>Transforma entradas en una salida con valor; es el nivel que se levanta</td><td>Atención de urgencias</td></tr>
+      <tr><td>Subproceso</td><td>Una etapa reconocible dentro del proceso</td><td>Admisión del paciente</td></tr>
+      <tr><td>Procedimiento</td><td>La forma detallada de ejecutar una etapa, con reglas</td><td>Verificación de derechos y cálculo de copago</td></tr>
+      <tr><td>Actividad</td><td>Un bloque de trabajo de una persona</td><td>Consultar el estado de afiliación</td></tr>
+      <tr><td>Tarea</td><td>El movimiento concreto</td><td>Digitar el número de documento</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box tip"><b class="bt">Regla práctica</b><p>Si la respuesta a "¿quién es el cliente de esto?" es otra persona del mismo escritorio, usted está mirando una actividad, no un proceso.</p></div>
+
+  <h4>Los tres tipos de proceso</h4>
+  <ul>
+    <li><strong>Estratégicos:</strong> dirigen la organización. Planeación, gestión de la calidad, control de gestión.</li>
+    <li><strong>Misionales (o de valor):</strong> hacen lo que el cliente compra. En una clínica: urgencias, consulta externa, cirugía, apoyo diagnóstico.</li>
+    <li><strong>De apoyo:</strong> hacen posible lo misional. Talento humano, compras, mantenimiento, sistemas, facturación.</li>
+  </ul>
+  <p>Sirve para decidir por dónde empezar: <mark>los procesos misionales con más quejas o más pérdida de dinero van primero.</mark></p>
+
+  <h3>1.3 Los números que describen un proceso</h3>
+  <p>Sin medición no hay mejora, solo opinión. Estos son los indicadores mínimos y sus definiciones exactas, que es donde la gente se equivoca.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Indicador</th><th>Qué mide</th><th>Cómo se toma</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Tiempo de ciclo</strong></td><td>Lo que tarda una unidad desde que entra hasta que sale del proceso</td><td>Reloj de entrada y reloj de salida de un mismo paciente, no promedios mentales</td></tr>
+      <tr><td><strong>Tiempo de proceso</strong> (o de valor agregado)</td><td>El tiempo en que alguien efectivamente trabaja sobre esa unidad</td><td>Sume solo las actividades; excluya esperas</td></tr>
+      <tr><td><strong>Tiempo de espera</strong></td><td>Tiempo de ciclo menos tiempo de proceso</td><td>Casi siempre es la mayor parte. Aquí está la mejora fácil</td></tr>
+      <tr><td><strong>Eficiencia de ciclo</strong></td><td>Tiempo de proceso ÷ tiempo de ciclo</td><td>Un proceso administrativo típico está entre 5 % y 20 %</td></tr>
+      <tr><td><strong>Capacidad</strong></td><td>Cuántas unidades puede procesar un puesto por hora</td><td>60 ÷ tiempo de atención por unidad, por el número de puestos</td></tr>
+      <tr><td><strong>Trabajo en curso</strong></td><td>Cuántas unidades están dentro del proceso a la vez</td><td>Pacientes en sala, facturas radicadas sin resolver</td></tr>
+      <tr><td><strong>Rendimiento a la primera</strong></td><td>Porcentaje que sale bien sin reproceso</td><td>Facturas aceptadas sin glosa ni devolución, por ejemplo</td></tr>
+      <tr><td><strong>Tasa de reproceso</strong></td><td>Porcentaje que hay que rehacer</td><td>Devoluciones, historias devueltas, exámenes repetidos</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="box tip"><b class="bt">La ley de Little, la única fórmula que hay que memorizar</b>
+    <p><strong>Trabajo en curso = tasa de llegada × tiempo de ciclo</strong></p>
+    <p>Si a urgencias llegan 6 pacientes por hora y cada uno permanece 3 horas, en promedio hay 18 pacientes dentro del servicio. Sirve al revés: si usted cuenta 18 personas en sala y sabe que llegan 6 por hora, el tiempo de ciclo real es de 3 horas, sin importar lo que diga la percepción del equipo.</p>
+  </div>
+
+  <h3>1.4 Los ocho desperdicios</h3>
+  <p>Vienen de la manufactura, pero describen con precisión lo que pasa en una oficina y en un servicio de salud. Aprenda a nombrarlos: una vez que tienen nombre, se ven en todas partes.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Desperdicio</th><th>Qué es</th><th>Cómo se ve en la clínica</th></tr></thead>
+    <tbody>
+      <tr><td>Sobreproducción</td><td>Hacer más o antes de lo necesario</td><td>Imprimir tres copias de una orden cuando se usa una</td></tr>
+      <tr><td><strong>Espera</strong></td><td>Tiempo sin avanzar</td><td>Paciente en sala esperando que el médico vea el resultado del laboratorio</td></tr>
+      <tr><td>Transporte</td><td>Mover cosas o información sin necesidad</td><td>Llevar la historia en físico de un piso a otro</td></tr>
+      <tr><td>Sobreprocesamiento</td><td>Pasos que el cliente no valora</td><td>Pedir tres firmas para autorizar un examen de bajo costo</td></tr>
+      <tr><td>Inventario</td><td>Trabajo acumulado sin terminar</td><td>Facturas represadas esperando revisión</td></tr>
+      <tr><td>Movimiento</td><td>Desplazamiento innecesario de personas</td><td>La auxiliar que camina al otro extremo por el tensiómetro</td></tr>
+      <tr><td><strong>Defectos</strong></td><td>Errores que obligan a rehacer</td><td>Un dato mal digitado que genera glosa y reproceso de la cuenta</td></tr>
+      <tr><td><strong>Talento desaprovechado</strong></td><td>No usar lo que la gente sabe</td><td>Una enfermera con la solución al trancón que nunca le preguntaron</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>Un matiz para el sector salud</h4>
+  <div class="box warn"><b class="bt">No todo lo que parece desperdicio lo es</b>
+    <p>El doble chequeo de identidad del paciente antes de aplicar un medicamento es, técnicamente, duplicación. Es también una barrera de seguridad obligatoria. Antes de eliminar un paso, pregunte si es un <strong>control clínico, legal o de seguridad</strong>. Se elimina el papeleo, nunca la barrera que evita el daño.</p>
+  </div>
+
+  <div class="tool" id="tool-eficiencia">
+    <h3>Herramienta 1 · Calculadora de eficiencia de ciclo</h3>
+    <p>Sume los tiempos de un caso real que haya cronometrado. Le devuelve el porcentaje del tiempo que el paciente o el documento pasa recibiendo trabajo, frente al que pasa esperando.</p>
+    <div class="grid2">
+      <div><label for="ef-proc">Tiempo trabajando sobre el caso (minutos)</label><input type="number" id="ef-proc" min="0" value="24" inputmode="numeric"></div>
+      <div><label for="ef-esp">Tiempo de espera entre pasos (minutos)</label><input type="number" id="ef-esp" min="0" value="156" inputmode="numeric"></div>
+    </div>
+    <div class="kpi">
+      <div><span>Tiempo de ciclo total</span><strong id="ef-ciclo">—</strong></div>
+      <div><span>Eficiencia de ciclo</span><strong id="ef-pct">—</strong></div>
+      <div><span>Lectura</span><strong id="ef-lec" style="font-size:1rem">—</strong></div>
+    </div>
+    <p id="ef-msg" style="margin-top:.8rem;color:var(--dim)"></p>
+  </div>
+
+  <div class="quiz" data-quiz="m1"></div>
+</section>
+<section class="mod" id="m2">
+  <div class="mhead"><span class="num">2</span><h2>Cómo se levanta un proceso</h2><span class="min">40 min</span></div>
+  <p class="lede2">Levantar un proceso es reconstruir, con evidencia, cómo se hace hoy el trabajo. Ni cómo debería hacerse, ni cómo dice el manual que se hace.</p>
+
+  <h3>2.1 Las cinco fases</h3>
+  <ol class="steps">
+    <li><strong>Preparar.</strong> Definir alcance, conseguir lo que ya existe, identificar a quién hay que entrevistar y agendar. Se hace en la oficina.</li>
+    <li><strong>Levantar.</strong> Entrevistas, observación en el puesto, recorrido con un caso real y extracción de datos del sistema. Se hace en campo.</li>
+    <li><strong>Documentar.</strong> Ficha de proceso, diagrama, indicadores y hallazgos. Se hace el mismo día, no la semana siguiente.</li>
+    <li><strong>Validar.</strong> Devolver lo escrito a quien lo ejecuta y corregir. Sin esta fase el levantamiento no vale.</li>
+    <li><strong>Publicar y cerrar.</strong> Versión aprobada, responsable asignado y fecha de próxima revisión.</li>
+  </ol>
+
+  <h4>Fase 1 en detalle: preparar</h4>
+  <p>El trabajo de preparación define la calidad de todo lo demás. Antes de la primera entrevista usted debería tener:</p>
+  <ul>
+    <li><strong>El alcance escrito en una frase</strong>, con inicio y fin explícitos: "desde que el paciente toma turno en el kiosco hasta que queda con ingreso creado en el sistema". Sin eso, la conversación se dispersa a los quince minutos.</li>
+    <li><strong>Lo que ya existe:</strong> manuales, instructivos, formatos, pantallazos del sistema, indicadores previos. Léalos, pero no les crea.</li>
+    <li><strong>El mapa de personas:</strong> quién ejecuta, quién supervisa, quién recibe la salida, quién se queja del proceso.</li>
+    <li><strong>Datos del sistema:</strong> si Arthemis registra quién hizo qué y cuándo, pida ese registro. Un mes de marcas de tiempo le dice más sobre el proceso real que tres entrevistas.</li>
+    <li><strong>El proceso configurado en la aplicación de levantamiento</strong>, asignado a usted y con la plantilla correcta.</li>
+  </ul>
+
+  <h3>2.2 Las cinco fuentes de información</h3>
+  <p>Un levantamiento que se apoya en una sola fuente es un levantamiento frágil. Cruce al menos tres.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Fuente</th><th>Qué da</th><th>Su límite</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Entrevista</strong></td><td>El porqué, las excepciones, el conocimiento no escrito</td><td>La gente describe lo que cree que hace, y a veces lo que debería hacer</td></tr>
+      <tr><td><strong>Observación en el puesto</strong></td><td>Lo que realmente ocurre, incluidas las interrupciones</td><td>La presencia del observador cambia la conducta durante los primeros minutos</td></tr>
+      <tr><td><strong>Recorrido con un caso</strong></td><td>La secuencia completa y los puntos de traspaso</td><td>Un solo caso puede ser atípico</td></tr>
+      <tr><td><strong>Documentos y formatos</strong></td><td>Reglas, campos obligatorios, requisitos formales</td><td>Suelen estar desactualizados</td></tr>
+      <tr><td><strong>Datos del sistema</strong></td><td>Volúmenes, tiempos reales, frecuencia de cada variante</td><td>No explica por qué ocurre lo que ocurre</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="box tip"><b class="bt">La observación estructurada</b>
+    <p>Párese en el puesto una hora con un cronómetro y una hoja de cuatro columnas: <strong>hora, qué hace, cuánto dura, qué lo interrumpe</strong>. Esa hora le da el dato de interrupciones, que es el que casi nunca sale en entrevista y casi siempre explica por qué el proceso tarda.</p>
+    <p>Avise antes: "voy a mirar el proceso, no a la persona". Y cúmplalo.</p>
+  </div>
+
+  <h4>El recorrido con un caso real</h4>
+  <p>Escoja una unidad de trabajo (un paciente, una factura, una orden) y sígala de principio a fin, anotando la hora en cada traspaso. Va a descubrir tres cosas que ninguna entrevista le da:</p>
+  <ul>
+    <li>Dónde el trabajo <strong>se queda quieto</strong> esperando a alguien.</li>
+    <li>Cuántas veces la misma información <strong>se vuelve a digitar</strong>.</li>
+    <li>Quién toma decisiones que nadie había mencionado.</li>
+  </ul>
+
+  <h3>2.3 Qué hay que capturar de cada proceso</h3>
+  <p>Estos son los campos mínimos. Coinciden con la plantilla de la aplicación de levantamiento, que ya trae ocho secciones configurables.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Sección</th><th>Qué se captura</th></tr></thead>
+    <tbody>
+      <tr><td>Identificación</td><td>Nombre del proceso, código, área, responsable (dueño del proceso), fecha, analista</td></tr>
+      <tr><td>Alcance</td><td>Objetivo en una frase, dónde inicia, dónde termina, qué queda por fuera</td></tr>
+      <tr><td>Clasificación</td><td>Tipo (misional, apoyo, estratégico), criticidad, frecuencia, volumen mensual</td></tr>
+      <tr><td>Entradas y salidas</td><td>SIPOC completo</td></tr>
+      <tr><td><strong>Actividades</strong></td><td>Tabla con: actividad, responsable, sistema que usa, tiempo estimado</td></tr>
+      <tr><td>Reglas y decisiones</td><td>Criterios, excepciones, quién autoriza qué, límites de monto o de tiempo</td></tr>
+      <tr><td>Sistemas y documentos</td><td>Qué se usa en cada paso, qué formatos se diligencian, qué queda en papel</td></tr>
+      <tr><td>Indicadores y dolores</td><td>Qué se mide hoy, tiempos reales, reprocesos, quejas frecuentes</td></tr>
+      <tr><td>Evidencia</td><td>Fotos de pantallas y formatos, notas de voz, pantallazos del sistema</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="box field"><b class="bt">En campo: use la captura desde el celular</b>
+    <p>La aplicación genera un código QR por proceso y también uno por pregunta. Se apunta la cámara, se abre una página con botones grandes de foto, galería, voz y nota, y todo entra amarrado a esa pregunta.</p>
+    <p>Ventajas reales en terreno: no hay que iniciar sesión en el celular, la evidencia no queda suelta en una carpeta, y si se va la señal el archivo queda en cola y se reintenta solo. Las grabaciones se guardan cada cinco segundos, así que un bloqueo de pantalla a mitad de entrevista no le borra lo grabado.</p>
+    <p>El enlace del QR vence a las doce horas y se revoca al generar uno nuevo: genérelo al empezar la visita, no el día anterior.</p>
+  </div>
+
+  <h3>2.4 Los siete errores que arruinan un levantamiento</h3>
+  <div class="grid2">
+    <div class="gi no"><b>1. Levantar el proceso ideal</b>Preguntar "¿cómo debería hacerse?" en vez de "¿cómo lo hizo la última vez?". Se termina documentando el manual, no la realidad.</div>
+    <div class="gi no"><b>2. Entrevistar solo al jefe</b>El jefe conoce el diseño; el auxiliar conoce la operación. Hay que hablar con quien ejecuta, siempre.</div>
+    <div class="gi no"><b>3. No preguntar por las excepciones</b>El 80 % de los casos fluye; el dolor está en el 20 % restante, que nadie menciona si no se pregunta.</div>
+    <div class="gi no"><b>4. Sugerir la respuesta</b>"Entonces usted verifica en el sistema, ¿cierto?" La persona dice que sí y usted documentó su propia suposición.</div>
+    <div class="gi no"><b>5. Documentar días después</b>La memoria se contamina. La ficha se llena el mismo día, y las notas de voz sirven de respaldo.</div>
+    <div class="gi no"><b>6. Saltarse la validación</b>Un proceso sin validar es la versión del analista, no de la organización. Pierde toda autoridad en la primera reunión.</div>
+    <div class="gi no"><b>7. Mezclar levantar con juzgar</b>Si en la entrevista usted ya está proponiendo mejoras, la persona se cierra. Primero entender, después proponer.</div>
+  </div>
+
+  <div class="box warn"><b class="bt">Ojo con el efecto "auditoría"</b>
+    <p>En muchas instituciones, que llegue alguien con una libreta significa que van a recortar personal. Si no desactiva eso en los primeros dos minutos, le van a contar el proceso del manual. Se desactiva diciendo qué se va a hacer con la información y qué no, y cumpliéndolo.</p>
+  </div>
+
+  <div class="tool" id="tool-sipoc">
+    <h3>Herramienta 2 · Armador de ficha SIPOC</h3>
+    <p>Llene las cinco columnas y obtenga un bloque de texto listo para pegar en la aplicación de levantamiento. Se guarda en su navegador.</p>
+    <label for="sp-nom">Nombre del proceso</label><input type="text" id="sp-nom" placeholder="Admisión de urgencias">
+    <label for="sp-obj">Objetivo en una frase</label><input type="text" id="sp-obj" placeholder="Registrar al paciente y verificar sus derechos para que pueda ser atendido">
+    <div class="grid2">
+      <div><label for="sp-ini">Inicia cuando…</label><input type="text" id="sp-ini" placeholder="el turno es llamado en pantalla"></div>
+      <div><label for="sp-fin">Termina cuando…</label><input type="text" id="sp-fin" placeholder="el ingreso queda creado en el sistema"></div>
+    </div>
+    <label for="sp-s">Proveedores (uno por línea)</label><textarea id="sp-s" placeholder="Paciente&#10;Kiosco de autorregistro&#10;EPS"></textarea>
+    <label for="sp-i">Entradas</label><textarea id="sp-i" placeholder="Documento de identidad&#10;Turno&#10;Estado de afiliación"></textarea>
+    <label for="sp-p">Pasos del proceso (5 a 7)</label><textarea id="sp-p" placeholder="Llamar el turno&#10;Identificar al paciente&#10;Verificar derechos&#10;Calcular copago&#10;Crear el ingreso"></textarea>
+    <label for="sp-o">Salidas</label><textarea id="sp-o" placeholder="Paciente admitido&#10;Copago liquidado"></textarea>
+    <label for="sp-c">Clientes</label><textarea id="sp-c" placeholder="Médico&#10;Facturación&#10;Paciente"></textarea>
+    <div class="row">
+      <button class="btn" type="button" data-sipoc-gen>Generar ficha</button>
+      <button class="btn gh" type="button" data-copy="sp-out">Copiar</button>
+      <button class="btn gh" type="button" data-sipoc-clear>Limpiar</button>
+    </div>
+    <div class="out" id="sp-out" hidden></div>
+  </div>
+
+  <div class="quiz" data-quiz="m2"></div>
+</section>
+
+<section class="mod" id="m3">
+  <div class="mhead"><span class="num">3</span><h2>La entrevista de levantamiento</h2><span class="min">50 min</span></div>
+  <p class="lede2">Es la habilidad central del oficio. Una buena entrevista de una hora ahorra tres reuniones de aclaración y evita rediseñar un proceso sobre información falsa.</p>
+
+  <h3>3.1 Antes: la preparación</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Punto</th><th>Recomendación</th></tr></thead>
+    <tbody>
+      <tr><td>A quién citar</td><td>A quien ejecuta el trabajo todos los días. Si el jefe quiere estar presente, agende dos sesiones separadas: <mark>delante del jefe casi nadie cuenta los atajos</mark>.</td></tr>
+      <tr><td>Cuántas personas</td><td>Una a la vez para levantar el detalle. Los grupos sirven después, para validar.</td></tr>
+      <tr><td>Cuánto dura</td><td>De 45 a 60 minutos. Más allá, la calidad de las respuestas cae.</td></tr>
+      <tr><td>Dónde</td><td>En el puesto de trabajo si se puede, con el sistema abierto. Ver la pantalla vale por veinte preguntas.</td></tr>
+      <tr><td>Cuándo</td><td>En la franja de menor demanda del servicio. Nunca en el pico de urgencias.</td></tr>
+      <tr><td>Con qué</td><td>Guion impreso o en el celular, el proceso ya creado en la aplicación, y el QR de captura generado ese mismo día.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>El permiso para grabar</h4>
+  <div class="box warn"><b class="bt">Siempre se pide, siempre se registra</b>
+    <p>Diga literalmente: <em>"Voy a grabar el audio para no perderme nada y poder escribir bien el proceso. Lo escucha el equipo del proyecto. Si prefiere que no grabe, tomo notas y listo. ¿Está bien?"</em></p>
+    <p>Si la persona duda, no grabe. Un audio obtenido a la fuerza produce respuestas de manual. Y si en algún momento le piden apagar la grabadora, apáguela y no vuelva a encenderla sin avisar.</p>
+    <p>Consideración adicional: si en la conversación aparecen datos de pacientes, recuerde que son datos sensibles bajo la Ley 1581 de 2012. No grabe pantallas con historias clínicas identificables; tome la foto del formato en blanco o tape los datos.</p>
+  </div>
+
+  <h3>3.2 La estructura de la hora</h3>
+  <ol class="steps">
+    <li><strong>Apertura (3 min).</strong> Quién es usted, para qué es el proyecto, qué va a pasar con lo que le cuenten, cuánto va a durar y permiso para grabar.</li>
+    <li><strong>Contexto de la persona (5 min).</strong> Cargo, cuánto lleva, qué hace en un día normal. Sirve para calibrar y para que la persona se suelte.</li>
+    <li><strong>Recorrido del proceso (25 min).</strong> El cuerpo de la entrevista: de principio a fin, paso a paso, con la pantalla a la vista.</li>
+    <li><strong>Excepciones y fallas (12 min).</strong> Qué pasa cuando algo sale mal. Aquí está el oro.</li>
+    <li><strong>Dolores y propuestas (8 min).</strong> Qué cambiaría si pudiera. La gente que ejecuta suele tener la solución.</li>
+    <li><strong>Cierre (5 min).</strong> Resumen en voz alta para que lo corrijan, qué sigue, y con quién más debería hablar.</li>
+  </ol>
+
+  <h4>La técnica del embudo</h4>
+  <p>Cada bloque va de lo abierto a lo cerrado. Abra con una pregunta amplia, deje hablar, y solo después baje al detalle con sondeos.</p>
+  <div class="dlg">
+    <p class="q">Abierta: «Cuénteme qué pasa desde que el turno aparece en su pantalla.»</p>
+    <p class="a">(la persona narra tres minutos sin interrupción)</p>
+    <p class="q">Sondeo: «Volvamos a lo de verificar la EPS. ¿Dónde lo consulta exactamente?»</p>
+    <p class="q">Detalle: «¿Cuánto se demora eso cuando el sistema responde bien?»</p>
+    <p class="q">Excepción: «¿Y cuando no responde?»</p>
+    <p class="note">La secuencia importa: si empieza por el detalle, nunca se entera de lo que usted no sabía que debía preguntar.</p>
+  </div>
+
+  <h3>3.3 Los siete tipos de pregunta que necesita</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Tipo</th><th>Para qué</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>De narración</strong></td><td>Abrir un bloque</td><td>«Cuénteme cómo hace esto de principio a fin.»</td></tr>
+      <tr><td><strong>De último caso</strong></td><td>Traer la realidad, no la teoría</td><td>«¿Cuál fue el último paciente difícil? ¿Qué hizo exactamente?»</td></tr>
+      <tr><td><strong>De excepción</strong></td><td>Encontrar las variantes</td><td>«¿Qué pasa cuando el paciente no tiene documento?»</td></tr>
+      <tr><td><strong>De decisión</strong></td><td>Descubrir reglas no escritas</td><td>«¿Cómo decide si lo pasa de una vez o lo deja esperando?»</td></tr>
+      <tr><td><strong>De frecuencia y tiempo</strong></td><td>Cuantificar</td><td>«¿Cuántas veces al día pasa eso? ¿Cuánto le toma?»</td></tr>
+      <tr><td><strong>De dolor</strong></td><td>Priorizar mejoras</td><td>«¿Qué parte de esto le quita más tiempo o más paciencia?»</td></tr>
+      <tr><td><strong>De verificación</strong></td><td>Cerrar y confirmar</td><td>«Para estar seguro: primero A, luego B, y si es festivo, C. ¿Es así?»</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>Los cinco porqués, bien usados</h4>
+  <p>Sirven para pasar del síntoma a la causa. Se usan con suavidad, no como interrogatorio: alterne con "ayúdeme a entender" para que no suene a reproche.</p>
+  <div class="dlg">
+    <p class="q">«La cuenta se demora en cerrarse.» → ¿Por qué?</p>
+    <p class="a">«Porque falta el soporte del medicamento.» → ¿Por qué falta?</p>
+    <p class="a">«Porque farmacia lo entrega al otro día.» → ¿Por qué al otro día?</p>
+    <p class="a">«Porque imprime el consolidado en la noche.» → ¿Por qué en la noche?</p>
+    <p class="a">«Porque así quedó cuando se instaló el sistema y nadie lo cambió.»</p>
+    <p class="note">Causa real: un parámetro de configuración, no falta de compromiso. Eso se arregla en una tarde.</p>
+  </div>
+
+  <h3>3.4 Lo que no se debe hacer</h3>
+  <div class="grid2">
+    <div class="gi no"><b>Pregunta guiada</b>«Usted valida el copago antes de admitir, ¿verdad?»<br>Diga mejor: «¿Qué hace con el copago?»</div>
+    <div class="gi no"><b>Pregunta doble</b>«¿Cuánto se demora y quién lo revisa?» La persona responde una sola. Una pregunta a la vez.</div>
+    <div class="gi no"><b>Jerga del analista</b>«¿Cuál es el <em>output</em> de su subproceso?» Hable como habla la persona.</div>
+    <div class="gi no"><b>Llenar el silencio</b>Tras una pregunta difícil, cuente hasta cinco. El silencio incómodo es donde aparece la respuesta honesta.</div>
+    <div class="gi no"><b>Corregir a la persona</b>«Eso no es lo que dice el procedimiento.» Anótelo como hallazgo y siga. Corregir cierra la conversación.</div>
+    <div class="gi no"><b>Prometer lo que no controla</b>«Vamos a comprarles un escáner.» Diga: «lo dejo registrado como necesidad».</div>
+  </div>
+
+  <h3>3.5 Cuatro situaciones difíciles</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Situación</th><th>Qué hacer</th></tr></thead>
+    <tbody>
+      <tr><td>La persona responde con monosílabos</td><td>Cambie a preguntas de último caso y pídale que le muestre en el sistema. Hacer destraba más que hablar.</td></tr>
+      <tr><td>Habla del deber ser, no de lo real</td><td>«Entiendo cómo debería ser. ¿Y ayer, en el turno de la tarde, cómo salió?»</td></tr>
+      <tr><td>Se queja todo el tiempo de otra área</td><td>Valide el sentimiento una vez, anótelo como hallazgo y devuelva el foco a lo que sí controla. Nunca tome partido.</td></tr>
+      <tr><td>Teme perder el puesto</td><td>Sea concreto sobre el propósito: documentar para mejorar y para que el sistema apoye el trabajo. No prometa lo que no sabe, pero no esquive la pregunta.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>3.6 Después de la entrevista</h3>
+  <ol class="steps">
+    <li><strong>Diez minutos ahí mismo.</strong> Antes de irse, complete lo que quedó a medias en la aplicación. Es cuando más fresco lo tiene.</li>
+    <li><strong>Marque los vacíos.</strong> Lo que no quedó claro se anota como pregunta pendiente, no como suposición.</li>
+    <li><strong>Verifique la evidencia.</strong> Revise que el contador de subidas pendientes esté en cero antes de salir de la zona con señal.</li>
+    <li><strong>Escriba la ficha el mismo día</strong> y diagrame el flujo.</li>
+    <li><strong>Envíe y valide.</strong> Al pulsar Enviar, la aplicación verifica los campos obligatorios y genera un enlace de informe con las fotos y los audios reproducibles, que se comparte por WhatsApp o correo. Pida confirmación o correcciones con una fecha límite.</li>
+  </ol>
+  <div class="box tip"><b class="bt">Por qué un enlace y no un PDF</b><p>Un PDF no reproduce audio y nadie abre un archivo de datos. El informe web permite que el entrevistado escuche lo que dijo y corrija con precisión. Al reenviar, el mismo enlace muestra la versión nueva.</p></div>
+
+  <div class="tool" id="tool-guion">
+    <h3>Herramienta 3 · Generador de guion de entrevista</h3>
+    <p>Escoja el tipo de rol y los bloques que necesita. El guion sale con los tiempos y las preguntas listas para leer.</p>
+    <label for="g-proc">Proceso a levantar</label><input type="text" id="g-proc" placeholder="Admisión de urgencias">
+    <label for="g-pers">Nombre y cargo de quien entrevista</label><input type="text" id="g-pers" placeholder="Sandra Ríos, auxiliar de admisiones">
+    <label for="g-rol">Tipo de rol</label>
+    <select id="g-rol">
+      <option value="ejecuta">Ejecuta el trabajo todos los días</option>
+      <option value="supervisa">Supervisa o coordina el área</option>
+      <option value="recibe">Recibe la salida del proceso</option>
+      <option value="sistema">Administra el sistema de información</option>
+    </select>
+    <label>Bloques a incluir</label>
+    <div class="chips" id="g-chips">
+      <button class="chip" type="button" aria-pressed="true" data-b="contexto">Contexto</button>
+      <button class="chip" type="button" aria-pressed="true" data-b="recorrido">Recorrido</button>
+      <button class="chip" type="button" aria-pressed="true" data-b="excep">Excepciones</button>
+      <button class="chip" type="button" aria-pressed="true" data-b="tiempos">Tiempos y volúmenes</button>
+      <button class="chip" type="button" aria-pressed="true" data-b="sistemas">Sistemas y papeles</button>
+      <button class="chip" type="button" aria-pressed="true" data-b="dolor">Dolores y propuestas</button>
+      <button class="chip" type="button" aria-pressed="false" data-b="riesgo">Riesgo y seguridad</button>
+    </div>
+    <div class="row">
+      <button class="btn" type="button" data-guion-gen>Generar guion</button>
+      <button class="btn gh" type="button" data-copy="g-out">Copiar</button>
+      <button class="btn gh" type="button" onclick="window.print()">Imprimir</button>
+    </div>
+    <div class="out" id="g-out" hidden></div>
+  </div>
+
+  <div class="quiz" data-quiz="m3"></div>
+</section>
+<section class="mod" id="m4">
+  <div class="mhead"><span class="num">4</span><h2>Documentar y diagramar</h2><span class="min">40 min</span></div>
+  <p class="lede2">Un proceso mal documentado no se puede discutir, ni mejorar, ni automatizar. La meta es que alguien que no estuvo en la entrevista entienda el proceso en cinco minutos.</p>
+
+  <h3>4.1 La ficha de proceso</h3>
+  <p>Es el documento maestro. Debe caber en una o dos páginas. Si necesita cinco, usted mezcló niveles.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Campo</th><th>Regla de oro</th></tr></thead>
+    <tbody>
+      <tr><td>Nombre</td><td>Verbo + objeto: «Admitir paciente de urgencias», no «Admisiones».</td></tr>
+      <tr><td>Objetivo</td><td>Una sola frase que empiece con un verbo y diga para quién.</td></tr>
+      <tr><td>Dueño del proceso</td><td>Un cargo, no un nombre propio ni un comité. Si no hay dueño, el proceso no mejora.</td></tr>
+      <tr><td>Inicio y fin</td><td>Eventos observables, con fecha y hora registrables.</td></tr>
+      <tr><td>Actividades</td><td>Entre 5 y 15. Cada una: qué se hace, quién, con qué sistema, cuánto tarda.</td></tr>
+      <tr><td>Reglas de decisión</td><td>Escritas como condición: «si el copago supera X, entonces…».</td></tr>
+      <tr><td>Indicadores</td><td>Máximo tres, con su fórmula y su fuente de dato.</td></tr>
+      <tr><td>Riesgos y controles</td><td>Qué puede salir mal y qué lo evita hoy.</td></tr>
+      <tr><td>Versión</td><td>Número, fecha, quién aprobó y cuándo se revisa otra vez.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>Cómo redactar una actividad</h4>
+  <div class="grid2">
+    <div class="gi no"><b>Mal</b>«Gestión del ingreso del paciente en el aplicativo institucional conforme a la normatividad.»</div>
+    <div class="gi si"><b>Bien</b>«El auxiliar de admisiones consulta el documento en Arthemis, verifica la afiliación y crea el ingreso. Tarda 4 minutos.»</div>
+  </div>
+  <p>Sujeto, verbo en presente, objeto, sistema y tiempo. Nada de sustantivos abstractos ("gestión", "seguimiento", "aseguramiento") que esconden quién hace qué.</p>
+
+  <h3>4.2 El diagrama de flujo con carriles</h3>
+  <p>Es la herramienta más útil y la más fácil de leer para quien no es analista. Cada carril horizontal es un rol; el trabajo se mueve de izquierda a derecha y cada vez que cruza de carril hay un <strong>traspaso</strong>.</p>
+  <div class="box tip"><b class="bt">Los traspasos son el mapa del riesgo</b><p>Cada cruce de carril es un punto donde el trabajo espera, se pierde información o aparece un error. <mark>Cuente los traspasos: reducirlos suele ser la mejora más rentable.</mark></p></div>
+
+  <h4>Los cinco símbolos que bastan</h4>
+  <div class="tw"><table>
+    <thead><tr><th>Símbolo</th><th>Significa</th><th>Cómo se rotula</th></tr></thead>
+    <tbody>
+      <tr><td>Óvalo</td><td>Inicio o fin</td><td>El evento que dispara: «Llega el paciente»</td></tr>
+      <tr><td>Rectángulo</td><td>Actividad</td><td>Verbo en infinitivo: «Verificar afiliación»</td></tr>
+      <tr><td>Rombo</td><td>Decisión</td><td>Pregunta de sí o no: «¿Está afiliado?»</td></tr>
+      <tr><td>Flecha</td><td>Secuencia</td><td>En las salidas del rombo, rotule «sí» y «no»</td></tr>
+      <tr><td>Documento o cilindro</td><td>Formato o sistema</td><td>El nombre real: «Arthemis», «FURIPS»</td></tr>
+    </tbody>
+  </table></div>
+  <p>Si conoce BPMN, úselo, pero solo su núcleo: eventos de inicio y fin, tareas, compuertas exclusivas y paralelas, carriles y mensajes entre participantes. Un diagrama con veinte tipos de símbolo no lo lee nadie en el piso.</p>
+
+  <h4>Ejemplo: el flujo de urgencias</h4>
+  <div class="tw"><table>
+    <thead><tr><th>Carril</th><th>Actividades en orden</th></tr></thead>
+    <tbody>
+      <tr><td>Paciente</td><td>Llega → toma turno en el kiosco → espera → pasa a triage → espera → pasa a admisiones → espera → consulta → sale</td></tr>
+      <tr><td>Enfermería</td><td>Llama el turno → toma signos vitales → asigna nivel de triage → devuelve a la fila con prioridad</td></tr>
+      <tr><td>Admisiones</td><td>Llama el turno → identifica → verifica derechos → calcula copago → crea el ingreso</td></tr>
+      <tr><td>Médico</td><td>Llama al paciente → atiende → registra historia → ordena exámenes → revisa resultados → da egreso</td></tr>
+      <tr><td>Apoyo diagnóstico</td><td>Recibe la orden en pantalla → procesa → carga el resultado</td></tr>
+      <tr><td>Facturación</td><td>Recibe la cuenta al cerrar la historia → revisa → aprueba → genera el reporte para la EPS</td></tr>
+    </tbody>
+  </table></div>
+  <p>Cuente: hay al menos cinco traspasos y cuatro esperas. Las esperas del paciente son las que se sienten; las del sistema son las que cuestan dinero.</p>
+
+  <h3>4.3 La matriz RACI</h3>
+  <p>Sirve cuando el problema no es la secuencia sino que nadie sabe quién decide. Para cada actividad se asigna:</p>
+  <ul>
+    <li><strong>R — Responsable:</strong> quien ejecuta. Puede haber varios.</li>
+    <li><strong>A — Aprobador:</strong> quien responde por el resultado. <mark>Solo uno por actividad, siempre.</mark></li>
+    <li><strong>C — Consultado:</strong> a quien se le pregunta antes de decidir.</li>
+    <li><strong>I — Informado:</strong> a quien se le avisa después.</li>
+  </ul>
+  <p>Dos señales de alarma: una actividad con dos "A" (nadie responde de verdad) y una fila entera sin "A" (el trabajo queda huérfano).</p>
+
+  <h3>4.4 Cómo se valida</h3>
+  <ol class="steps">
+    <li><strong>Devuelva el borrador</strong> a las personas entrevistadas, por el enlace del informe.</li>
+    <li><strong>Reúna al grupo</strong> 45 minutos frente al diagrama proyectado y recórralo en voz alta.</li>
+    <li><strong>Pida disensos explícitos:</strong> «¿en qué paso esto no es así?». El silencio no es acuerdo; pregunte a cada rol.</li>
+    <li><strong>Corrija en vivo</strong> lo que se pueda, y anote lo demás con responsable y fecha.</li>
+    <li><strong>Cierre con firma o correo de aprobación</strong> del dueño del proceso, y fije la próxima revisión.</li>
+  </ol>
+
+  <div class="quiz" data-quiz="m4"></div>
+</section>
+
+<section class="mod" id="m5">
+  <div class="mhead"><span class="num">5</span><h2>Optimizar el proceso</h2><span class="min">45 min</span></div>
+  <p class="lede2">Optimizar no es trabajar más rápido: es quitar lo que no aporta, ordenar lo que queda y evitar que el error llegue al final.</p>
+
+  <h3>5.1 Primero mida, después opine</h3>
+  <p>Antes de proponer nada necesita la línea base: tiempo de ciclo actual, volumen, reprocesos y costo. Sin línea base no se puede demostrar la mejora y el proyecto se vuelve una discusión de percepciones.</p>
+  <div class="box warn"><b class="bt">La trampa del promedio</b><p>«El paciente espera 40 minutos en promedio» puede significar que el 70 % espera 15 minutos y el 30 % espera dos horas. <mark>Mire siempre la distribución y el peor caso</mark>, no solo el promedio. Los pacientes que se quejan y las facturas que se glosan viven en la cola larga.</p></div>
+
+  <h3>5.2 El análisis de valor agregado</h3>
+  <p>Clasifique cada actividad del diagrama en una de tres categorías:</p>
+  <div class="grid2">
+    <div class="gi si"><b>Agrega valor</b>El cliente lo nota y lo pagaría: la consulta médica, el examen, el diagnóstico. <em>Objetivo: hacerlo mejor.</em></div>
+    <div class="gi"><b>No agrega valor, pero es necesario</b>Controles legales, verificación de identidad, registro obligatorio. <em>Objetivo: hacerlo más simple y rápido, nunca eliminarlo.</em></div>
+    <div class="gi no"><b>No agrega valor</b>Esperas, transcripciones dobles, firmas de trámite, buscar papeles. <em>Objetivo: eliminarlo.</em></div>
+  </div>
+  <p>En procesos administrativos de salud, entre el 60 % y el 80 % del tiempo suele caer en la tercera categoría. Ahí está la mejora sin invertir un peso.</p>
+
+  <h3>5.3 Las cuatro acciones: ESCA</h3>
+  <p>Para cada actividad que no agrega valor, aplique en este orden:</p>
+  <ol class="steps">
+    <li><strong>Eliminar.</strong> ¿Qué pasa si simplemente no se hace? Si nadie usa ese reporte, deje de producirlo.</li>
+    <li><strong>Simplificar.</strong> Si no se puede eliminar, reduzca pasos, campos, firmas o desplazamientos.</li>
+    <li><strong>Combinar.</strong> Junte actividades en una sola persona o momento para quitar traspasos y esperas.</li>
+    <li><strong>Automatizar.</strong> Solo al final. <mark>Automatizar un proceso malo produce un proceso malo, más rápido y más difícil de corregir.</mark></li>
+  </ol>
+
+  <h3>5.4 El cuello de botella manda</h3>
+  <p>El proceso completo no puede producir más que su paso más lento. Ese paso es el cuello de botella, y mejorar cualquier otro no aumenta un solo paciente atendido: solo acumula más gente esperando delante del cuello.</p>
+  <ol class="steps">
+    <li><strong>Identificarlo.</strong> Es donde se acumula la fila: pacientes esperando, facturas represadas, órdenes sin procesar.</li>
+    <li><strong>Explotarlo.</strong> Que no pare por causas evitables: sin almuerzos simultáneos, sin que haga tareas que otro puede hacer, sin esperas de insumos.</li>
+    <li><strong>Subordinar.</strong> Que el resto trabaje al ritmo del cuello, no más rápido. Producir más arriba solo genera inventario.</li>
+    <li><strong>Elevarlo.</strong> Ahora sí: más personal, más equipos, más horario.</li>
+    <li><strong>Repetir.</strong> Al resolverlo, el cuello se muda a otra parte. Vuelva al paso 1.</li>
+  </ol>
+
+  <h3>5.5 A prueba de errores</h3>
+  <p>Un control que detecta el error al final es caro. Un diseño que impide cometerlo es barato. Ejemplos que aplican directamente a un sistema como Arthemis:</p>
+  <ul>
+    <li>Campos obligatorios que no dejan cerrar la historia si falta el diagnóstico.</li>
+    <li>Validación del código CUPS contra el vigente, en el momento de digitarlo y no en la auditoría.</li>
+    <li>Alerta automática si el diagnóstico y el procedimiento no son coherentes.</li>
+    <li>El turno que solo aparece en la fila del rol correcto, para que nadie llame a quien no le toca.</li>
+    <li>La cuenta que se genera sola al cerrar la historia, en vez de digitarse aparte.</li>
+  </ul>
+  <div class="box tip"><b class="bt">Estandarizar antes de mejorar</b><p>Si cada persona hace el proceso distinto, no se puede saber si el cambio funcionó. Primero se acuerda una única forma de hacerlo; después se mide; después se mejora. Un estándar no es una camisa de fuerza: es el punto de partida conocido.</p></div>
+
+  <h3>5.6 Cómo priorizar lo que va primero</h3>
+  <p>De un levantamiento salen treinta oportunidades. No se hacen treinta. Se ordenan por impacto contra esfuerzo:</p>
+  <div class="matrix">
+    <div class="qd q1"><h5>Alto impacto · Bajo esfuerzo</h5><ul><li>Hágalo esta semana</li><li>Cambios de parámetro, de horario, de orden de pasos</li></ul></div>
+    <div class="qd"><h5>Alto impacto · Alto esfuerzo</h5><ul><li>Proyéctelo con recursos y patrocinador</li><li>Cambios de sistema, de estructura, de planta</li></ul></div>
+    <div class="qd"><h5>Bajo impacto · Bajo esfuerzo</h5><ul><li>Hágalo si sobra tiempo</li><li>Sirve para ganar confianza del equipo</li></ul></div>
+    <div class="qd q4"><h5>Bajo impacto · Alto esfuerzo</h5><ul><li>No lo haga</li><li>Documéntelo y explique por qué se descartó</li></ul></div>
+  </div>
+
+  <h3>5.7 El ciclo de mejora</h3>
+  <p>Planear, hacer, verificar y actuar. Suena obvio y casi nadie completa el ciclo: la mayoría se queda en "hacer".</p>
+  <div class="tw"><table>
+    <thead><tr><th>Etapa</th><th>Qué implica de verdad</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Planear</strong></td><td>Definir el problema con un número, la causa raíz y la meta: «bajar de 40 a 20 minutos la espera en admisión en tres meses».</td></tr>
+      <tr><td><strong>Hacer</strong></td><td>Probar en pequeño: un turno, un piso, dos semanas. No despliegue a toda la institución de una vez.</td></tr>
+      <tr><td><strong>Verificar</strong></td><td>Medir con el mismo indicador y la misma forma de tomarlo que en la línea base. Si cambió la medición, no sabe nada.</td></tr>
+      <tr><td><strong>Actuar</strong></td><td>Si funcionó, estandarizar, capacitar y dejarlo en el sistema. Si no, entender por qué y volver a planear.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="box warn"><b class="bt">La parte que casi siempre falla: la gente</b>
+    <p>Un rediseño técnicamente perfecto fracasa si quien lo ejecuta no participó. Tres reglas: involucre a quien hace el trabajo desde el diseño, explique el porqué antes del cómo, y no anuncie una mejora como un ahorro de personal si no quiere que el próximo levantamiento le den información falsa.</p>
+  </div>
+
+  <div class="tool" id="tool-cuello">
+    <h3>Herramienta 4 · Detector de cuello de botella</h3>
+    <p>Escriba el tiempo de atención por unidad y cuántos puestos hay en cada paso. La herramienta calcula la capacidad por hora de cada paso y le señala cuál limita a todo el proceso.</p>
+    <div id="cb-rows"></div>
+    <div class="row">
+      <button class="btn gh" type="button" data-cb-add>Agregar paso</button>
+      <button class="btn" type="button" data-cb-calc>Calcular</button>
+    </div>
+    <div class="out" id="cb-out" hidden></div>
+  </div>
+
+  <div class="tool" id="tool-prior">
+    <h3>Herramienta 5 · Priorizador de oportunidades</h3>
+    <p>Anote cada oportunidad con su impacto y su esfuerzo (de 1 a 5). La lista se ordena sola y le dice qué hacer con cada una.</p>
+    <div class="grid2">
+      <div><label for="pr-nom">Oportunidad</label><input type="text" id="pr-nom" placeholder="Eliminar la doble digitación del copago"></div>
+      <div><label for="pr-imp">Impacto (1 a 5)</label><input type="number" id="pr-imp" min="1" max="5" value="4"></div>
+      <div><label for="pr-esf">Esfuerzo (1 a 5)</label><input type="number" id="pr-esf" min="1" max="5" value="2"></div>
+    </div>
+    <div class="row"><button class="btn" type="button" data-pr-add>Agregar a la lista</button><button class="btn gh" type="button" data-copy="pr-out">Copiar lista</button><button class="btn gh" type="button" data-pr-clear>Vaciar</button></div>
+    <div class="out" id="pr-out" hidden></div>
+  </div>
+
+  <div class="quiz" data-quiz="m5"></div>
+</section>
+<section class="mod" id="m6">
+  <div class="mhead"><span class="num">6</span><h2>Fundamentos de inteligencia artificial</h2><span class="min">45 min</span></div>
+  <p class="lede2">Sin jerga y sin exageraciones. Al terminar sabrá qué es la IA, en qué se diferencia del software de siempre y cómo aprende realmente una máquina.</p>
+
+  <h3>6.1 Software tradicional contra aprendizaje automático</h3>
+  <p>Esta es la distinción de fondo, y de ella se deriva todo lo demás.</p>
+  <div class="grid2">
+    <div class="gi"><b>Software tradicional</b>Una persona escribe las reglas. «Si el paciente es mayor de 65 años y el triage es II, entonces marcar prioridad alta.» La máquina las ejecuta, siempre igual. Es predecible y auditable línea por línea.</div>
+    <div class="gi"><b>Aprendizaje automático</b>Nadie escribe la regla. Se le dan muchos ejemplos ya resueltos y el programa <mark>encuentra el patrón por su cuenta</mark>. Luego aplica ese patrón a casos nuevos. Es potente donde la regla es difícil de escribir, y más difícil de explicar.</div>
+  </div>
+  <div class="box tip"><b class="bt">Una analogía útil</b><p>Enseñar a alguien a reconocer una radiografía con neumonía. El método tradicional sería darle una lista de reglas escritas. El aprendizaje automático es mostrarle diez mil radiografías ya diagnosticadas hasta que empiece a acertar, sin que pueda explicar del todo qué está viendo.</p></div>
+
+  <h4>Cómo se anidan los términos</h4>
+  <div class="tw"><table>
+    <thead><tr><th>Término</th><th>Qué abarca</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Inteligencia artificial</strong></td><td>El campo completo: cualquier sistema que hace tareas que asociamos con la inteligencia humana. Incluye cosas viejas y sencillas, como un sistema de reglas.</td></tr>
+      <tr><td><strong>Aprendizaje automático</strong> (machine learning)</td><td>Un subconjunto: sistemas que aprenden patrones a partir de datos en vez de reglas escritas.</td></tr>
+      <tr><td><strong>Aprendizaje profundo</strong> (deep learning)</td><td>Un subconjunto del anterior: usa redes neuronales con muchas capas. Es lo que hizo posible el reconocimiento de imágenes y de voz.</td></tr>
+      <tr><td><strong>IA generativa</strong></td><td>Modelos de aprendizaje profundo que <em>producen</em> contenido nuevo: texto, imágenes, audio, código. Es lo del módulo 7.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box warn"><b class="bt">Una precisión de vocabulario</b><p>El término correcto es <strong>IA generativa</strong>, no «regenerativa». Generativa porque <em>genera</em> contenido nuevo. Vale la pena decirlo bien en una reunión con proveedores.</p></div>
+
+  <h3>6.2 Los tres tipos de aprendizaje</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Tipo</th><th>Cómo funciona</th><th>Ejemplo en la clínica</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Supervisado</strong></td><td>Se le dan ejemplos con la respuesta correcta ya marcada («etiquetada»). Aprende a predecir esa respuesta.</td><td>Miles de facturas marcadas como «glosada» o «aceptada» para predecir cuáles tienen riesgo de glosa.</td></tr>
+      <tr><td><strong>No supervisado</strong></td><td>No hay respuesta correcta. El sistema agrupa lo que se parece o detecta lo que se sale de lo normal.</td><td>Agrupar pacientes por patrones de uso del servicio, o detectar cuentas con valores atípicos.</td></tr>
+      <tr><td><strong>Por refuerzo</strong></td><td>Aprende probando, con premio o castigo según el resultado.</td><td>Poco común en gestión clínica; se usa en robótica, juegos y optimización de rutas.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>Las dos tareas más frecuentes del aprendizaje supervisado</h4>
+  <ul>
+    <li><strong>Clasificación:</strong> la respuesta es una categoría. ¿Esta factura será glosada, sí o no? ¿A qué causal corresponde esta devolución?</li>
+    <li><strong>Regresión:</strong> la respuesta es un número. ¿Cuántos pacientes llegarán a urgencias el sábado entre 6 y 10 de la noche?</li>
+  </ul>
+
+  <h3>6.3 Cómo se entrena un modelo, paso a paso</h3>
+  <ol class="steps">
+    <li><strong>Definir la pregunta.</strong> Qué se quiere predecir y qué decisión va a cambiar con esa predicción. Si ninguna decisión cambia, no construya el modelo.</li>
+    <li><strong>Reunir los datos.</strong> Históricos, con la respuesta conocida. Aquí se va la mayor parte del trabajo real.</li>
+    <li><strong>Limpiar y preparar.</strong> Corregir errores, llenar vacíos, definir las variables de entrada (las «características»).</li>
+    <li><strong>Separar en tres partes.</strong> Entrenamiento, validación y prueba. <mark>El modelo nunca debe ver, durante el entrenamiento, los datos con los que se le va a evaluar.</mark></li>
+    <li><strong>Entrenar.</strong> El algoritmo ajusta sus parámetros para equivocarse lo menos posible en los datos de entrenamiento.</li>
+    <li><strong>Evaluar.</strong> Medir su desempeño con los datos de prueba, que nunca vio.</li>
+    <li><strong>Desplegar y vigilar.</strong> Ponerlo a funcionar y seguir midiendo, porque la realidad cambia.</li>
+  </ol>
+
+  <h4>Sobreajuste: el error clásico</h4>
+  <div class="box warn"><b class="bt">Memorizar no es aprender</b>
+    <p>Un modelo <strong>sobreajustado</strong> acierta casi perfecto en los datos con los que se entrenó y falla con los nuevos. Es el estudiante que se aprendió de memoria el examen del año pasado.</p>
+    <p>Por eso, cuando un proveedor le diga «nuestro modelo tiene 99 % de precisión», la pregunta correcta es: <em>«¿medida sobre qué datos, y esos datos los vio el modelo durante el entrenamiento?»</em>. El caso contrario, el <strong>subajuste</strong>, es un modelo demasiado simple que no acierta ni siquiera con los datos conocidos.</p>
+  </div>
+
+  <h4>Por qué la exactitud sola engaña</h4>
+  <p>Si el 3 % de las facturas se glosa, un modelo que diga siempre «no se glosa» acierta el 97 % de las veces y es completamente inútil. Por eso se miran dos medidas más:</p>
+  <ul>
+    <li><strong>Precisión:</strong> de todo lo que el modelo marcó como riesgoso, ¿cuánto lo era de verdad? Si es baja, el equipo revisa montañas de falsas alarmas.</li>
+    <li><strong>Exhaustividad (recall):</strong> de todo lo que era riesgoso, ¿cuánto detectó? Si es baja, se le escapan los casos que importan.</li>
+  </ul>
+  <p>Casi siempre hay que escoger entre las dos. En salud, dejar pasar un caso grave suele ser peor que revisar de más, así que se privilegia la exhaustividad.</p>
+
+  <h3>6.4 Los datos mandan</h3>
+  <p>La frase del oficio es «basura entra, basura sale», y es literal. Un modelo aprende exactamente lo que muestran sus datos, incluidos los errores.</p>
+  <div class="grid2">
+    <div class="gi no"><b>Datos incompletos</b>Si el 40 % de los registros no tiene diagnóstico, el modelo aprende del 60 % restante, que puede no ser representativo.</div>
+    <div class="gi no"><b>Datos sesgados</b>Si históricamente se atendió más rápido a cierto grupo, el modelo aprenderá a reproducir ese trato. <mark>La IA no corrige la injusticia histórica: la automatiza.</mark></div>
+    <div class="gi no"><b>Datos desactualizados</b>Un modelo entrenado con datos previos a un cambio de norma o de tarifa predice sobre un mundo que ya no existe. Se llama deriva.</div>
+    <div class="gi no"><b>Correlación sin causa</b>Que dos cosas ocurran juntas no significa que una cause la otra. El modelo detecta la coincidencia y usted puede tomar una decisión equivocada.</div>
+  </div>
+
+  <h3>6.5 Qué puede y qué no puede hacer la IA hoy</h3>
+  <div class="grid2">
+    <div class="gi si"><b>Hace bien</b>Reconocer patrones en muchos datos, clasificar, resumir texto, transcribir voz, redactar borradores, traducir, encontrar lo atípico y hacer predicciones estadísticas.</div>
+    <div class="gi no"><b>Hace mal o no hace</b>Entender causas, responder por una decisión, conocer su propio límite, manejar situaciones nunca vistas, garantizar que no se inventa un dato y asumir responsabilidad legal.</div>
+  </div>
+  <div class="box tip"><b class="bt">La regla que ordena todo el debate</b><p>La IA es una herramienta de apoyo a la decisión, no la decisión. <mark>La responsabilidad clínica, legal y contable sigue siendo de una persona</mark>, y esa persona debe poder explicar por qué decidió lo que decidió.</p></div>
+
+  <div class="quiz" data-quiz="m6"></div>
+</section>
+
+<section class="mod" id="m7">
+  <div class="mhead"><span class="num">7</span><h2>IA generativa y agentes</h2><span class="min">45 min</span></div>
+  <p class="lede2">Qué hay debajo de un asistente conversacional, por qué se inventa cosas, y qué significa exactamente que algo sea «un agente».</p>
+
+  <h3>7.1 Qué es un modelo de lenguaje</h3>
+  <p>Un <strong>modelo grande de lenguaje</strong> es un sistema entrenado con enormes cantidades de texto para una tarea sorprendentemente simple: <mark>predecir cuál es la siguiente palabra más probable</mark>. Repetida millones de veces, esa capacidad produce respuestas, resúmenes, traducciones y código.</p>
+  <p>Dos consecuencias que explican casi todo su comportamiento:</p>
+  <ul>
+    <li><strong>No consulta una base de datos de hechos.</strong> Genera texto plausible. Cuando acierta un dato es porque ese patrón estaba muy presente en su entrenamiento, no porque lo haya "buscado".</li>
+    <li><strong>No sabe cuándo no sabe.</strong> Produce una respuesta fluida con el mismo tono tanto si es correcta como si no.</li>
+  </ul>
+
+  <h4>Vocabulario mínimo</h4>
+  <div class="tw"><table>
+    <thead><tr><th>Término</th><th>Qué significa</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Prompt</strong></td><td>La instrucción que usted escribe. La calidad de la salida depende directamente de ella.</td></tr>
+      <tr><td><strong>Token</strong></td><td>La pieza en que el modelo parte el texto, más o menos una sílaba larga o una palabra corta. Se cobra y se limita por tokens.</td></tr>
+      <tr><td><strong>Ventana de contexto</strong></td><td>Cuánto texto puede tener «a la vista» a la vez: su instrucción, los documentos adjuntos y la conversación previa. Lo que se sale de ahí, se pierde.</td></tr>
+      <tr><td><strong>Alucinación</strong></td><td>Cuando el modelo afirma algo falso con total seguridad: una resolución que no existe, una cifra inventada, una cita falsa.</td></tr>
+      <tr><td><strong>Temperatura</strong></td><td>Qué tanto varía la respuesta. Baja para tareas exactas; alta para lluvia de ideas.</td></tr>
+      <tr><td><strong>Multimodal</strong></td><td>Que además de texto procesa imágenes, audio o video. Sirve para leer un formato fotografiado en campo.</td></tr>
+      <tr><td><strong>Ajuste fino</strong> (fine-tuning)</td><td>Reentrenar un modelo con datos propios para especializarlo. Costoso; casi nunca es el primer paso.</td></tr>
+      <tr><td><strong>RAG</strong></td><td>Recuperación aumentada: antes de responder, el sistema busca en <em>sus</em> documentos y le entrega esos fragmentos al modelo. Ver abajo.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>7.2 RAG: la forma seria de usar IA con documentos propios</h3>
+  <p>Es el patrón más útil para una institución, y conviene entenderlo porque es lo que casi siempre se debería comprar.</p>
+  <ol class="steps">
+    <li>Se toman los documentos propios (manuales, procesos levantados, normas, contratos) y se parten en fragmentos.</li>
+    <li>Cada fragmento se convierte en una representación numérica que captura su significado, llamada <strong>embedding</strong>, y se guarda en un índice.</li>
+    <li>Cuando alguien pregunta, el sistema busca los fragmentos más parecidos a la pregunta.</li>
+    <li>Le entrega esos fragmentos al modelo junto con la pregunta y le pide responder <em>solo</em> con base en ellos.</li>
+    <li>La respuesta viene con la cita del documento y el fragmento de origen, para poder verificarla.</li>
+  </ol>
+  <div class="box tip"><b class="bt">Por qué importa</b><p>Reduce mucho las alucinaciones, permite actualizar el conocimiento cambiando un documento en vez de reentrenar nada, y deja rastro verificable. <mark>Si un proveedor le ofrece «un chat que sabe de sus procesos», pregunte si usa recuperación sobre sus documentos y si cita la fuente.</mark> Si no cita, no lo compre.</p></div>
+
+  <h3>7.3 Qué es un agente</h3>
+  <p>Aquí hay mucha confusión comercial. La diferencia real está en <strong>quién decide los pasos</strong>.</p>
+  <div class="tw"><table>
+    <thead><tr><th></th><th>Automatización clásica</th><th>Asistente conversacional</th><th>Agente</th></tr></thead>
+    <tbody>
+      <tr><td>Qué hace</td><td>Ejecuta pasos fijos programados</td><td>Responde lo que se le pregunta</td><td>Recibe un objetivo y decide él mismo qué pasos dar</td></tr>
+      <tr><td>Quién define la secuencia</td><td>El programador, por adelantado</td><td>El usuario, en cada mensaje</td><td>El propio sistema, sobre la marcha</td></tr>
+      <tr><td>Usa herramientas</td><td>Solo las programadas</td><td>Normalmente no</td><td>Sí: busca, consulta bases, escribe archivos, llama a otros sistemas</td></tr>
+      <tr><td>Se corrige</td><td>No, falla y se detiene</td><td>Si el usuario lo corrige</td><td>Evalúa el resultado y reintenta de otra forma</td></tr>
+      <tr><td>Ejemplo</td><td>Un robot que copia datos de un Excel al sistema</td><td>Un chat que le explica una norma</td><td>«Revisa las 200 cuentas de ayer, marca las de riesgo de glosa y prepárame el informe»</td></tr>
+    </tbody>
+  </table></div>
+
+  <h4>El ciclo de un agente</h4>
+  <p>Un agente funciona en un bucle: <strong>observa</strong> el estado, <strong>planea</strong> el siguiente paso, <strong>actúa</strong> usando una herramienta, <strong>observa el resultado</strong> y decide si repite, corrige o termina. Sus cuatro componentes son el modelo que razona, las herramientas que puede usar, la memoria de lo que ya hizo y los límites que se le imponen.</p>
+  <div class="box warn"><b class="bt">Dónde está el riesgo</b>
+    <p>Un agente que decide por su cuenta y además puede <em>actuar</em> sobre sistemas reales puede equivocarse a escala y rápido. Antes de darle permisos:</p>
+    <ul>
+      <li>Empiece con permisos de solo lectura.</li>
+      <li>Exija aprobación humana para cualquier acción irreversible: borrar, enviar, radicar, pagar.</li>
+      <li>Registre todo lo que hace, igual que se audita a un usuario.</li>
+      <li>Póngale límites explícitos de alcance y de volumen.</li>
+    </ul>
+  </div>
+
+  <h3>7.4 Cómo se escribe una buena instrucción</h3>
+  <p>La diferencia entre una respuesta inútil y una útil suele estar en el prompt. Seis ingredientes:</p>
+  <div class="tw"><table>
+    <thead><tr><th>Ingrediente</th><th>Ejemplo</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Rol</strong></td><td>«Actúa como analista de procesos en una clínica.»</td></tr>
+      <tr><td><strong>Tarea concreta</strong></td><td>«Resume esta entrevista en una ficha de proceso.»</td></tr>
+      <tr><td><strong>Contexto o insumo</strong></td><td>Pegue la transcripción o el documento. Sin insumo, el modelo inventa.</td></tr>
+      <tr><td><strong>Formato de salida</strong></td><td>«Devuélvelo como tabla con: actividad, responsable, sistema, tiempo.»</td></tr>
+      <tr><td><strong>Restricciones</strong></td><td>«No inventes datos. Si algo no está en el texto, escribe: no se menciona.»</td></tr>
+      <tr><td><strong>Ejemplo</strong></td><td>Muestre una actividad ya redactada como usted la quiere. Es lo que más sube la calidad.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="tool" id="tool-prompt">
+    <h3>Herramienta 6 · Constructor y evaluador de instrucciones</h3>
+    <p>Arme el prompt por partes. La herramienta revisa si le falta alguno de los seis ingredientes y le arma el texto final.</p>
+    <label for="pm-rol">Rol</label><input type="text" id="pm-rol" placeholder="analista de procesos de una clínica">
+    <label for="pm-tarea">Tarea</label><input type="text" id="pm-tarea" placeholder="convertir esta entrevista en una ficha de proceso">
+    <label for="pm-ctx">Contexto o insumo que va a pegar</label><textarea id="pm-ctx" placeholder="transcripción de la entrevista con la auxiliar de admisiones"></textarea>
+    <label for="pm-fmt">Formato de salida</label><input type="text" id="pm-fmt" placeholder="tabla con actividad, responsable, sistema y tiempo">
+    <label for="pm-res">Restricciones</label><input type="text" id="pm-res" placeholder="no inventar datos; marcar como 'no se menciona' lo que falte">
+    <label for="pm-ej">Ejemplo de lo que espera (opcional)</label><textarea id="pm-ej" placeholder="El auxiliar consulta el documento en Arthemis y crea el ingreso | Auxiliar de admisiones | Arthemis | 4 min"></textarea>
+    <div class="row"><button class="btn" type="button" data-pm-gen>Armar y evaluar</button><button class="btn gh" type="button" data-copy="pm-out">Copiar</button></div>
+    <div class="out" id="pm-out" hidden></div>
+  </div>
+
+  <div class="quiz" data-quiz="m7"></div>
+</section>
+<section class="mod" id="m8">
+  <div class="mhead"><span class="num">8</span><h2>IA aplicada al levantamiento y a los procesos</h2><span class="min">35 min</span></div>
+  <p class="lede2">Dónde ayuda de verdad hoy, dónde no, y qué hay que cuidar cuando los datos son de salud.</p>
+
+  <h3>8.1 Usos que ya funcionan en el trabajo del analista</h3>
+  <div class="tw"><table>
+    <thead><tr><th>Uso</th><th>Qué resuelve</th><th>Cuidado</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Transcribir las notas de voz</strong></td><td>Las grabaciones quedan como audio; transcribirlas permite buscarlas, citarlas y analizarlas.</td><td>La transcripción se revisa: la jerga clínica y los nombres propios salen mal con frecuencia.</td></tr>
+      <tr><td><strong>Resumir entrevistas</strong></td><td>Convierte una hora de conversación en los puntos, decisiones y excepciones mencionadas.</td><td>El resumen omite matices. Úselo como borrador, no como fuente.</td></tr>
+      <tr><td><strong>Borrador de ficha de proceso</strong></td><td>A partir de la transcripción, propone actividades, responsables y tiempos.</td><td>Verifique cada actividad contra el audio. Es donde más se inventa.</td></tr>
+      <tr><td><strong>Detectar contradicciones</strong></td><td>Compara lo que dijeron dos personas del mismo proceso y señala dónde no coinciden.</td><td>Las contradicciones se resuelven preguntando, no eligiendo la más plausible.</td></tr>
+      <tr><td><strong>Redactar el guion</strong></td><td>Propone preguntas para un proceso que usted no conoce.</td><td>Revise que no incluya preguntas guiadas.</td></tr>
+      <tr><td><strong>Clasificar texto libre</strong></td><td>Agrupa cientos de quejas o de observaciones en categorías.</td><td>Revise una muestra para confirmar que las categorías tienen sentido.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>8.2 Minería de procesos: el proceso real según los datos</h3>
+  <p>Esta es la aplicación más potente y la menos conocida. Un sistema como Arthemis registra <mark>quién hizo cada acción, cuándo y desde qué equipo</mark>. Con ese registro se puede reconstruir el recorrido de cada paciente minuto a minuto.</p>
+  <p>Con tres columnas basta: <strong>identificador del caso</strong> (el número de ingreso), <strong>actividad</strong> (qué evento ocurrió) y <strong>marca de tiempo</strong>. Con eso un software de minería de procesos le entrega:</p>
+  <ul>
+    <li>El diagrama del proceso <strong>tal como ocurre</strong>, no como lo describen las personas.</li>
+    <li>Las variantes reales y qué porcentaje de casos sigue cada una. Casi siempre hay muchas más de las que el equipo cree.</li>
+    <li>Los tiempos exactos entre pasos, y dónde se acumula la espera.</li>
+    <li>Los reprocesos: pasos que se repiten, casos que vuelven atrás.</li>
+  </ul>
+  <div class="box tip"><b class="bt">Cómo combinarlo con la entrevista</b><p>Los datos dicen <strong>qué</strong> pasa y con qué frecuencia. La entrevista dice <strong>por qué</strong> pasa. Un levantamiento fuerte lleva el dato a la entrevista: «los registros muestran que el 22 % de los ingresos se corrige después de creado, ¿qué pasa ahí?». Esa pregunta con dato produce respuestas que ninguna pregunta abierta consigue.</p></div>
+
+  <h3>8.3 Usos en la operación de la clínica</h3>
+  <div class="grid2">
+    <div class="gi"><b>Predicción de demanda</b>Estimar cuántos pacientes llegarán por franja horaria para programar el personal. Se entrena con el histórico del propio sistema.</div>
+    <div class="gi"><b>Apoyo a la codificación</b>Sugerir códigos de diagnóstico y de procedimiento a partir del texto de la historia. Sugerir, no decidir: el responsable sigue siendo el profesional.</div>
+    <div class="gi"><b>Riesgo de glosa</b>Marcar antes de radicar las cuentas con mayor probabilidad de ser objetadas, para revisarlas primero.</div>
+    <div class="gi"><b>Control de calidad del dato</b>Detectar inconsistencias entre diagnóstico, procedimiento y medicamento antes de enviar el reporte.</div>
+    <div class="gi"><b>Priorización de cartera</b>Ordenar la gestión de cobro por probabilidad de recaudo.</div>
+    <div class="gi"><b>Búsqueda en documentación</b>Un buscador sobre los procesos levantados, las normas y los manuales, con cita de la fuente.</div>
+  </div>
+
+  <h3>8.4 Los límites y los riesgos</h3>
+  <div class="box warn"><b class="bt">Datos de salud: la regla que no se negocia</b>
+    <p>Los datos de salud son <strong>datos sensibles</strong> bajo la Ley 1581 de 2012. De ahí salen cuatro reglas prácticas:</p>
+    <ol>
+      <li><strong>No pegue historias clínicas ni datos de pacientes identificables</strong> en herramientas públicas de IA.</li>
+      <li>Si necesita procesar información clínica, use servicios contratados por la institución, con acuerdo de tratamiento de datos y compromiso de no usar la información para entrenar.</li>
+      <li>Cuando se pueda, <strong>anonimice</strong>: quite nombre, documento, dirección y fecha exacta antes de procesar.</li>
+      <li>Para el levantamiento de procesos casi nunca hace falta un dato de paciente. Trabaje con el formato en blanco y el flujo, no con el caso real.</li>
+    </ol>
+  </div>
+  <div class="grid2">
+    <div class="gi no"><b>Alucinación</b>Inventa normas, cifras y citas con total seguridad. Todo dato que vaya a un informe se verifica en la fuente.</div>
+    <div class="gi no"><b>Sesgo</b>Reproduce los patrones del pasado, incluidos los injustos. Revise el desempeño por grupo de población.</div>
+    <div class="gi no"><b>Opacidad</b>A veces no se puede explicar por qué el modelo decidió algo. En decisiones que afectan a una persona, eso es un problema serio.</div>
+    <div class="gi no"><b>Exceso de confianza</b>El riesgo más común: aceptar la salida porque está bien redactada. La fluidez no es evidencia.</div>
+    <div class="gi no"><b>Deriva</b>El modelo envejece cuando cambian las normas, las tarifas o la operación. Hay que revisarlo periódicamente.</div>
+    <div class="gi no"><b>Dependencia</b>Si nadie del equipo sabe hacer la tarea sin la herramienta, no se puede validar lo que la herramienta produce.</div>
+  </div>
+
+  <h3>8.5 Cómo evaluar una propuesta de IA que le vendan</h3>
+  <ol class="steps">
+    <li><strong>¿Qué decisión concreta cambia?</strong> Si nadie hace nada distinto con el resultado, no hay proyecto.</li>
+    <li><strong>¿Con qué datos se entrena y quién es su dueño?</strong> Incluya la pregunta de si sus datos se usan para entrenar modelos de terceros.</li>
+    <li><strong>¿Cómo se mide el acierto?</strong> Pida precisión y exhaustividad sobre datos que el modelo no vio, no solo un porcentaje suelto.</li>
+    <li><strong>¿Qué pasa cuando se equivoca?</strong> Quién revisa, quién responde y cuál es el costo del error.</li>
+    <li><strong>¿Cita sus fuentes?</strong> Para preguntas sobre documentos, la respuesta sin fuente verificable no sirve.</li>
+    <li><strong>¿Se puede probar en pequeño?</strong> Un piloto de un mes en un servicio, con medición, antes de firmar a tres años.</li>
+    <li><strong>¿Cumple con protección de datos?</strong> Contrato, ubicación de los datos y trazabilidad de accesos.</li>
+  </ol>
+  <div class="box tip"><b class="bt">Lo primero no es la IA</b><p>Antes de un modelo, revise si el problema se resuelve con una regla, un campo obligatorio o quitar un paso. <mark>Muchos proyectos de IA son sustitutos caros de una mejora de proceso que nadie hizo.</mark> Los módulos 1 a 5 de este curso resuelven más problemas que los módulos 6 a 8.</p></div>
+
+  <div class="quiz" data-quiz="m8"></div>
+</section>
+
+<section class="mod" id="m9">
+  <div class="mhead"><span class="num">9</span><h2>Las herramientas del analista</h2><span class="min">20 min</span></div>
+  <p class="lede2">Lo que se lleva al terreno y lo que revisa antes de dar por cerrado un proceso.</p>
+
+  <h3>9.1 Antes de salir a campo</h3>
+  <ul class="chk" data-chk="pre">
+    <li><label><input type="checkbox" data-k="p1"><span>Alcance del proceso escrito en una frase, con inicio y fin.</span></label></li>
+    <li><label><input type="checkbox" data-k="p2"><span>Documentos existentes leídos: manual, formatos, instructivos.</span></label></li>
+    <li><label><input type="checkbox" data-k="p3"><span>SIPOC preliminar armado, aunque sea con suposiciones.</span></label></li>
+    <li><label><input type="checkbox" data-k="p4"><span>Personas identificadas: quien ejecuta, quien supervisa, quien recibe.</span></label></li>
+    <li><label><input type="checkbox" data-k="p5"><span>Entrevistas agendadas en franja de baja demanda, con quien ejecuta a solas.</span></label></li>
+    <li><label><input type="checkbox" data-k="p6"><span>Proceso creado y asignado en la aplicación, con la plantilla correcta.</span></label></li>
+    <li><label><input type="checkbox" data-k="p7"><span>Guion de entrevista impreso o en el celular.</span></label></li>
+    <li><label><input type="checkbox" data-k="p8"><span>Datos del sistema solicitados: marcas de tiempo del último mes.</span></label></li>
+    <li><label><input type="checkbox" data-k="p9"><span>Celular cargado y QR de captura generado el mismo día.</span></label></li>
+  </ul>
+
+  <h3>9.2 Durante la entrevista</h3>
+  <ul class="chk" data-chk="dur">
+    <li><label><input type="checkbox" data-k="d1"><span>Propósito explicado y permiso de grabación pedido en voz alta.</span></label></li>
+    <li><label><input type="checkbox" data-k="d2"><span>Una pregunta a la vez, abierta antes que cerrada.</span></label></li>
+    <li><label><input type="checkbox" data-k="d3"><span>Preguntado por el último caso real, no por el deber ser.</span></label></li>
+    <li><label><input type="checkbox" data-k="d4"><span>Excepciones exploradas: qué pasa cuando algo falla.</span></label></li>
+    <li><label><input type="checkbox" data-k="d5"><span>Tiempos y volúmenes preguntados con número.</span></label></li>
+    <li><label><input type="checkbox" data-k="d6"><span>Pantallas y formatos vistos y fotografiados, sin datos de pacientes.</span></label></li>
+    <li><label><input type="checkbox" data-k="d7"><span>Resumen leído en voz alta al final para que lo corrijan.</span></label></li>
+    <li><label><input type="checkbox" data-k="d8"><span>Preguntado con quién más se debería hablar.</span></label></li>
+  </ul>
+
+  <h3>9.3 Antes de cerrar el proceso</h3>
+  <ul class="chk" data-chk="post">
+    <li><label><input type="checkbox" data-k="c1"><span>Campos obligatorios completos y contador de subidas pendientes en cero.</span></label></li>
+    <li><label><input type="checkbox" data-k="c2"><span>Tabla de actividades con responsable, sistema y tiempo en cada fila.</span></label></li>
+    <li><label><input type="checkbox" data-k="c3"><span>Diagrama de carriles hecho y traspasos contados.</span></label></li>
+    <li><label><input type="checkbox" data-k="c4"><span>Reglas de decisión escritas como condición.</span></label></li>
+    <li><label><input type="checkbox" data-k="c5"><span>Indicadores propuestos con fórmula y fuente del dato.</span></label></li>
+    <li><label><input type="checkbox" data-k="c6"><span>Hallazgos y oportunidades priorizados por impacto y esfuerzo.</span></label></li>
+    <li><label><input type="checkbox" data-k="c7"><span>Informe enviado y validado por el dueño del proceso.</span></label></li>
+    <li><label><input type="checkbox" data-k="c8"><span>Versión, fecha de aprobación y próxima revisión registradas.</span></label></li>
+  </ul>
+  <p class="no-print"><button class="btn gh" type="button" data-chk-reset>Desmarcar todo</button> <span id="chk-count" style="color:var(--dim)"></span></p>
+
+  <h3>9.4 Las diez frases que se llevan al terreno</h3>
+  <div class="box field">
+    <ol>
+      <li>«Cuénteme cómo lo hizo la última vez, no cómo debería hacerse.»</li>
+      <li>«¿Y cuando eso falla, qué hace?»</li>
+      <li>«Muéstremelo en la pantalla, si le parece.»</li>
+      <li>«¿Cuántas veces al día pasa eso?»</li>
+      <li>«¿Quién decide eso y con qué criterio?»</li>
+      <li>«¿Qué parte de esto le quita más tiempo?»</li>
+      <li>«Si usted pudiera cambiar una sola cosa, ¿cuál sería?»</li>
+      <li>«A ver si entendí: primero A, luego B. ¿Es así?»</li>
+      <li>«¿Con quién más debería hablar de esto?»</li>
+      <li>«¿Hay algo que no le pregunté y debería saber?»</li>
+    </ol>
+  </div>
+</section>
+
+<section class="mod" id="final">
+  <div class="mhead"><span class="num">★</span><h2>Examen final</h2><span class="min">20 min</span></div>
+  <p>Veinte preguntas de todos los módulos, con casos parecidos a los que va a encontrar en campo.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Resultado</th><th>Lectura</th></tr></thead>
+    <tbody>
+      <tr><td>18 a 20</td><td>Puede salir a levantar procesos por su cuenta.</td></tr>
+      <tr><td>14 a 17</td><td>Repase los módulos de las preguntas falladas antes de la primera visita.</td></tr>
+      <tr><td>Menos de 14</td><td>Vuelva a la parte I y haga los tests por módulo.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="quiz" data-quiz="final"></div>
+</section>
+
+<section class="mod" id="glosario">
+  <div class="mhead"><span class="num">+</span><h2>Glosario</h2></div>
+  <p>Escriba para filtrar. Los términos de procesos y de IA están juntos, como aparecen en el trabajo.</p>
+  <label for="gsearch" style="font-weight:600;display:block;margin:.6rem 0 .3rem">Buscar término</label>
+  <input class="gsearch" id="gsearch" type="search" placeholder="cuello de botella, alucinación, RACI…" autocomplete="off">
+  <p id="gcount" style="color:var(--dim);font-size:.9rem"></p>
+  <dl class="gl" id="gl">
+    <div><dt>Agente</dt><dd>Sistema de IA que recibe un objetivo y decide por su cuenta qué pasos dar, usando herramientas y corrigiéndose.</dd></div>
+    <div><dt>Alucinación</dt><dd>Cuando un modelo generativo afirma algo falso con total seguridad.</dd></div>
+    <div><dt>Aprendizaje automático</dt><dd>Sistemas que aprenden patrones a partir de datos en vez de reglas escritas por una persona.</dd></div>
+    <div><dt>Aprendizaje profundo</dt><dd>Aprendizaje automático con redes neuronales de muchas capas.</dd></div>
+    <div><dt>Aprendizaje supervisado</dt><dd>Entrenamiento con ejemplos que ya traen la respuesta correcta.</dd></div>
+    <div><dt>BPMN</dt><dd>Notación estándar para diagramar procesos de negocio.</dd></div>
+    <div><dt>Carril (swimlane)</dt><dd>Franja de un diagrama que agrupa las actividades de un mismo rol.</dd></div>
+    <div><dt>Cuello de botella</dt><dd>El paso más lento del proceso; limita la capacidad de todo el conjunto.</dd></div>
+    <div><dt>Deriva</dt><dd>Pérdida de desempeño de un modelo porque la realidad cambió respecto a sus datos de entrenamiento.</dd></div>
+    <div><dt>Desperdicio</dt><dd>Actividad que consume recursos sin agregar valor para el cliente.</dd></div>
+    <div><dt>Dueño del proceso</dt><dd>Cargo que responde por el resultado del proceso de punta a punta.</dd></div>
+    <div><dt>Eficiencia de ciclo</dt><dd>Tiempo trabajando dividido por el tiempo total del ciclo.</dd></div>
+    <div><dt>Embedding</dt><dd>Representación numérica de un texto que captura su significado y permite buscar por parecido.</dd></div>
+    <div><dt>Exhaustividad (recall)</dt><dd>De todos los casos que importaban, cuántos detectó el modelo.</dd></div>
+    <div><dt>Ficha de proceso</dt><dd>Documento maestro con objetivo, alcance, actividades, reglas, indicadores y riesgos.</dd></div>
+    <div><dt>IA generativa</dt><dd>Modelos que producen contenido nuevo: texto, imágenes, audio o código.</dd></div>
+    <div><dt>Ley de Little</dt><dd>Trabajo en curso igual a tasa de llegada por tiempo de ciclo.</dd></div>
+    <div><dt>Línea base</dt><dd>Medición del estado actual, antes de cambiar nada, contra la cual se compara la mejora.</dd></div>
+    <div><dt>Minería de procesos</dt><dd>Reconstruir el proceso real a partir de los registros de tiempo de un sistema.</dd></div>
+    <div><dt>Modelo grande de lenguaje</dt><dd>Sistema entrenado con mucho texto que genera respuestas prediciendo la siguiente palabra probable.</dd></div>
+    <div><dt>PDCA</dt><dd>Ciclo de mejora: planear, hacer, verificar y actuar.</dd></div>
+    <div><dt>Poka-yoke</dt><dd>Diseño a prueba de errores: impide cometer la equivocación en vez de detectarla después.</dd></div>
+    <div><dt>Precisión</dt><dd>De todo lo que el modelo marcó, cuánto era correcto.</dd></div>
+    <div><dt>Prompt</dt><dd>La instrucción que se le da a un modelo generativo.</dd></div>
+    <div><dt>RACI</dt><dd>Matriz que asigna por actividad quién ejecuta, quién aprueba, a quién se consulta y a quién se informa.</dd></div>
+    <div><dt>RAG</dt><dd>Recuperación aumentada: el sistema busca en documentos propios y responde citando la fuente.</dd></div>
+    <div><dt>Sobreajuste</dt><dd>Modelo que memoriza los datos de entrenamiento y falla con datos nuevos.</dd></div>
+    <div><dt>SIPOC</dt><dd>Marco de encuadre: proveedores, entradas, proceso, salidas y clientes.</dd></div>
+    <div><dt>Tiempo de ciclo</dt><dd>Lo que tarda una unidad desde que entra hasta que sale del proceso.</dd></div>
+    <div><dt>Token</dt><dd>Fragmento en que un modelo divide el texto; unidad de medida y de cobro.</dd></div>
+    <div><dt>Traspaso</dt><dd>Punto donde el trabajo pasa de un rol a otro; concentra esperas y errores.</dd></div>
+    <div><dt>Trabajo en curso</dt><dd>Unidades que están dentro del proceso al mismo tiempo.</dd></div>
+    <div><dt>Ventana de contexto</dt><dd>Cantidad de texto que un modelo puede tener a la vista en una misma conversación.</dd></div>
+  </dl>
+</section>
+
+<footer>
+  <p>Curso interno del proyecto de levantamiento de procesos. Los ejemplos corresponden a una clínica que opera con Arthemis. Los contenidos de inteligencia artificial son formativos y no reemplazan la política de tratamiento de datos de la institución.</p>
+  <p>Su avance en los tests y en las listas de chequeo se guarda solamente en este navegador.</p>
+</footer>
+</main>
+</div>
+<script>
+const Q={
+m1:{t:"Test · Módulo 1",i:[
+{q:"¿Cuál de estas es la mejor definición de proceso?",o:["Un conjunto de tareas de un área","Una secuencia de actividades que transforma entradas en una salida que alguien valora","Todo lo que hace un empleado en su jornada","Un documento aprobado por calidad"],a:1,e:"Las tres claves son: secuencia, transformación y alguien que valora la salida."},
+{q:"En el marco SIPOC, la letra C corresponde a:",o:["Costos","Controles","Clientes: quién recibe la salida","Criticidad"],a:2,e:"Proveedores, entradas, proceso, salidas y clientes."},
+{q:"Usted documentó «Digitar el número de documento» como si fuera un proceso. El error es:",o:["Confundir niveles: eso es una tarea, no un proceso","Usar un verbo","No ponerle código","Nada, está bien"],a:0,e:"Macroproceso, proceso, subproceso, procedimiento, actividad y tarea son niveles distintos."},
+{q:"Un caso tarda 180 minutos de ciclo, de los cuales 24 son de trabajo efectivo. La eficiencia de ciclo es:",o:["13 %","75 %","24 %","No se puede calcular"],a:0,e:"24 ÷ 180 = 13 %. Lo normal en procesos administrativos."},
+{q:"Llegan 5 pacientes por hora y cada uno permanece 2 horas. Según la ley de Little, ¿cuántos hay dentro en promedio?",o:["2,5","5","10","20"],a:2,e:"Trabajo en curso = 5 × 2 = 10."},
+{q:"El doble chequeo de identidad antes de aplicar un medicamento es duplicación. ¿Se elimina?",o:["Sí, es desperdicio","No: es una barrera de seguridad, se puede simplificar pero no suprimir","Sí, si el paciente ya lo dijo","Solo en urgencias"],a:1,e:"Se elimina el papeleo, nunca el control clínico o de seguridad."},
+{q:"Una enfermera sabe cómo destrabar la fila y nadie le ha preguntado. ¿Qué desperdicio es?",o:["Inventario","Transporte","Talento desaprovechado","Sobreproducción"],a:2,e:"Es el octavo desperdicio y el más frecuente en servicios."}
+]},
+m2:{t:"Test · Módulo 2",i:[
+{q:"El objetivo de un levantamiento es documentar:",o:["El proceso ideal según las buenas prácticas","El proceso que dice el manual","El proceso real, con sus atajos y excepciones","El proceso que propone el jefe del área"],a:2,e:"El proceso real es el que produce los resultados que se quieren mejorar."},
+{q:"¿Cuál es el límite principal de la entrevista como fuente?",o:["Toma mucho tiempo","La gente describe lo que cree que hace, y a veces lo que debería hacer","No se puede grabar","Solo sirve para procesos administrativos"],a:1,e:"Por eso se cruza con observación, recorrido y datos del sistema."},
+{q:"Qué aporta la observación estructurada que casi nunca sale en entrevista:",o:["El nombre de los formatos","El dato de las interrupciones","La normatividad aplicable","El organigrama"],a:1,e:"Las interrupciones suelen explicar por qué el proceso tarda."},
+{q:"Antes de la primera entrevista, el alcance debe estar:",o:["Escrito en una frase con inicio y fin explícitos","Aprobado por la gerencia","En un diagrama BPMN","Definido por el entrevistado"],a:0,e:"Sin alcance escrito, la conversación se dispersa a los quince minutos."},
+{q:"El QR de captura desde el celular conviene generarlo:",o:["El día anterior, para tenerlo listo","El mismo día de la visita, porque vence a las 12 horas","Una sola vez para todo el proyecto","Nunca, es más seguro el computador"],a:1,e:"El enlace es la credencial: vence a las 12 horas y se revoca al generar uno nuevo."},
+{q:"«Entonces usted verifica en el sistema, ¿cierto?» es un error porque:",o:["Es muy larga","Sugiere la respuesta y termina documentando la suposición del analista","Usa jerga técnica","Es una pregunta doble"],a:1,e:"La persona confirma por cortesía y el dato queda falseado."},
+{q:"¿Por qué los datos de tiempo del sistema valen tanto en la preparación?",o:["Porque reemplazan las entrevistas","Porque muestran el proceso real y sus variantes antes de conversar","Porque los pide la norma","Porque son más baratos"],a:1,e:"Dicen qué pasa; la entrevista dice por qué."}
+]},
+m3:{t:"Test · Módulo 3",i:[
+{q:"Si el jefe quiere estar presente en la entrevista con el auxiliar, lo recomendable es:",o:["Aceptar, así se ahorra tiempo","Agendar dos sesiones separadas","Cancelar la entrevista","Grabar sin avisar"],a:1,e:"Delante del jefe casi nadie cuenta los atajos."},
+{q:"La técnica del embudo consiste en:",o:["Empezar por el detalle y terminar en lo general","Abrir con una pregunta amplia y bajar al detalle con sondeos","Hacer solo preguntas cerradas","Preguntar de a dos temas por vez"],a:1,e:"Si empieza por el detalle, no se entera de lo que no sabía que debía preguntar."},
+{q:"¿Cuál de estas es una pregunta de último caso?",o:["¿Cómo debería hacerse este trámite?","¿Cuál fue el último paciente difícil y qué hizo exactamente?","¿Está de acuerdo con el procedimiento?","¿Usted cumple el manual?"],a:1,e:"Trae la realidad en vez de la teoría."},
+{q:"La persona le pide apagar la grabación. Usted:",o:["La apaga y no la vuelve a encender sin avisar","La deja grabando disimuladamente","Termina la entrevista","Le explica que es obligatorio grabar"],a:0,e:"Un audio obtenido a la fuerza produce respuestas de manual, y además hay un tema ético y legal."},
+{q:"«¿Cuánto se demora y quién lo revisa?» está mal formulada porque:",o:["Es guiada","Es doble: la persona responde solo una","Usa jerga","Es muy abierta"],a:1,e:"Una pregunta a la vez."},
+{q:"Tras una pregunta difícil, el silencio incómodo conviene:",o:["Llenarlo con otra pregunta","Sostenerlo unos segundos: ahí aparece la respuesta honesta","Cambiar de tema","Reformular de inmediato"],a:1,e:"Cuente hasta cinco antes de intervenir."},
+{q:"La persona se queja todo el tiempo de otra área. Lo correcto es:",o:["Darle la razón y anotarlo como falla del otro área","Validar una vez, anotar el hallazgo y devolver el foco a lo que sí controla","Interrumpirla","Cerrar la entrevista"],a:1,e:"Tomar partido le cuesta el acceso a la otra área."},
+{q:"¿Por qué el informe se envía como enlace y no como PDF?",o:["Porque pesa menos","Porque un PDF no reproduce los audios y el entrevistado no puede verificar lo que dijo","Porque lo exige la norma","Porque no se puede imprimir"],a:1,e:"El enlace muestra fotos en grande y audios reproducibles, y se actualiza al reenviar."},
+{q:"Los cinco porqués sirven para:",o:["Presionar al entrevistado","Pasar del síntoma a la causa raíz","Medir tiempos","Validar el diagrama"],a:1,e:"Se usan con suavidad, alternando con «ayúdeme a entender»."}
+]},
+m4:{t:"Test · Módulo 4",i:[
+{q:"El nombre de un proceso se redacta como:",o:["Un área: «Admisiones»","Verbo más objeto: «Admitir paciente de urgencias»","Una sigla","Un número de código"],a:1,e:"El verbo obliga a pensar en la transformación."},
+{q:"El dueño de un proceso debe ser:",o:["Un comité","Un cargo, uno solo","La gerencia general","El analista que lo levantó"],a:1,e:"Sin un dueño único y con nombre de cargo, el proceso no mejora."},
+{q:"En un diagrama de carriles, cada cruce entre carriles indica:",o:["Un error","Un traspaso: punto de espera y de riesgo de error","Una decisión","El fin del proceso"],a:1,e:"Contar y reducir traspasos suele ser la mejora más rentable."},
+{q:"En la matriz RACI, la A (aprobador) debe ser:",o:["Uno solo por actividad","Al menos dos, para control cruzado","Opcional","El mismo que la R siempre"],a:0,e:"Dos aprobadores significa que nadie responde de verdad."},
+{q:"¿Cuál actividad está bien redactada?",o:["«Gestión del ingreso conforme a la normatividad»","«El auxiliar consulta el documento en Arthemis, verifica afiliación y crea el ingreso. Tarda 4 minutos»","«Aseguramiento del flujo del paciente»","«Seguimiento y control de admisiones»"],a:1,e:"Sujeto, verbo, objeto, sistema y tiempo. Sin sustantivos abstractos."},
+{q:"En la validación, el silencio del grupo frente al diagrama significa:",o:["Acuerdo pleno","Nada: hay que preguntar rol por rol dónde no es así","Que el diagrama sobra","Que se puede publicar"],a:1,e:"Pida disensos explícitos."},
+{q:"Un rombo en el diagrama de flujo representa:",o:["Una actividad","Una decisión, rotulada como pregunta de sí o no","Un documento","El inicio"],a:1,e:"Y sus salidas se rotulan «sí» y «no»."}
+]},
+m5:{t:"Test · Módulo 5",i:[
+{q:"En ESCA, automatizar va:",o:["Primero, porque da resultados rápidos","De último, después de eliminar, simplificar y combinar","Nunca","Al mismo tiempo que eliminar"],a:1,e:"Automatizar un proceso malo produce un proceso malo más rápido."},
+{q:"Mejorar un paso que no es el cuello de botella produce:",o:["Más unidades terminadas","Nada en la salida total; solo más acumulación delante del cuello","Menos calidad","Más costo unitario"],a:1,e:"El proceso no produce más que su paso más lento."},
+{q:"«El paciente espera 40 minutos en promedio» puede ocultar que:",o:["Todos esperan 40 minutos","Un 30 % espera dos horas y ese es el que se queja","El proceso es eficiente","No hay cuello de botella"],a:1,e:"Mire la distribución y el peor caso, no solo el promedio."},
+{q:"Un campo obligatorio que impide cerrar la historia sin diagnóstico es un ejemplo de:",o:["Diseño a prueba de errores","Auditoría","Indicador","Capacitación"],a:0,e:"Impide el error en vez de detectarlo después."},
+{q:"Una oportunidad de bajo impacto y alto esfuerzo se debe:",o:["Hacer de primera","Descartar, dejando escrito por qué","Dividir en fases","Automatizar"],a:1,e:"Documentar el descarte evita que vuelva a la mesa cada mes."},
+{q:"Antes de medir si una mejora funcionó hay que:",o:["Tener la línea base con el mismo indicador y la misma forma de tomarlo","Cambiar el indicador para que se vea mejor","Esperar un año","Publicar el nuevo procedimiento"],a:0,e:"Si cambió la medición, no se sabe nada."},
+{q:"¿Por qué estandarizar antes de mejorar?",o:["Porque lo pide la norma","Porque si cada quien lo hace distinto no se puede saber si el cambio funcionó","Para reducir personal","Para poder automatizar"],a:1,e:"El estándar es el punto de partida conocido."},
+{q:"La causa más frecuente de que un rediseño técnicamente correcto fracase es:",o:["Falta de presupuesto","Que quien ejecuta el trabajo no participó en el diseño","El software","La normatividad"],a:1,e:"Involucrar a quien hace el trabajo no es cortesía: es diseño."}
+]},
+m6:{t:"Test · Módulo 6",i:[
+{q:"La diferencia de fondo entre software tradicional y aprendizaje automático es:",o:["La velocidad","Quién define las reglas: una persona o el propio sistema a partir de ejemplos","El lenguaje de programación","El costo"],a:1,e:"En aprendizaje automático nadie escribe la regla: se encuentra el patrón."},
+{q:"El orden correcto de lo más amplio a lo más específico es:",o:["Aprendizaje automático → IA → aprendizaje profundo","IA → aprendizaje automático → aprendizaje profundo → IA generativa","IA generativa → IA → aprendizaje profundo","Todos son sinónimos"],a:1,e:"Cada uno es subconjunto del anterior."},
+{q:"Entrenar con miles de facturas marcadas como «glosada» o «aceptada» es aprendizaje:",o:["No supervisado","Supervisado, porque los ejemplos traen la respuesta correcta","Por refuerzo","Generativo"],a:1,e:"Y la tarea es de clasificación."},
+{q:"Un modelo que acierta casi perfecto en entrenamiento y falla con casos nuevos está:",o:["Subajustado","Sobreajustado: memorizó en vez de aprender","Bien entrenado","Sesgado"],a:1,e:"Por eso se evalúa con datos que el modelo nunca vio."},
+{q:"Si solo el 3 % de las facturas se glosa, un modelo que diga siempre «no se glosa» tendrá:",o:["97 % de exactitud y cero utilidad","Alta exhaustividad","Buen desempeño","Sesgo bajo"],a:0,e:"Por eso se miran precisión y exhaustividad, no solo exactitud."},
+{q:"Si históricamente se atendió más rápido a cierto grupo, el modelo entrenado con esos datos:",o:["Corregirá la desigualdad","Reproducirá y automatizará ese trato","Ignorará el patrón","Avisará del sesgo"],a:1,e:"La IA no corrige la injusticia histórica: la escala."},
+{q:"¿Cuál de estas tareas hace mal la IA hoy?",o:["Transcribir voz","Clasificar texto","Responder por una decisión y conocer su propio límite","Detectar valores atípicos"],a:2,e:"La responsabilidad sigue siendo de una persona."},
+{q:"Un proveedor dice: «nuestro modelo tiene 99 % de precisión». La pregunta correcta es:",o:["¿Cuánto cuesta?","¿Medida sobre qué datos, y el modelo los vio durante el entrenamiento?","¿En qué lenguaje está hecho?","¿Cuántos clientes tienen?"],a:1,e:"Un número sin datos de prueba independientes no significa nada."}
+]},
+m7:{t:"Test · Módulo 7",i:[
+{q:"Un modelo grande de lenguaje funciona, en el fondo:",o:["Consultando una base de datos de hechos verificados","Prediciendo cuál es la siguiente palabra más probable","Buscando en internet cada vez","Aplicando reglas escritas por expertos"],a:1,e:"De ahí salen sus virtudes y sus alucinaciones."},
+{q:"El término correcto para los modelos que producen contenido nuevo es:",o:["IA regenerativa","IA generativa","IA reproductiva","IA predictiva"],a:1,e:"Generativa porque genera contenido nuevo."},
+{q:"La ventana de contexto es:",o:["La pantalla de la aplicación","Cuánto texto puede tener el modelo a la vista a la vez","El tiempo de respuesta","El número de usuarios"],a:1,e:"Lo que se sale de la ventana se pierde."},
+{q:"RAG consiste en:",o:["Reentrenar el modelo con datos propios","Buscar primero en los documentos propios y responder con base en ellos, citando la fuente","Aumentar la temperatura","Conectar varios modelos"],a:1,e:"Reduce alucinaciones y permite verificar."},
+{q:"Un proveedor ofrece «un chat que sabe de sus procesos». Lo primero que debe preguntar es:",o:["Si cita la fuente de cada respuesta","Cuántos idiomas habla","Si tiene aplicación móvil","El color de la interfaz"],a:0,e:"Sin fuente verificable, la respuesta no sirve para decidir."},
+{q:"La diferencia central entre un asistente conversacional y un agente es:",o:["El precio","Quién define la secuencia de pasos: el usuario en cada mensaje, o el propio sistema","El idioma","La velocidad"],a:1,e:"El agente recibe un objetivo y decide él mismo qué pasos dar."},
+{q:"Antes de darle permisos a un agente sobre sistemas reales, lo prudente es:",o:["Darle acceso completo para que aprenda","Empezar en solo lectura y exigir aprobación humana para acciones irreversibles","Desactivar la auditoría","No ponerle límites de volumen"],a:1,e:"Un agente se equivoca a escala y rápido."},
+{q:"¿Cuál ingrediente de un prompt es el que más sube la calidad de la salida?",o:["Un ejemplo de lo que se espera","Escribir en mayúsculas","Pedirlo con urgencia","Hacerlo más corto"],a:0,e:"Mostrar una salida ya redactada como usted la quiere."}
+]},
+m8:{t:"Test · Módulo 8",i:[
+{q:"Para hacer minería de procesos se necesitan como mínimo:",o:["Identificador del caso, actividad y marca de tiempo","El nombre del paciente","El diagnóstico","El valor facturado"],a:0,e:"Con esas tres columnas se reconstruye el recorrido real."},
+{q:"La minería de procesos dice el qué; la entrevista aporta:",o:["El porqué de lo que muestran los datos","Los tiempos exactos","El volumen","Las variantes"],a:0,e:"Llevar el dato a la entrevista produce las mejores respuestas."},
+{q:"¿Qué NO se debe hacer con datos de pacientes?",o:["Anonimizarlos antes de procesarlos","Pegarlos en herramientas públicas de IA","Trabajar con el formato en blanco","Usar servicios contratados por la institución"],a:1,e:"Son datos sensibles bajo la Ley 1581 de 2012."},
+{q:"Si una transcripción automática de una entrevista clínica sale con errores de jerga:",o:["Se descarta todo el audio","Se revisa y corrige contra el audio antes de usarla","Se publica igual","Se cambia de modelo y se acepta sin revisar"],a:1,e:"La transcripción es un borrador, no una fuente."},
+{q:"Un modelo de sugerencia de códigos de diagnóstico debe:",o:["Decidir el código final automáticamente","Sugerir, dejando la decisión y la responsabilidad en el profesional","Reemplazar la auditoría","Ocultar sus sugerencias"],a:1,e:"La responsabilidad clínica no se delega en una herramienta."},
+{q:"El riesgo más común al usar IA generativa en el trabajo diario es:",o:["Que sea lenta","Aceptar la salida porque está bien redactada","Que cueste mucho","Que no tenga aplicación móvil"],a:1,e:"La fluidez no es evidencia."},
+{q:"Antes de emprender un proyecto de IA conviene revisar si el problema:",o:["Se resuelve con una regla, un campo obligatorio o quitando un paso","Tiene presupuesto aprobado","Está de moda","Lo usan otras clínicas"],a:0,e:"Muchos proyectos de IA sustituyen una mejora de proceso que nadie hizo."}
+]},
+final:{t:"Examen final",i:[
+{q:"Definió el alcance así: «revisar el área de admisiones». El problema es que:",o:["Es muy largo","No tiene inicio ni fin observables, así que la conversación se dispersará","Nombra un área","Falta el código"],a:1,e:"Módulo 2: alcance en una frase con inicio y fin."},
+{q:"Llegan 4 facturas por hora al área y cada una tarda 5 horas en resolverse. ¿Cuántas hay en curso?",o:["9","20","0,8","No se puede saber"],a:1,e:"Ley de Little: 4 × 5 = 20 (módulo 1)."},
+{q:"En la entrevista, la auxiliar dice: «según el procedimiento, se verifica en el sistema». Usted responde:",o:["«Perfecto, lo anoto»","«Entiendo cómo debería ser. ¿Y ayer en la tarde, cómo salió?»","«Eso no es lo que veo»","«¿Está segura?»"],a:1,e:"Módulo 3: traer el último caso real."},
+{q:"Contó siete traspasos entre roles en el flujo de urgencias. Eso indica:",o:["Que el proceso está bien repartido","Siete puntos de espera y de riesgo de error a revisar","Que faltan personas","Que hay que automatizar"],a:1,e:"Módulo 4: los traspasos son el mapa del riesgo."},
+{q:"Admisiones atiende 12 pacientes por hora, triage 20 y consulta 8. El cuello de botella es:",o:["Triage","Admisiones","Consulta, con 8 por hora","No hay"],a:2,e:"El paso más lento manda (módulo 5)."},
+{q:"En ese caso, contratar otro auxiliar de admisiones produciría:",o:["Más pacientes atendidos","Más gente acumulada esperando consulta","Menos tiempo de ciclo total","Menos glosas"],a:1,e:"Mejorar un paso que no es el cuello solo genera inventario."},
+{q:"Clasifique: «el paciente espera 50 minutos a que el médico revise el resultado del laboratorio».",o:["Agrega valor","No agrega valor y es eliminable o reducible","No agrega valor pero es necesario","Es un control de seguridad"],a:1,e:"La espera es el desperdicio más común y el más barato de atacar."},
+{q:"Le proponen automatizar la digitación doble del copago. Antes de eso hay que preguntar:",o:["Si se puede eliminar la doble digitación en vez de automatizarla","Qué proveedor es más barato","Cuándo se firma","Quién capacita"],a:0,e:"ESCA: eliminar, simplificar, combinar y solo después automatizar."},
+{q:"El dueño del proceso aprueba la ficha por correo y usted:",o:["Registra versión, fecha y próxima revisión","Archiva y pasa al siguiente","Publica sin versión","Espera nuevas correcciones"],a:0,e:"Módulo 4: cierre formal con versión y revisión futura."},
+{q:"Va a fotografiar la pantalla del sistema durante la entrevista. Debe:",o:["Tomarla con los datos del paciente visibles","Usar un formato en blanco o cubrir los datos identificables","No tomar fotos nunca","Pedir permiso al paciente por teléfono"],a:1,e:"Datos sensibles, Ley 1581 de 2012 (módulos 3 y 8)."},
+{q:"Terminó la entrevista en una zona con mala señal. Antes de irse revise:",o:["Que el contador de subidas pendientes esté en cero","Que el celular tenga batería","Que el QR siga vigente","Nada, se sube solo"],a:0,e:"La cola reintenta sola, pero conviene confirmar antes de salir."},
+{q:"Un modelo predice riesgo de glosa con 96 % de exactitud, pero solo el 4 % de las cuentas se glosa. Usted:",o:["Lo acepta, es un gran número","Pide precisión y exhaustividad sobre datos que el modelo no vio","Pide que lo reentrenen con más datos","Lo compra por un año"],a:1,e:"Módulo 6: la exactitud sola engaña con clases desbalanceadas."},
+{q:"La herramienta afirma que existe una resolución que usted no encuentra por ningún lado. Eso es:",o:["Una alucinación; hay que verificar en la fuente antes de citarla","Un dato reservado","Un error de conexión","Una versión nueva"],a:0,e:"Módulo 7."},
+{q:"Quiere un buscador sobre los procesos ya levantados. La arquitectura adecuada es:",o:["RAG: buscar en sus documentos y responder citando la fuente","Ajuste fino del modelo con todo el archivo","Un agente con permisos de escritura","Subir todo a un chat público"],a:0,e:"Módulo 7."},
+{q:"«Revisa las cuentas de ayer, marca las de riesgo y arma el informe» describe:",o:["Un agente, porque recibe un objetivo y decide los pasos","Un asistente conversacional","Una automatización clásica","Un modelo supervisado"],a:0,e:"Módulo 7: quién define la secuencia."},
+{q:"Los registros de Arthemis muestran que el 22 % de los ingresos se corrige después de creado. Lo mejor es:",o:["Incluir ese dato en la siguiente entrevista y preguntar qué pasa ahí","Concluir que el personal se equivoca","Cambiar el sistema","Eliminar la corrección"],a:0,e:"Módulo 8: los datos dicen qué; la entrevista, por qué."},
+{q:"De 30 oportunidades halladas, ¿cuáles se hacen esta semana?",o:["Las de alto impacto y bajo esfuerzo","Las más baratas","Las que pida el jefe","Todas"],a:0,e:"Módulo 5: matriz de priorización."},
+{q:"En la reunión de validación nadie objeta el diagrama. Usted:",o:["Lo da por aprobado","Pregunta rol por rol en qué paso no es así","Lo publica de inmediato","Cierra la reunión temprano"],a:1,e:"El silencio no es acuerdo."},
+{q:"Un auxiliar propone una solución al trancón de admisiones. Lo correcto es:",o:["Registrarla: quien ejecuta suele tener la solución","Ignorarla, no es su rol","Pasarla como propia","Dejarla para otra fase"],a:0,e:"Talento desaprovechado es el octavo desperdicio."},
+{q:"Antes de proponer cualquier mejora usted necesita:",o:["La línea base medida con el indicador que usará después","La aprobación de gerencia","El diagrama en BPMN","Un proveedor de software"],a:0,e:"Sin línea base no se puede demostrar nada."}
+]}};
+
+const L=["a","b","c","d"], K="curso-procesos-ia:";
+const sg=k=>{try{return JSON.parse(localStorage.getItem(K+k))}catch(e){return null}};
+const ss=(k,v)=>{try{localStorage.setItem(K+k,JSON.stringify(v))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+/* mezcla determinista de opciones para que la correcta no sea siempre la misma letra */
+(function(){let s=1337;const r=()=>{s=(s*9301+49297)%233280;return s/233280};
+ Object.keys(Q).forEach(k=>Q[k].i.forEach(it=>{const c=it.o[it.a],idx=it.o.map((_,j)=>j);
+ for(let n=idx.length-1;n>0;n--){const m=Math.floor(r()*(n+1));[idx[n],idx[m]]=[idx[m],idx[n]]}
+ it.o=idx.map(j=>it.o[j]);it.a=it.o.indexOf(c)}))})();
+
+function buildQuiz(box){
+  const id=box.dataset.quiz,d=Q[id];if(!d)return;
+  let h=`<h3 style="margin-top:0">${d.t}</h3><p>Marque una opción por pregunta y califique al final.</p>`;
+  d.i.forEach((it,n)=>{
+    h+=`<fieldset data-n="${n}"><legend><i>${n+1}.</i>${esc(it.q)}</legend>`;
+    it.o.forEach((o,j)=>{h+=`<label class="opt"><input type="radio" name="${id}_${n}" value="${j}"><span><b>${L[j]})</b> ${esc(o)}</span></label>`});
+    h+=`<div class="exp" hidden></div></fieldset>`});
+  h+=`<div class="row"><button class="btn" type="button" data-grade>Calificar</button><button class="btn gh" type="button" data-reset>Borrar y reintentar</button></div><div class="score" hidden aria-live="polite"></div>`;
+  box.innerHTML=h;
+  box.querySelector("[data-grade]").onclick=()=>grade(box);
+  box.querySelector("[data-reset]").onclick=()=>{
+    box.querySelectorAll("input").forEach(i=>i.checked=false);
+    box.querySelectorAll(".opt").forEach(o=>o.classList.remove("ok","no"));
+    box.querySelectorAll(".exp").forEach(e=>{e.hidden=true;e.innerHTML=""});
+    box.querySelector(".score").hidden=true;
+    box.querySelector("fieldset").scrollIntoView({block:"center"});
+  };
+}
+function grade(box){
+  const id=box.dataset.quiz,d=Q[id];let ok=0,blank=0;
+  d.i.forEach((it,n)=>{
+    const fs=box.querySelector(`fieldset[data-n="${n}"]`),ch=fs.querySelector("input:checked"),ops=fs.querySelectorAll(".opt"),ex=fs.querySelector(".exp");
+    ops.forEach(o=>o.classList.remove("ok","no"));ops[it.a].classList.add("ok");
+    const right=`<b>${L[it.a]}) ${esc(it.o[it.a])}</b>`;
+    if(!ch){blank++;ex.innerHTML=`<span class="vno">Sin responder.</span> Correcta: ${right}. ${esc(it.e)}`}
+    else if(+ch.value===it.a){ok++;ex.innerHTML=`<span class="vok">Correcta.</span> ${esc(it.e)}`}
+    else{ch.closest(".opt").classList.add("no");ex.innerHTML=`<span class="vno">No es correcta.</span> La respuesta es ${right}. ${esc(it.e)}`}
+    ex.hidden=false});
+  const tot=d.i.length,p=Math.round(ok*100/tot);
+  let m=p>=90?"Dominio sólido del módulo.":p>=70?"Bien. Repase lo marcado en rojo.":"Conviene releer el módulo y repetir el test.";
+  if(blank)m+=` Dejó ${blank} sin responder.`;
+  const sc=box.querySelector(".score");
+  sc.innerHTML=`<b>${ok} de ${tot} · ${p} %</b>${m}`;sc.hidden=false;
+  const prev=sg("q_"+id);if(!prev||ok>prev.ok)ss("q_"+id,{ok,tot});
+  paintProgress();
+  sc.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"center"});
+}
+function paintProgress(){
+  let done=0;const ids=Object.keys(Q);
+  document.querySelectorAll("[data-st]").forEach(el=>{
+    const s=sg("q_"+el.dataset.st);
+    if(s){el.textContent=`Mejor: ${s.ok} de ${s.tot}`;el.classList.add("done")}});
+  ids.forEach(i=>{if(sg("q_"+i))done++});
+  const bar=document.getElementById("pbar");if(bar)bar.style.width=(done/ids.length*100)+"%";
+}
+
+/* ---- herramientas ---- */
+function toolEficiencia(){
+  const p=document.getElementById("ef-proc"),e=document.getElementById("ef-esp");if(!p)return;
+  const calc=()=>{
+    const a=Math.max(0,+p.value||0),b=Math.max(0,+e.value||0),t=a+b;
+    const c=document.getElementById("ef-ciclo"),pc=document.getElementById("ef-pct"),le=document.getElementById("ef-lec"),ms=document.getElementById("ef-msg");
+    if(!t){c.textContent="—";pc.textContent="—";le.textContent="—";ms.textContent="";return}
+    const pct=a*100/t;
+    c.textContent=t>=60?`${Math.floor(t/60)} h ${t%60} min`:`${t} min`;
+    pc.textContent=pct.toFixed(1)+" %";
+    le.textContent=pct>=40?"Alta":pct>=15?"Normal":"Muy baja";
+    ms.textContent=pct<15
+      ? `De cada hora que el caso pasa en el proceso, solo ${Math.round(pct*0.6)} minutos alguien trabaja sobre él. Ataque las esperas antes de pedir más personal.`
+      : pct<40 ? "Está en el rango habitual de un proceso administrativo. Aún hay margen: revise los traspasos entre roles."
+      : "Eficiencia alta. Verifique que esté midiendo el ciclo completo, incluidas las esperas entre áreas.";
+  };
+  [p,e].forEach(x=>x.addEventListener("input",calc));calc();
+}
+
+function toolSipoc(){
+  const ids=["sp-nom","sp-obj","sp-ini","sp-fin","sp-s","sp-i","sp-p","sp-o","sp-c"];
+  const gen=document.querySelector("[data-sipoc-gen]");if(!gen)return;
+  const saved=sg("sipoc")||{};ids.forEach(i=>{const el=document.getElementById(i);if(el&&saved[i])el.value=saved[i];
+    el.addEventListener("input",()=>{const o={};ids.forEach(k=>o[k]=document.getElementById(k).value);ss("sipoc",o)})});
+  const lines=v=>v.split("\n").map(s=>s.trim()).filter(Boolean);
+  gen.onclick=()=>{
+    const g=i=>document.getElementById(i).value.trim();
+    const bl=(t,v)=>{const a=lines(v);return a.length?`${t}:\n`+a.map(x=>"  - "+x).join("\n")+"\n":`${t}:\n  - (pendiente)\n`};
+    const txt=
+`FICHA SIPOC
+Proceso: ${g("sp-nom")||"(sin nombre)"}
+Objetivo: ${g("sp-obj")||"(pendiente)"}
+Inicia cuando: ${g("sp-ini")||"(pendiente)"}
+Termina cuando: ${g("sp-fin")||"(pendiente)"}
+
+`+bl("PROVEEDORES",g("sp-s"))+"\n"+bl("ENTRADAS",g("sp-i"))+"\n"+bl("PROCESO (pasos)",g("sp-p"))+"\n"+bl("SALIDAS",g("sp-o"))+"\n"+bl("CLIENTES",g("sp-c"))+
+`
+Pendientes por confirmar en la próxima entrevista:
+  - Volumen mensual
+  - Tiempo de ciclo real
+  - Excepciones más frecuentes`;
+    const o=document.getElementById("sp-out");o.textContent=txt;o.hidden=false;
+  };
+  document.querySelector("[data-sipoc-clear]").onclick=()=>{ids.forEach(i=>document.getElementById(i).value="");ss("sipoc",{});document.getElementById("sp-out").hidden=true};
+}
+
+const BLOQUES={
+ contexto:{t:"Contexto de la persona (5 min)",p:["¿Cuál es su cargo y desde cuándo está en él?","¿Cómo es un día normal suyo, de principio a fin?","¿Qué parte de su trabajo tiene que ver con este proceso?"]},
+ recorrido:{t:"Recorrido del proceso (25 min)",p:["Cuénteme qué pasa desde que [evento de inicio], paso a paso.","¿Qué hace exactamente en ese paso? ¿Me lo muestra en la pantalla?","¿Qué información necesita para hacerlo y de dónde la saca?","¿A quién le entrega el trabajo cuando termina?","¿Cómo sabe esa persona que ya puede continuar?","¿Qué registra y dónde lo registra?"]},
+ excep:{t:"Excepciones y fallas (12 min)",p:["¿Qué pasa cuando el paciente o el documento llega incompleto?","¿Qué hace cuando el sistema no responde?","¿Cuál fue el último caso que se le complicó? ¿Qué hizo?","¿Con qué frecuencia toca hacer una excepción?","¿Quién autoriza una excepción?","¿Qué es lo que más se devuelve o hay que rehacer?"]},
+ tiempos:{t:"Tiempos y volúmenes (6 min)",p:["¿Cuántos casos atiende en un día normal? ¿Y en el día más pesado?","¿Cuánto le toma un caso sencillo? ¿Y uno complicado?","¿En qué momento del día se acumula más trabajo?","¿Cuánto tiempo pasa esperando a que otra persona o área responda?"]},
+ sistemas:{t:"Sistemas y papeles (6 min)",p:["¿Qué sistemas usa y para qué cada uno?","¿Hay algo que anote en papel, en un cuaderno o en Excel aparte? ¿Por qué?","¿Hay información que tenga que digitar dos veces?","¿Qué formatos diligencia y quién los recibe?"]},
+ dolor:{t:"Dolores y propuestas (8 min)",p:["¿Qué parte de esto le quita más tiempo o más paciencia?","¿Qué hace que un día sea un mal día en este proceso?","Si pudiera cambiar una sola cosa, ¿cuál sería?","¿Qué le han pedido cambiar antes y no se ha podido?"]},
+ riesgo:{t:"Riesgo y seguridad (6 min)",p:["¿Qué es lo peor que puede salir mal en este paso?","¿Qué hay hoy que evite que eso pase?","¿Ha visto que ocurra? ¿Cómo se resolvió?","¿Qué controles siente que sobran y cuáles faltan?"]}
+};
+const EXTRA={
+ supervisa:["¿Cómo se entera de que el proceso se está atrasando?","¿Qué indicadores mira y con qué frecuencia?","¿Qué decisiones toma usted que el equipo no puede tomar?","¿Cómo distribuye la carga entre las personas?"],
+ recibe:["¿Qué le llega de ese proceso y en qué estado?","¿Qué es lo que más le toca devolver y por qué?","¿Qué información le falta con más frecuencia?","¿Qué cambiaría de lo que recibe?"],
+ sistema:["¿Qué se configura en el sistema y quién lo configura?","¿Qué campos son obligatorios y cuáles se dejan vacíos en la práctica?","¿Qué reportes salen del sistema y quién los usa?","¿Qué queda registrado en la auditoría del sistema?","¿Qué limitaciones del sistema obligan a hacer cosas por fuera?"],
+ ejecuta:[]
+};
+function toolGuion(){
+  const gen=document.querySelector("[data-guion-gen]");if(!gen)return;
+  document.querySelectorAll("#g-chips .chip").forEach(c=>c.onclick=()=>c.setAttribute("aria-pressed",c.getAttribute("aria-pressed")==="true"?"false":"true"));
+  gen.onclick=()=>{
+    const proc=document.getElementById("g-proc").value.trim()||"[proceso]";
+    const pers=document.getElementById("g-pers").value.trim()||"[nombre y cargo]";
+    const rol=document.getElementById("g-rol").value;
+    const sel=[...document.querySelectorAll("#g-chips .chip")].filter(c=>c.getAttribute("aria-pressed")==="true").map(c=>c.dataset.b);
+    let t=`GUION DE ENTREVISTA
+Proceso: ${proc}
+Entrevistado: ${pers}
+Fecha: ____________   Analista: ____________
+Duración prevista: 45-60 min
+
+APERTURA (3 min) — leer en voz alta
+"Buenos días. Soy ____ y estoy levantando el proceso de ${proc}. La idea es entender cómo se hace hoy, con sus dificultades reales, para poder mejorarlo y que el sistema apoye mejor el trabajo. No vengo a evaluar a nadie.
+Va a tomar unos 45 minutos. ¿Le parece bien si grabo el audio para no perderme nada? Lo escucha solo el equipo del proyecto. Si prefiere que no grabe, tomo notas y listo."
+
+[ ] Permiso de grabación concedido   [ ] Grabación iniciada   [ ] QR de captura generado hoy
+`;
+    let n=1;
+    sel.forEach(b=>{const B=BLOQUES[b];if(!B)return;
+      t+=`\n${n}. ${B.t.toUpperCase()}\n`+B.p.map(p=>"   - "+p).join("\n")+"\n";n++});
+    if(EXTRA[rol]&&EXTRA[rol].length){
+      t+=`\n${n}. PREGUNTAS PROPIAS DE ESTE ROL\n`+EXTRA[rol].map(p=>"   - "+p).join("\n")+"\n";n++}
+    t+=`\n${n}. CIERRE (5 min)
+   - "A ver si entendí bien: [resumir los pasos en voz alta]. ¿Es así?"
+   - ¿Hay algo que no le pregunté y yo debería saber?
+   - ¿Con quién más debería hablar de este proceso?
+   - Explicar qué sigue: "le voy a enviar un enlace con lo que escribí, para que lo revise y me corrija."
+
+ANTES DE SALIR
+   [ ] Campos obligatorios completos en la aplicación
+   [ ] Fotos de pantallas y formatos, sin datos de pacientes visibles
+   [ ] Contador de subidas pendientes en cero
+   [ ] Preguntas sin resolver anotadas como pendientes (no como suposiciones)
+
+RECORDATORIOS
+   - Una pregunta a la vez, abierta antes que cerrada.
+   - Preguntar por el último caso real, no por el deber ser.
+   - Sostener el silencio unos segundos antes de reformular.
+   - No proponer mejoras todavía: primero entender.`;
+    const o=document.getElementById("g-out");o.textContent=t;o.hidden=false;
+  };
+}
+
+function toolCuello(){
+  const wrap=document.getElementById("cb-rows");if(!wrap)return;
+  const mk=(n="",t=5,p=1)=>{
+    const d=document.createElement("div");d.className="cbrow";
+    d.innerHTML=`<div><label>Paso</label><input type="text" class="cb-n" value="${esc(n)}" placeholder="Admisiones"></div>
+      <div><label>Minutos por caso</label><input type="number" class="cb-t" min="0.1" step="0.1" value="${t}"></div>
+      <div><label>Puestos</label><input type="number" class="cb-p" min="1" value="${p}"></div>`;
+    wrap.appendChild(d)};
+  mk("Triage",3,1);mk("Admisiones",5,1);mk("Consulta médica",15,2);
+  document.querySelector("[data-cb-add]").onclick=()=>mk();
+  document.querySelector("[data-cb-calc]").onclick=()=>{
+    const ns=[...wrap.querySelectorAll(".cb-n")],ts=[...wrap.querySelectorAll(".cb-t")],ps=[...wrap.querySelectorAll(".cb-p")];
+    const rows=ns.map((n,i)=>({n:n.value.trim()||`Paso ${i+1}`,cap:(60/Math.max(0.1,+ts[i].value||1))*Math.max(1,+ps[i].value||1)})).filter(r=>isFinite(r.cap));
+    if(!rows.length)return;
+    const min=Math.min(...rows.map(r=>r.cap));
+    let t="CAPACIDAD POR HORA\n\n";
+    rows.forEach(r=>{t+=`${r.cap===min?"→ ":"  "}${r.n}: ${r.cap.toFixed(1)} casos/hora${r.cap===min?"   ← CUELLO DE BOTELLA":""}\n`});
+    const cuello=rows.find(r=>r.cap===min);
+    t+=`\nEl proceso completo no puede superar ${min.toFixed(1)} casos por hora, sin importar cuánto mejore los demás pasos.\n\nQué hacer, en orden:\n  1. Que "${cuello.n}" no pare por causas evitables (turnos de almuerzo escalonados, insumos listos, sin tareas que otro pueda hacer).\n  2. Que los pasos anteriores trabajen a ese ritmo: producir más solo acumula gente esperando.\n  3. Solo entonces, aumentar su capacidad (más personal, más puestos, más horario).\n  4. Recalcular: el cuello se mudará a otro paso.`;
+    const o=document.getElementById("cb-out");o.textContent=t;o.hidden=false};
+}
+
+function toolPrior(){
+  const add=document.querySelector("[data-pr-add]");if(!add)return;
+  let list=sg("prior")||[];
+  const clamp=v=>Math.min(5,Math.max(1,Math.round(+v||1)));
+  const render=()=>{
+    const o=document.getElementById("pr-out");
+    if(!list.length){o.hidden=true;return}
+    const cat=r=>r.imp>=4&&r.esf<=2?"HACER ESTA SEMANA":r.imp>=4?"PROYECTO CON PATROCINADOR":r.esf<=2?"SI SOBRA TIEMPO":"DESCARTAR (dejar escrito por qué)";
+    const sorted=[...list].sort((a,b)=>(b.imp-b.esf)-(a.imp-a.esf));
+    o.textContent="OPORTUNIDADES PRIORIZADAS\n\n"+sorted.map((r,i)=>`${i+1}. ${r.n}\n   impacto ${r.imp} · esfuerzo ${r.esf} · ${cat(r)}`).join("\n\n");
+    o.hidden=false};
+  add.onclick=()=>{
+    const n=document.getElementById("pr-nom").value.trim();if(!n)return;
+    list.push({n,imp:clamp(document.getElementById("pr-imp").value),esf:clamp(document.getElementById("pr-esf").value)});
+    ss("prior",list);document.getElementById("pr-nom").value="";render()};
+  document.querySelector("[data-pr-clear]").onclick=()=>{list=[];ss("prior",list);document.getElementById("pr-out").hidden=true};
+  render();
+}
+
+function toolPrompt(){
+  const gen=document.querySelector("[data-pm-gen]");if(!gen)return;
+  gen.onclick=()=>{
+    const g=i=>document.getElementById(i).value.trim();
+    const rol=g("pm-rol"),tarea=g("pm-tarea"),ctx=g("pm-ctx"),fmt=g("pm-fmt"),res=g("pm-res"),ej=g("pm-ej");
+    const falta=[];
+    if(!rol)falta.push("Rol: sin rol la respuesta sale genérica.");
+    if(!tarea)falta.push("Tarea: es lo único imprescindible. Sin ella no hay instrucción.");
+    if(!ctx)falta.push("Contexto o insumo: sin material que analizar, el modelo rellena con invención.");
+    if(!fmt)falta.push("Formato: si no lo pide, recibirá prosa que toca reordenar a mano.");
+    if(!res)falta.push("Restricciones: sin el «no inventes datos», las alucinaciones pasan desapercibidas.");
+    if(!ej)falta.push("Ejemplo: es opcional, pero es lo que más sube la calidad.");
+    const puntos=6-falta.length;
+    let t="INSTRUCCIÓN ARMADA\n\n";
+    t+=(rol?`Actúa como ${rol}.\n`:"")+(tarea?`Tu tarea es ${tarea}.\n`:"");
+    if(ctx)t+=`\nTrabaja únicamente con este material:\n"""\n${ctx}\n"""\n`;
+    if(fmt)t+=`\nDevuelve el resultado así: ${fmt}.\n`;
+    if(res)t+=`\nRestricciones: ${res}.\n`;
+    if(ej)t+=`\nEjemplo del estilo esperado:\n${ej}\n`;
+    t+=`\n———\nEVALUACIÓN: ${puntos} de 6 ingredientes.\n`;
+    t+=falta.length?"\nLe falta:\n"+falta.map(f=>"  - "+f).join("\n"):"\nCompleta. Revise igual la salida contra la fuente antes de usarla.";
+    t+="\n\nRecuerde: no pegue datos de pacientes identificables en herramientas públicas.";
+    const o=document.getElementById("pm-out");o.textContent=t;o.hidden=false};
+}
+
+function checklists(){
+  const boxes=[...document.querySelectorAll("[data-k]")];if(!boxes.length)return;
+  const st=sg("chk")||{};
+  const count=()=>{const d=boxes.filter(b=>b.checked).length;const el=document.getElementById("chk-count");
+    if(el)el.textContent=d?`${d} de ${boxes.length} puntos marcados`:""};
+  boxes.forEach(b=>{b.checked=!!st[b.dataset.k];
+    b.addEventListener("change",()=>{st[b.dataset.k]=b.checked;ss("chk",st);count()})});
+  const r=document.querySelector("[data-chk-reset]");
+  if(r)r.onclick=()=>{boxes.forEach(b=>{b.checked=false;st[b.dataset.k]=false});ss("chk",st);count()};
+  count();
+}
+
+function glossary(){
+  const inp=document.getElementById("gsearch");if(!inp)return;
+  const rows=[...document.querySelectorAll("#gl div")],c=document.getElementById("gcount");
+  const run=()=>{const q=inp.value.trim().toLowerCase();let n=0;
+    rows.forEach(r=>{const hit=!q||r.textContent.toLowerCase().includes(q);r.hidden=!hit;if(hit)n++});
+    c.textContent=q?`${n} de ${rows.length} términos`:`${rows.length} términos`};
+  inp.addEventListener("input",run);run();
+}
+
+function copyButtons(){
+  document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{
+    const el=document.getElementById(b.dataset.copy);
+    if(!el||el.hidden||!el.textContent.trim()){b.textContent="Genere primero";setTimeout(()=>b.textContent="Copiar",1600);return}
+    try{await navigator.clipboard.writeText(el.textContent);b.textContent="Copiado"}
+    catch(e){const r=document.createRange();r.selectNode(el);getSelection().removeAllRanges();getSelection().addRange(r);b.textContent="Seleccionado, use Ctrl+C"}
+    setTimeout(()=>b.textContent="Copiar",1800)});
+}
+
+function chrome(){
+  const t=document.getElementById("themebtn"),root=document.documentElement;
+  const saved=sg("tema");if(saved)root.dataset.theme=saved;
+  t.onclick=()=>{const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia("(prefers-color-scheme: dark)").matches;
+    root.dataset.theme=dark?"light":"dark";ss("tema",root.dataset.theme)};
+  const nav=document.getElementById("sidenav"),tog=document.getElementById("navtoggle");
+  tog.onclick=()=>{const o=nav.classList.toggle("open");tog.setAttribute("aria-expanded",String(o))};
+  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");tog.setAttribute("aria-expanded","false")}));
+  const links=[...nav.querySelectorAll("a")];
+  const secs=links.map(a=>document.querySelector(a.getAttribute("href"))).filter(Boolean);
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+    links.forEach(l=>l.classList.toggle("on",l.getAttribute("href")==="#"+e.target.id))}})},{rootMargin:"-15% 0px -70% 0px"});
+  secs.forEach(s=>io.observe(s));
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  document.querySelectorAll("[data-quiz]").forEach(buildQuiz);
+  paintProgress();chrome();toolEficiencia();toolSipoc();toolGuion();toolCuello();toolPrior();toolPrompt();checklists();glossary();copyButtons();
+});
+</script>
+<style>ul.chk{list-style:none;padding:0}ul.chk li{margin:.35rem 0}ul.chk label{display:flex;gap:.7rem;align-items:flex-start;border:1px solid var(--rule);border-radius:9px;padding:.5rem .8rem;cursor:pointer}ul.chk input{width:1.25rem;height:1.25rem;flex:none;margin-top:.15rem;accent-color:var(--steel)}ul.chk input:checked + span{text-decoration:line-through;color:var(--dim)}</style>
+</body>
+</html>
